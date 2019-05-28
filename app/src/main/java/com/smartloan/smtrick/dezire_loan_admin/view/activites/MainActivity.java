@@ -98,8 +98,6 @@ public class MainActivity extends AppCompatActivity
             Toast.makeText(this, "Storage Premission Required", Toast.LENGTH_SHORT).show();
         }
 
-
-
     }
 
     public boolean isStoragePermissionGranted() {
