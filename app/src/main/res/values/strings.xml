@@ -1,0 +1,84 @@
+<resources>
+    <string name="order_id_mock" translatable="false"># 1234â€“5678</string>
+    <string name="price_mock" translatable="false">$25</string>
+    <string name="requests_count_mock" translatable="false">5</string>
+    <string name="requests_count_badge" translatable="false">REQUESTS</string>
+    <string name="weight_mock" translatable="false">50 oz</string>
+    <string name="weight_badge" translatable="false">WEIGHT</string>
+    <string name="pledge_mock" translatable="false">$150</string>
+    <string name="pledge_badge" translatable="false">PLEDGE</string>
+    <string name="sender_badge" translatable="false">USER INFO</string>
+    <string name="client_name_mock" translatable="false">Sachin Patil</string>
+    <string name="rating_mock" translatable="false">Applied for Accountant</string>
+    <string name="from_badge" translatable="false">CONTACT</string>
+    <string name="to_badge" translatable="false">TO</string>
+    <string name="delivery_date_badge" translatable="false">ADDRESS</string>
+    <string name="delivery_time_mock" translatable="false">Maalvani,Malad west Mumbai</string>
+    <string name="delivery_date_mock" translatable="false">Pin Code 400001</string>
+    <string name="deadline_badge" translatable="false">REQUEST DEADLINE</string>
+    <string name="deadline_time_mock" translatable="false">24 minutes</string>
+    <string name="request_btn_text" translatable="false">Accept</string>
+    <string name="btn_annotation_mock" translatable="false">Reject</string>
+
+    <string name="content_from1_mock">Mobile No</string>
+    <string name="content_from2_mock">+91 9509847463</string>
+    <string name="content_to1_mock">Email Id</string>
+    <string name="content_to2_mock">sachinpatil@gmail.com</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="app_name">Desire Loan-Admin</string>
+    <string name="title_activity_home_">Home_Activity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+    <string name="action_example">Example action</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="title_activity_users">UsersActivity</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="title_activity_generate_leads">Generate Leads</string>
+    <string name="hint_principal">Principal Amount ₹</string>
+    <string name="hint_interest">Interest rate per Year %</string>
+    <string name="hint_years">How Many Years</string>
+    <string name="hint_emi">EMI ₹</string>
+    <string name="hint_interest_total">Total Interest for Loan ₹</string>
+    <string name="please_wait">Please wait</string>
+    <string name="registration_fail">Registration fail, please try again.</string>
+    <string name="dismiss">dismiss</string>
+    <string name="network_not_available">Network not available, please check your network connection.</string>
+    <string name="MOBILE_NUMBER_SHOULD_NOT_BE_EMPTY">Mobile number should not be empty.</string>
+    <string name="MOBILE_NUMBER_ALREADY_REGISTER">Mobile number already register.</string>
+    <string name="INVALID_EMAIL">Invalid Email</string>
+    <string name="INVALID_CHARACTERS">Invalid Characters</string>
+    <string name="PLEASE_ENTER_NAME"> Please enter the name.</string>
+    <string name="INVALID_MOBILE_NUMBER">Invalid mobile number.</string>
+    <string name="MOBILE_NUMBER_SHOULD_BE_10_DIGIT">Mobile number should be 10 digit.</string>
+    <string name="OTP_FIVE_DIGIT_NUMBER">OTP is 5 digit number</string>
+    <string name="SERVER_NOT_RESPONDING">Server not responding</string>
+    <string name="PASSWORD_SHOULD_NOT_BE_EMPTY">Password should not be empty.</string>
+    <string name="SIGNING_IN">Signing in&#8230;</string>
+    <string name="loading">Loading&#8230;</string>
+    <string name="PLEASE_WAIT">Please Wait&#8230;</string>
+    <string name="CREATING_ACCOUNT">Creating Account&#8230;</string>
+    <string name="profile_updating">Profile Updating&#8230;</string>
+    <string name="uploading"> Uploading&#8230;</string>
+    <string name="login_fail_try_again">Login fail, please try again with correct login details.</string>
+    <string name="customer_name_should_be_empty">Customer name should not be empty.</string>
+    <string name="loan_type_error">Select one of loan type.</string>
+    <string name="lead_generated_success_message">Leed generated successfully.</string>
+    <string name="lead_updated_success_message">Leed updated successfully.</string>
+    <string name="lead_generated_fails_message">Leed generated failed, please try again.</string>
+    <string name="data_updation_fails_message">Data updation failed, please try again.</string>
+    <string name="server_error">Faild to fetch data, please try again.</string>
+    <string name="leed_In_loading">Generating Leed&#8230;</string>
+    <string name="updating_leed">Updating Leed&#8230;</string>
+    <string name="na">NA</string>
+    <string name="file_uploading_progress">Uploading in progress</string>
+    <string name="file_uploading_complited">Uploading to server done </string>
+    <string name="file_uploading_complited_message">Total uploaded files :&#160; </string>
+    <string name="notification_message">Don\'t close the app.</string>
+    <string name="file_attached">Total Count :&#160;</string>
+</resources>

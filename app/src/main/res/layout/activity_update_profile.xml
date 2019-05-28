@@ -1,0 +1,454 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.constraint.ConstraintLayout xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".view.activites.UpdateProfileActivity">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                android:titleTextColor="@color/white"
+                app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+            <ScrollView
+                android:id="@+id/scrollviewrightleft"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_vertical">
+
+                <RelativeLayout
+                    android:id="@+id/scrolllayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center_vertical">
+
+                    <LinearLayout
+                        android:id="@+id/layoutlogin"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/layouttext"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="125dp"
+                            android:layout_height="wrap_content">
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:id="@+id/iv_profile"
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:layout_marginTop="10dp"
+                                android:src="@drawable/dummy_user_profile"
+                                app:civ_border_color="@color/white"
+                                app:civ_border_width="3dp" />
+
+                            <ImageView
+                                android:id="@+id/iv_cancel_profile"
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:layout_alignParentEnd="true"
+                                android:contentDescription="@string/app_name"
+                                android:padding="15dp"
+                                android:src="@drawable/cancel_gray_icon"
+                                android:visibility="gone" />
+
+                        </RelativeLayout>
+
+                        <TextView
+                            android:id="@+id/textheader"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Edit Profile"
+                            android:gravity="center_horizontal"
+                            android:layout_marginTop="0dp"
+                            android:textColor="@color/mainTextColor"
+                            android:textSize="20dp"
+                            />
+
+
+                        <EditText
+                            android:id="@+id/edittextname"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="30sp"
+                            android:layout_below="@+id/textheader"
+                            android:layout_marginRight="30sp"
+                            android:layout_marginTop="15dp"
+                            android:background="@drawable/edittext_bprder"
+                            android:gravity="center_horizontal"
+                            android:hint="Name"
+                            android:maxLength="30"
+                            android:padding="10sp"
+                            android:paddingLeft="4dp"
+                            android:textColor="@color/whitetextcolor"
+                            android:textColorHint="@color/hinttextcolor"
+                            android:textSize="15sp" />
+
+                        <EditText
+                            android:id="@+id/edittextfathersname"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="30sp"
+                            android:layout_marginRight="30sp"
+                            android:layout_marginTop="15dp"
+                            android:layout_below="@+id/edittextname"
+                            android:background="@drawable/edittext_bprder"
+                            android:gravity="center_horizontal"
+                            android:hint="Father Name"
+                            android:maxLength="30"
+                            android:padding="10sp"
+                            android:paddingLeft="4dp"
+                            android:textColor="@color/whitetextcolor"
+                            android:textColorHint="@color/hinttextcolor"
+                            android:textSize="15sp" />
+
+                        <EditText
+                            android:id="@+id/edittextaddress"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/edittextfathersname"
+                            android:layout_marginLeft="30sp"
+                            android:layout_marginRight="30sp"
+                            android:layout_marginTop="20sp"
+                            android:background="@drawable/edittext_bprder"
+                            android:gravity="center_horizontal"
+                            android:hint="Address"
+                            android:maxLength="50"
+                            android:padding="10sp"
+                            android:paddingLeft="4dp"
+                            android:textColor="@color/whitetextcolor"
+                            android:textColorHint="@color/hinttextcolor"
+                            android:textSize="15sp" />
+
+
+
+                        <EditText
+                            android:id="@+id/edittexcity"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/edittextaddress"
+                            android:layout_marginLeft="30sp"
+                            android:layout_marginRight="30sp"
+                            android:layout_marginTop="20sp"
+                            android:background="@drawable/edittext_bprder"
+                            android:gravity="center_horizontal"
+                            android:hint="City"
+                            android:maxLength="50"
+                            android:padding="10sp"
+                            android:paddingLeft="4dp"
+                            android:textColor="@color/whitetextcolor"
+                            android:textColorHint="@color/hinttextcolor"
+                            android:textSize="15sp" />
+
+                        <EditText
+                            android:id="@+id/edittextstate"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/edittexcity"
+                            android:layout_marginLeft="30sp"
+                            android:layout_marginRight="30sp"
+                            android:layout_marginTop="20sp"
+                            android:background="@drawable/edittext_bprder"
+                            android:gravity="center_horizontal"
+                            android:hint="State"
+                            android:maxLength="50"
+                            android:padding="10sp"
+                            android:paddingLeft="4dp"
+                            android:textColor="@color/whitetextcolor"
+                            android:textColorHint="@color/hinttextcolor"
+                            android:textSize="15sp" />
+
+                        <EditText
+                            android:id="@+id/edittextbirthdate"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/edittextstate"
+                            android:layout_marginLeft="30sp"
+                            android:layout_marginRight="30sp"
+                            android:layout_marginTop="20sp"
+                            android:background="@drawable/edittext_bprder"
+                            android:gravity="center_horizontal"
+                            android:hint="Birth Date"
+                            android:maxLength="50"
+                            android:padding="10sp"
+                            android:paddingLeft="4dp"
+                            android:textColor="@color/whitetextcolor"
+                            android:textColorHint="@color/hinttextcolor"
+                            android:textSize="15sp" />
+
+
+                        <EditText
+                            android:id="@+id/edittextpincode"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/edittextbirthdate"
+                            android:layout_marginLeft="30sp"
+                            android:layout_marginRight="30sp"
+                            android:layout_marginTop="20sp"
+                            android:background="@drawable/edittext_bprder"
+                            android:gravity="center_horizontal"
+                            android:hint="Pincode"
+                            android:maxLength="50"
+                            android:padding="10sp"
+                            android:paddingLeft="4dp"
+                            android:textColor="@color/whitetextcolor"
+                            android:textColorHint="@color/hinttextcolor"
+                            android:textSize="15sp" />
+
+                        <EditText
+                            android:id="@+id/edittextemailid"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/edittextpincode"
+                            android:layout_marginLeft="30sp"
+                            android:layout_marginRight="30sp"
+                            android:layout_marginTop="20sp"
+                            android:background="@drawable/edittext_bprder"
+                            android:gravity="center_horizontal"
+                            android:hint="Email"
+                            android:maxLength="50"
+                            android:padding="10sp"
+                            android:paddingLeft="4dp"
+                            android:textColor="@color/whitetextcolor"
+                            android:textColorHint="@color/hinttextcolor"
+                            android:textSize="15sp" />
+
+
+                        <EditText
+                            android:id="@+id/edittextmobile"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/edittextemailid"
+                            android:layout_marginLeft="30sp"
+                            android:layout_marginRight="30sp"
+                            android:layout_marginTop="20sp"
+                            android:background="@drawable/edittext_bprder"
+                            android:gravity="center_horizontal"
+                            android:hint="Mobile Number"
+                            android:inputType="number"
+                            android:maxLength="10"
+                            android:padding="10sp"
+                            android:paddingLeft="4dp"
+                            android:textColor="@color/whitetextcolor"
+                            android:textColorHint="@color/hinttextcolor"
+                            android:textSize="15sp" />
+
+                        <EditText
+                            android:id="@+id/edittextaltmobilenumber"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/edittextmobile"
+                            android:layout_marginLeft="30sp"
+                            android:layout_marginRight="30sp"
+                            android:layout_marginTop="20sp"
+                            android:background="@drawable/edittext_bprder"
+                            android:gravity="center_horizontal"
+                            android:hint="Alternate Mobile Number"
+                            android:inputType="number"
+                            android:maxLength="10"
+                            android:padding="10sp"
+                            android:paddingLeft="4dp"
+                            android:textColor="@color/whitetextcolor"
+                            android:textColorHint="@color/hinttextcolor"
+                            android:textSize="15sp" />
+
+
+                        <TextView
+                            android:id="@+id/textheaderbank"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Bank Information"
+                            android:layout_below="@+id/edittextaltmobilenumber"
+                            android:padding="5dp"
+                            android:layout_gravity="center_horizontal"
+                            android:gravity="center_horizontal"
+                            android:background="@color/hederbackground"
+                            android:layout_marginTop="20dp"
+                            android:textColor="@color/white"
+                            android:textSize="17dp"
+                            />
+
+
+                        <EditText
+                            android:id="@+id/edittextaccountname"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/textheaderbank"
+                            android:layout_marginLeft="30sp"
+                            android:layout_marginRight="30sp"
+                            android:layout_marginTop="20sp"
+                            android:background="@drawable/edittext_bprder"
+                            android:gravity="center_horizontal"
+                            android:hint="Account Name"
+                            android:inputType="number"
+                            android:maxLength="10"
+                            android:padding="10sp"
+                            android:paddingLeft="4dp"
+                            android:textColor="@color/whitetextcolor"
+                            android:textColorHint="@color/hinttextcolor"
+                            android:textSize="15sp" />
+
+
+
+                        <EditText
+                            android:id="@+id/edittextbank"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/edittextaccountname"
+                            android:layout_marginLeft="30sp"
+                            android:layout_marginRight="30sp"
+                            android:layout_marginTop="20sp"
+                            android:background="@drawable/edittext_bprder"
+                            android:gravity="center_horizontal"
+                            android:hint="Bank Name"
+                            android:inputType="number"
+                            android:maxLength="10"
+                            android:padding="10sp"
+                            android:paddingLeft="4dp"
+                            android:textColor="@color/whitetextcolor"
+                            android:textColorHint="@color/hinttextcolor"
+                            android:textSize="15sp" />
+
+
+                        <EditText
+                            android:id="@+id/edittextaccountnumber"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/edittextbank"
+                            android:layout_marginLeft="30sp"
+                            android:layout_marginRight="30sp"
+                            android:layout_marginTop="20sp"
+                            android:background="@drawable/edittext_bprder"
+                            android:gravity="center_horizontal"
+                            android:hint="Account Number"
+                            android:inputType="number"
+                            android:maxLength="10"
+                            android:padding="10sp"
+                            android:paddingLeft="4dp"
+                            android:textColor="@color/whitetextcolor"
+                            android:textColorHint="@color/hinttextcolor"
+                            android:textSize="15sp" />
+
+
+                        <EditText
+                            android:id="@+id/edittextaccounttype"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/edittextaccountnumber"
+                            android:layout_marginLeft="30sp"
+                            android:layout_marginRight="30sp"
+                            android:layout_marginTop="20sp"
+                            android:background="@drawable/edittext_bprder"
+                            android:gravity="center_horizontal"
+                            android:hint="Account Type"
+                            android:inputType="number"
+                            android:maxLength="10"
+                            android:padding="10sp"
+                            android:paddingLeft="4dp"
+                            android:textColor="@color/whitetextcolor"
+                            android:textColorHint="@color/hinttextcolor"
+                            android:textSize="15sp" />
+
+
+                        <EditText
+                            android:id="@+id/edittextpan"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/edittextaccounttype"
+                            android:layout_marginLeft="30sp"
+                            android:layout_marginRight="30sp"
+                            android:layout_marginTop="20sp"
+                            android:background="@drawable/edittext_bprder"
+                            android:gravity="center_horizontal"
+                            android:hint="Pan Number"
+                            android:inputType="number"
+                            android:maxLength="10"
+                            android:padding="10sp"
+                            android:paddingLeft="4dp"
+                            android:textColor="@color/whitetextcolor"
+                            android:textColorHint="@color/hinttextcolor"
+                            android:textSize="15sp" />
+
+                        <EditText
+                            android:id="@+id/edittextbranch"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/edittextpan"
+                            android:layout_marginLeft="30sp"
+                            android:layout_marginRight="30sp"
+                            android:layout_marginTop="20sp"
+                            android:background="@drawable/edittext_bprder"
+                            android:gravity="center_horizontal"
+                            android:hint="Branch Name"
+                            android:inputType="number"
+                            android:maxLength="10"
+                            android:padding="10sp"
+                            android:paddingLeft="4dp"
+                            android:textColor="@color/whitetextcolor"
+                            android:textColorHint="@color/hinttextcolor"
+                            android:textSize="15sp" />
+
+                        <EditText
+                            android:id="@+id/edittextifsc"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/edittextbranch"
+                            android:layout_marginLeft="30sp"
+                            android:layout_marginRight="30sp"
+                            android:layout_marginTop="20sp"
+                            android:background="@drawable/edittext_bprder"
+                            android:gravity="center_horizontal"
+                            android:hint="Ifsc Code"
+                            android:inputType="number"
+                            android:maxLength="10"
+                            android:padding="10sp"
+                            android:paddingLeft="4dp"
+                            android:textColor="@color/whitetextcolor"
+                            android:textColorHint="@color/hinttextcolor"
+                            android:textSize="15sp" />
+
+
+                        <RelativeLayout
+                            android:id="@+id/layoutbutton"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/edittextifsc"
+                            android:layout_marginBottom="20sp"
+                            android:layout_marginTop="20sp"
+                            android:gravity="center_horizontal">
+
+                            <Button
+                                android:id="@+id/buttonsubmit"
+                                android:layout_width="150sp"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="5dp"
+                                android:background="#808080"
+                                android:gravity="center"
+                                android:padding="5sp"
+                                android:text="UPDATE"
+                                android:textColor="@color/white"
+                                android:textSize="15sp"
+                                android:textStyle="normal|bold" />
+                        </RelativeLayout>
+                    </LinearLayout>
+                </RelativeLayout>
+            </ScrollView>
+        </LinearLayout>
+    </android.support.constraint.ConstraintLayout>
+</layout>

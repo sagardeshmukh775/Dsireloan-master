@@ -1,0 +1,296 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:background="#ffffff">
+
+    <ScrollView
+        android:id="@+id/scrollviewrightleft"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:weightSum="100">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_margin="3dp"
+                android:layout_weight="15"
+                android:orientation="vertical"
+                android:weightSum="20">
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/viewPager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="5" />
+
+                <LinearLayout
+                    android:id="@+id/SliderDots"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="0.5dp"
+                    android:layout_weight="15"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:orientation="horizontal" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="28"
+                android:orientation="horizontal"
+                android:weightSum="100">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="2.5dp"
+                    android:layout_weight="50"
+                    android:background="@color/hederbackground"
+                    android:orientation="vertical"
+                    android:weightSum="10">
+
+                    <Button
+                        android:id="@+id/btn_pl"
+                        style="?android:attr/borderlessButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="20dp"
+                        android:background="@color/hederbackground"
+                        android:drawableTop="@drawable/personal_loan_icon"
+                        android:padding="5dp"
+                        android:text="Personal Loan"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:scaleX=".75"
+                        android:scaleY=".75"/>
+
+                    <!--<TextView-->
+                    <!--android:layout_weight="8"-->
+                    <!--android:textAlignment="center"-->
+                    <!--android:textStyle="bold"-->
+                    <!--android:textColor="@color/white"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginBottom="3dp"-->
+                    <!--android:text="PERSONAL LOAN"/>-->
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="2.5dp"
+                    android:layout_weight="50"
+                    android:background="@color/hederbackground"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:id="@+id/btn_hl"
+                        style="?android:attr/borderlessButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="20dp"
+                        android:background="@color/hederbackground"
+                        android:drawableTop="@drawable/home_loan_icon"
+                        android:padding="5dp"
+                        android:text="Home Loan"
+                        android:textColor="@color/white"
+                        android:scaleX=".75"
+                        android:scaleY=".75"/>
+
+                    <!--<TextView-->
+                    <!--android:layout_weight="8"-->
+                    <!--android:textAlignment="center"-->
+                    <!--android:textStyle="bold"-->
+                    <!--android:textColor="@color/white"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginBottom="3dp"-->
+                    <!--android:text="HOME LOAN"/>-->
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="28"
+                android:orientation="horizontal"
+                android:weightSum="100">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="2.5dp"
+                    android:layout_weight="50"
+                    android:background="@color/hederbackground"
+                    android:orientation="vertical"
+                    android:weightSum="10">
+
+                    <Button
+                        android:id="@+id/btn_ml"
+                        style="?android:attr/borderlessButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="20dp"
+                        android:layout_weight="50"
+                        android:background="@color/hederbackground"
+                        android:drawableTop="@drawable/mortgage_loan_icon"
+                        android:padding="5dp"
+                        android:text="Morgage Loan"
+                        android:textColor="@color/white"
+                        android:scaleX=".75"
+                        android:scaleY=".75"/>
+
+                    <!--<TextView-->
+                    <!--android:layout_weight="8"-->
+                    <!--android:textAlignment="center"-->
+                    <!--android:textStyle="bold"-->
+                    <!--android:textColor="@color/white"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginBottom="3dp"-->
+                    <!--android:text="MORTGAGE LOAN"/>-->
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="2.5dp"
+                    android:layout_weight="50"
+                    android:background="@color/hederbackground"
+                    android:orientation="vertical"
+                    android:weightSum="10">
+
+                    <Button
+                        android:id="@+id/btn_tp"
+                        style="?android:attr/borderlessButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="20dp"
+                        android:layout_weight="50"
+                        android:background="@color/hederbackground"
+                        android:drawableTop="@drawable/topup_loan_icon"
+                        android:padding="5dp"
+                        android:text="Top Up"
+                        android:textColor="@color/white"
+                        android:scaleX=".75"
+                        android:scaleY=".75"/>
+
+                    <!--<TextView-->
+                    <!--android:layout_weight="8"-->
+                    <!--android:textAlignment="center"-->
+                    <!--android:textStyle="bold"-->
+                    <!--android:textColor="@color/white"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginBottom="3dp"-->
+                    <!--android:text="TOP-UP LOAN"/>-->
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="28"
+                android:orientation="horizontal"
+                android:weightSum="100">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="2.5dp"
+                    android:layout_weight="50"
+                    android:background="@color/hederbackground"
+                    android:orientation="vertical"
+                    android:weightSum="10">
+
+                    <Button
+                        android:id="@+id/btn_bt"
+                        style="?android:attr/borderlessButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="20dp"
+                        android:layout_weight="50"
+                        android:background="@color/hederbackground"
+                        android:drawableTop="@drawable/balance_tranfer_loan"
+                        android:padding="5dp"
+                        android:text="Balance Transfer"
+                        android:textColor="@color/white"
+                        android:scaleX=".75"
+                        android:scaleY=".75"/>
+
+                    <!--<TextView-->
+                    <!--android:layout_weight="8"-->
+                    <!--android:textAlignment="center"-->
+                    <!--android:textStyle="bold"-->
+                    <!--android:textColor="@color/white"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginBottom="3dp"-->
+                    <!--android:text="BALANCE TRANSFER "/>-->
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="2.5dp"
+                    android:layout_weight="50"
+                    android:background="@color/hederbackground"
+                    android:orientation="vertical"
+                    android:weightSum="10">
+
+                    <Button
+                        android:id="@+id/btn_dl"
+                        style="?android:attr/borderlessButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_margin="20dp"
+                        android:layout_weight="50"
+                        android:background="@color/hederbackground"
+                        android:drawableTop="@drawable/doctor_loan"
+                        android:padding="5dp"
+                        android:text="Doctor Loan"
+                        android:textColor="@color/white"
+                        android:scaleX=".75"
+                        android:scaleY=".75"/>
+
+                    <!--<TextView-->
+                    <!--android:layout_weight="8"-->
+                    <!--android:textAlignment="center"-->
+                    <!--android:textStyle="bold"-->
+                    <!--android:textColor="@color/white"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginBottom="3dp"-->
+                    <!--android:text="DOCTOR LOAN"/>-->
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</FrameLayout>

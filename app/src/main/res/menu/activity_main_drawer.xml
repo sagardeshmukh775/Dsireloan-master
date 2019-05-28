@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Note:  android:checkableBehavior="single" -->
+    <group android:checkableBehavior="single">
+        <!--<item-->
+            <!--android:id="@+id/generateleads"-->
+            <!--android:icon="@drawable/leadsimage"-->
+            <!--android:title="New Lead"-->
+            <!--android:textSize="22sp"-->
+            <!--android:textColor="@color/textcolor"-->
+            <!--android:textStyle="normal|bold"/>-->
+
+        <!--<item-->
+            <!--android:id="@+id/Leads"-->
+            <!--android:icon="@drawable/usersimage2"-->
+            <!--android:title="User Leads"-->
+            <!--android:textSize="22sp"-->
+            <!--android:textColor="@color/textcolor"-->
+            <!--android:textStyle="normal|bold"/>-->
+
+
+        <item
+            android:id="@+id/Reports"
+            android:icon="@drawable/reportsimage"
+            android:title="Reports"
+            android:textSize="22sp"
+            android:textColor="@color/textcolor"
+            android:textStyle="normal|bold" />
+
+        <!--<item-->
+            <!--android:id="@+id/invoice"-->
+            <!--android:icon="@drawable/invoices"-->
+            <!--android:title="Invoices"-->
+            <!--android:textSize="22sp"-->
+            <!--android:textColor="@color/textcolor"-->
+            <!--android:textStyle="normal|bold"/>-->
+
+        <item
+            android:id="@+id/Calulator"
+            android:icon="@drawable/calculatoricon"
+            android:title="Loan Calculator"
+            android:textSize="22sp"
+            android:textColor="@color/textcolor"
+            android:textStyle="normal|bold"/>
+
+        <item
+            android:id="@+id/item_logout"
+            android:icon="@drawable/settingsimage"
+            android:title="Log out"
+            android:textSize="22sp"
+            android:textColor="@color/textcolor"
+            android:textStyle="normal|bold"/>
+
+        <item
+            android:id="@+id/users"
+            android:icon="@drawable/usersimage2"
+            android:title="Users"
+            android:textSize="22sp"
+            android:textColor="@color/textcolor"
+            android:textStyle="normal|bold"/>
+
+        <item
+            android:id="@+id/adleeds"
+            android:icon="@drawable/usersimage2"
+            android:title="Leeds"
+            android:textSize="22sp"
+            android:textColor="@color/textcolor"
+            android:textStyle="normal|bold"/>
+
+        <item
+            android:id="@+id/offers"
+            android:icon="@drawable/offer"
+            android:title="Offers"
+            android:textSize="22sp"
+            android:textColor="@color/textcolor"
+            android:textStyle="normal|bold"/>
+
+
+        <item
+            android:id="@+id/admininvoice"
+            android:icon="@drawable/usersimage2"
+            android:title="Invoices"
+            android:textSize="22sp"
+            android:textColor="@color/textcolor"
+            android:textStyle="normal|bold"/>
+
+    </group>
+
+</menu>
