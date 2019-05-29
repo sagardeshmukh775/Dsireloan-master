@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity
         navigationView.setCheckedItem(R.id.generateleads);
         updateNavigationHeader();
         //NOTE:  Open fragment1 initially.
-        selectedFragement = new Fragment5();
+        selectedFragement = new Admin_Leed_TabFragment();
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.mainFrame, selectedFragement);
         ft.commit();

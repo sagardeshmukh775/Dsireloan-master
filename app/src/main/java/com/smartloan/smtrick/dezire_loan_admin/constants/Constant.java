@@ -13,7 +13,7 @@ public class Constant {
     public static final FirebaseStorage STORAGE = FirebaseStorage.getInstance();
     public static final StorageReference STORAGE_REFERENCE = STORAGE.getReference();
     private static final FirebaseDatabase DATABASE = FirebaseDatabase.getInstance();
-    public static final DatabaseReference USER_TABLE_REF = DATABASE.getReference("user");
+    public static final DatabaseReference USER_TABLE_REF = DATABASE.getReference("users");
     public static final DatabaseReference LEEDS_TABLE_REF = DATABASE.getReference("leeds");
     public static final DatabaseReference INVOICE_TABLE_REF = DATABASE.getReference("invoice");
     public static final String DOCUMENTS_PATH = "images/documents";

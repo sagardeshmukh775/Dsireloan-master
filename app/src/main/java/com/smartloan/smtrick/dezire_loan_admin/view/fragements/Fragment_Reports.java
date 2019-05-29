@@ -171,7 +171,7 @@ public class Fragment_Reports extends Fragment {
                 for (int i = 0;i<filterArrayList.size(); i++){
                     approved_amount =approved_amount +  Integer.parseInt(filterArrayList.get(i).getDissbussloan());
                 }
-                fragmentReportBinding.textViewTotalAmountValue.setText(String.valueOf(approved_amount));
+                fragmentReportBinding.textViewTotalAmountValue.setText(Integer.toString(approved_amount));
             }
 
         }catch (Exception e){
