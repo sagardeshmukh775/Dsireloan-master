@@ -20,6 +20,7 @@ import com.smartloan.smtrick.dezire_loan_admin.R;
 import com.smartloan.smtrick.dezire_loan_admin.callback.CallBack;
 import com.smartloan.smtrick.dezire_loan_admin.exception.ExceptionUtil;
 import com.smartloan.smtrick.dezire_loan_admin.models.User;
+import com.smartloan.smtrick.dezire_loan_admin.models.Users;
 import com.smartloan.smtrick.dezire_loan_admin.preferences.AppSharedPreference;
 import com.smartloan.smtrick.dezire_loan_admin.repository.UserRepository;
 import com.smartloan.smtrick.dezire_loan_admin.repository.impl.UserRepositoryImpl;
@@ -123,8 +124,8 @@ public class Registeractivity extends AppCompatActivity implements
 
     private void validateAndCreateUser() {
         User user = fillUserModel();
-        if (validate(user))
-            createUser(user);
+        if (validate(user));
+//            createUser(user);
     }
 
     private User fillUserModel() {
@@ -177,23 +178,23 @@ public class Registeractivity extends AppCompatActivity implements
         return getString(id);
     }
 
-    private void createUser(final User user) {
-        progressDialogClass.showDialog(getMessage(R.string.loading), getMessage(R.string.please_wait));
-        userRepository.createUser(user, new CallBack() {
-            @Override
-            public void onSuccess(Object object) {
-                addUserDataToPreferences(user);
-                loginToApp();
-            }
+//    private void createUser(final Users user) {
+//        progressDialogClass.showDialog(getMessage(R.string.loading), getMessage(R.string.please_wait));
+//        userRepository.createUser(user, new CallBack() {
+//            @Override
+//            public void onSuccess(Object object) {
+//                addUserDataToPreferences(user);
+//                loginToApp();
+//            }
+//
+//            @Override
+//            public void onError(Object object) {
+//                Utility.showMessage(Registeractivity.this, getMessage(R.string.registration_fail));
+//            }
+//        });
+//    }
 
-            @Override
-            public void onError(Object object) {
-                Utility.showMessage(Registeractivity.this, getMessage(R.string.registration_fail));
-            }
-        });
-    }
-
-    private void addUserDataToPreferences(User user) {
+    private void addUserDataToPreferences(Users user) {
         appSharedPreference.addUserDetails(user);
         appSharedPreference.createUserLoginSession();
     }

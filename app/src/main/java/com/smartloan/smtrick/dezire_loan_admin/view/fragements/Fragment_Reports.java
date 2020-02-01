@@ -9,11 +9,19 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
+import android.widget.EditText;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.smartloan.smtrick.dezire_loan_admin.R;
 import com.smartloan.smtrick.dezire_loan_admin.callback.CallBack;
 import com.smartloan.smtrick.dezire_loan_admin.databinding.FragmentReportBinding;
@@ -51,6 +59,9 @@ public class Fragment_Reports extends Fragment {
     ArrayList<LeedsModel> leedsModelArrayList;
     private OnFragmentInteractionListener mListener;
 
+    EditText etd_search_box;
+    DatabaseReference databaseReference;
+
     public Fragment_Reports() {
     }
 
@@ -65,6 +76,10 @@ public class Fragment_Reports extends Fragment {
         if (mListener != null) {
             mListener.onFragmentInteraction("Reports");
         }
+
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+
+
         progressDialogClass = new ProgressDialogClass(getActivity());
         appSingleton = AppSingleton.getInstance(getActivity());
         leedRepository = new LeedRepositoryImpl();
@@ -78,7 +93,72 @@ public class Fragment_Reports extends Fragment {
         getteLeed();
         setFromDateClickListner();
         setToDateClickListner();
+
+        fragmentReportBinding.searchEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+                if (!s.toString().isEmpty()) {
+                    setAdapter(s.toString());
+                } else {
+                    /*
+                     * Clear the list when editText is empty
+                     * */
+                    leedsModelArrayList.clear();
+                    fragmentReportBinding.recyclerViewLeeds.removeAllViews();
+                }
+
+            }
+        });
         return fragmentReportBinding.getRoot();
+    }
+
+    private void setAdapter(final String toString) {
+
+        databaseReference.child("leeds").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                leedsModelArrayList.clear();
+                fragmentReportBinding.recyclerViewLeeds.removeAllViews();
+
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    String uid = snapshot.getKey();
+                    LeedsModel leedsModel = snapshot.getValue(LeedsModel.class);
+
+                    if (leedsModel.getBankName() != null && leedsModel.getAgentName() != null) {
+                        if (leedsModel.getBankName().toLowerCase().contains(toString)) {
+
+//                        LeedsModel leedsModel = snapshot.getValue(LeedsModel.class);
+                            leedsModelArrayList.add(leedsModel);
+                        } else if (leedsModel.getAgentName().toLowerCase().contains(toString)) {
+//                        LeedsModel leedsModel = snapshot.getValue(LeedsModel.class);
+                            leedsModelArrayList.add(leedsModel);
+
+                        }
+                    }
+
+                }
+
+                serAdapter(leedsModelArrayList);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
     }
 
     private void onClickListner() {
@@ -96,7 +176,7 @@ public class Fragment_Reports extends Fragment {
 
     private void getteLeed() {
         progressDialogClass.showDialog(this.getString(R.string.loading), this.getString(R.string.PLEASE_WAIT));
-        leedRepository.readLeedsByUserIdReport(getActivity(),appSharedPreference.getUserId(), new CallBack() {
+        leedRepository.readLeedsByUserIdReport(getActivity(), appSharedPreference.getUserId(), new CallBack() {
             @Override
             public void onSuccess(Object object) {
                 if (object != null) {
@@ -149,7 +229,7 @@ public class Fragment_Reports extends Fragment {
             fragmentReportBinding.textViewTotalLeadsCount.setText(String.valueOf(leedsModelArrayList.size()));
             fragmentReportBinding.textViewApprovedLeadsCount.setText(String.valueOf(approvedCount));
             fragmentReportBinding.textViewRejectedLeadsCount.setText(String.valueOf(rejectedCount));
-           // fragmentReportBinding.textViewPayoutAmount.setText(String.valueOf(totalPayout));
+            // fragmentReportBinding.textViewPayoutAmount.setText(String.valueOf(totalPayout));
         } else {
             fragmentReportBinding.textViewTotalLeadsCount.setText("0");
             fragmentReportBinding.textViewApprovedLeadsCount.setText("0");
@@ -158,8 +238,8 @@ public class Fragment_Reports extends Fragment {
         }
     }
 
-    private void filterbyStatus(ArrayList<LeedsModel> leedsModelArrayList){
-        try{
+    private void filterbyStatus(ArrayList<LeedsModel> leedsModelArrayList) {
+        try {
             ArrayList<LeedsModel> filterArrayList = new ArrayList<>();
             if (leedsModelArrayList != null) {
                 for (LeedsModel leedsModel : leedsModelArrayList) {
@@ -168,13 +248,13 @@ public class Fragment_Reports extends Fragment {
                     }
                 }
                 int approved_amount = 0;
-                for (int i = 0;i<filterArrayList.size(); i++){
-                    approved_amount =approved_amount +  Integer.parseInt(filterArrayList.get(i).getDissbussloan());
+                for (int i = 0; i < filterArrayList.size(); i++) {
+                    approved_amount = approved_amount + Integer.parseInt(filterArrayList.get(i).getDissbussloan());
                 }
                 fragmentReportBinding.textViewTotalAmountValue.setText(Integer.toString(approved_amount));
             }
 
-        }catch (Exception e){
+        } catch (Exception e) {
 
         }
     }

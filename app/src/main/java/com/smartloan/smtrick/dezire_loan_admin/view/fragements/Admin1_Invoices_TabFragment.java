@@ -28,7 +28,7 @@ public class Admin1_Invoices_TabFragment extends Fragment {
         if (mListener != null) {
             mListener.onFragmentInteraction("Leeds");
         }
-        View view = inflater.inflate(R.layout.view_pager_tab_layout, container, false);
+        View view = inflater.inflate(R.layout.view_pager_tab_layout_invoices, container, false);
         viewPager = (ViewPager) view.findViewById(R.id.viewPager);
         viewPagerAdapter = new ViewPagerAdapter(getChildFragmentManager());
         viewPagerAdapter.addFragement(new Admin_Invoices_Fragment(), "Generated");

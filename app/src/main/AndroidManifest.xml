@@ -93,6 +93,8 @@
         <activity
             android:name="com.smartloan.smtrick.dezire_loan_admin.view.fragements.Add_Updatelead__approvedloan_Activity"
             android:windowSoftInputMode="stateHidden" />
+
+
         <activity
             android:name="com.smartloan.smtrick.dezire_loan_admin.view.activites.Add_Updatelead__submittobank_Activity"
             android:windowSoftInputMode="stateHidden" />
@@ -116,6 +118,26 @@
 
         <activity android:name="com.smartloan.smtrick.dezire_loan_admin.view.activites.Phone_Verification_Activity"/>
         <activity android:name="com.smartloan.smtrick.dezire_loan_admin.view.activites.VerifyPhoneActivity"/>
+
+        <activity
+            android:name="com.smartloan.smtrick.dezire_loan_admin.view.activites.Add_Updatelead__Inprocess_Activity"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.smartloan.smtrick.dezire_loan_admin.view.activites.Add_Updatelead__Login_Activity"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.smartloan.smtrick.dezire_loan_admin.view.activites.Add_Updatelead__Sanction_Activity"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.smartloan.smtrick.dezire_loan_admin.view.activites.Add_Updatelead__Submited_for_disbuss_Activity"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.smartloan.smtrick.dezire_loan_admin.view.activites.Add_Updatelead__Partiali_disbuss_Activity"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.smartloan.smtrick.dezire_loan_admin.view.activites.Add_Updatelead__Full_disbuss_Activity"
+            android:windowSoftInputMode="stateHidden" />
+
     </application>
 
 </manifest>

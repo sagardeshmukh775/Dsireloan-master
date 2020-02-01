@@ -52,38 +52,38 @@ public class AppSharedPreference {
         this.context = context;
     }
 
-    public void addUserDetails(User user) {
-        editor = sharedPref.edit();
-        if (user != null) {
-            if (user.getUserName() != null)
-                editor.putString(USERNAME, (user.getUserName()));
-            if (user.getEmail() != null)
-                editor.putString(EMAIL_ID, (user.getEmail()));
-            if (user.getRegId() != null)
-                editor.putString(REG_ID, (user.getRegId()));
-            if (user.getMobileNumber() != null)
-                editor.putString(MOBILE_NO, (user.getMobileNumber()));
-            if (user.getAadhaarNumber() != null)
-                editor.putString(AADHAAR_NO, (user.getAadhaarNumber()));
-            if (user.getUserProfileImageSmall() != null)
-                editor.putString(PROFILE_SMALL_IMAGE, (user.getUserProfileImageSmall()));
-            if (user.getUserProfileImageLarge() != null)
-                editor.putString(PROFILE_LARGE_IMAGE, (user.getUserProfileImageLarge()));
-            if (user.getUserId() != null)
-                editor.putString(USER_ID, (user.getUserId()));
-            if (user.getRegistrationToken() != null)
-                editor.putString(REGISTRATION_TOKEN, (user.getRegistrationToken()));
-            if (user.getAddress() != null)
-                editor.putString(ADDRESS, (user.getAddress()));
-            if (user.getRole() != null)
-                editor.putString(ROLE, (user.getRole()));
-            if (user.getGender() != null)
-                editor.putString(GENDER, (user.getGender()));
-            if (user.getAgentId() != null)
-                editor.putString(AGENT_ID, (user.getAgentId()));
-            }
-        editor.apply();
-    }
+//    public void addUserDetails(User user) {
+//        editor = sharedPref.edit();
+//        if (user != null) {
+//            if (user.getUserName() != null)
+//                editor.putString(USERNAME, (user.getUserName()));
+//            if (user.getEmail() != null)
+//                editor.putString(EMAIL_ID, (user.getEmail()));
+//            if (user.getRegId() != null)
+//                editor.putString(REG_ID, (user.getRegId()));
+//            if (user.getMobileNumber() != null)
+//                editor.putString(MOBILE_NO, (user.getMobileNumber()));
+//            if (user.getAadhaarNumber() != null)
+//                editor.putString(AADHAAR_NO, (user.getAadhaarNumber()));
+//            if (user.getUserProfileImageSmall() != null)
+//                editor.putString(PROFILE_SMALL_IMAGE, (user.getUserProfileImageSmall()));
+//            if (user.getUserProfileImageLarge() != null)
+//                editor.putString(PROFILE_LARGE_IMAGE, (user.getUserProfileImageLarge()));
+//            if (user.getUserId() != null)
+//                editor.putString(USER_ID, (user.getUserId()));
+//            if (user.getRegistrationToken() != null)
+//                editor.putString(REGISTRATION_TOKEN, (user.getRegistrationToken()));
+//            if (user.getAddress() != null)
+//                editor.putString(ADDRESS, (user.getAddress()));
+//            if (user.getRole() != null)
+//                editor.putString(ROLE, (user.getRole()));
+//            if (user.getGender() != null)
+//                editor.putString(GENDER, (user.getGender()));
+//            if (user.getAgentId() != null)
+//                editor.putString(AGENT_ID, (user.getAgentId()));
+//            }
+//        editor.apply();
+//    }
 
     public void addUserDetails(Users user) {
         editor = sharedPref.edit();
@@ -91,7 +91,7 @@ public class AppSharedPreference {
             if (user.getName() != null)
                 editor.putString(USERNAME, (user.getName()));
             if (user.getMobilenumber() != null)
-                editor.putString(EMAIL_ID, (user.getMobilenumber()));
+                editor.putString(MOBILE_NO, (user.getMobilenumber()));
 //            if (user.getRegId() != null)
 //                editor.putString(REG_ID, (user.getRegId()));
 //            if (user.getMobileNumber() != null)
@@ -114,6 +114,8 @@ public class AppSharedPreference {
 //                editor.putString(GENDER, (user.getGender()));
             if (user.getAgentId() != null)
                 editor.putString(AGENT_ID, (user.getAgentId()));
+            if (user.getUserid() != null)
+                editor.putString(USER_ID, (user.getUserid()));
         }
         editor.apply();
     }

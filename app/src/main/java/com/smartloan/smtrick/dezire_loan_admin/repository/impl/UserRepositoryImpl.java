@@ -16,6 +16,7 @@ import com.smartloan.smtrick.dezire_loan_admin.callback.CallBack;
 import com.smartloan.smtrick.dezire_loan_admin.constants.Constant;
 import com.smartloan.smtrick.dezire_loan_admin.exception.ExceptionUtil;
 import com.smartloan.smtrick.dezire_loan_admin.models.User;
+import com.smartloan.smtrick.dezire_loan_admin.models.Users;
 import com.smartloan.smtrick.dezire_loan_admin.repository.FirebaseTemplateRepository;
 import com.smartloan.smtrick.dezire_loan_admin.repository.UserRepository;
 
@@ -96,14 +97,14 @@ public class UserRepositoryImpl extends FirebaseTemplateRepository implements Us
      */
     @Override
     public void readUser(final String userId, final CallBack callback) {
-        final Query query = Constant.USER_TABLE_REF.orderByChild("userId").equalTo(userId);
+        final Query query = Constant.USER_TABLE_REF.orderByChild("agentId").equalTo(userId);
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot != null && dataSnapshot.getValue() != null && dataSnapshot.hasChildren()) {
                     try {
                         final DataSnapshot firstChild = dataSnapshot.getChildren().iterator().next();
-                        callback.onSuccess(firstChild.getValue(User.class));
+                        callback.onSuccess(firstChild.getValue(Users.class));
                     } catch (Exception e) {
                         callback.onError(e);
                         ExceptionUtil.logException(e);
@@ -132,33 +133,33 @@ public class UserRepositoryImpl extends FirebaseTemplateRepository implements Us
         readUser(userId, callback);
     }
 
-    /**
-     * @param callback
-     */
-    @Override
-    public void createUser(final User userModel, final CallBack callback) {
-        Constant.AUTH.createUserWithEmailAndPassword(userModel.getMobileNumber() + EMAIL_POSTFIX, userModel.getPassword())
-                .addOnCompleteListener(_activity, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            final FirebaseUser firebaseUser = Constant.AUTH.getCurrentUser();
-                            if (firebaseUser == null) {
-                                callback.onError(task);
-                                return;
-                            }
-                            userModel.setUserId(firebaseUser.getUid());
-                            //userModel.setPassword(null);
-                            // FireBase Create User
-                            Map userMap = userModel.toMap();
-                            // userMap.put("imeiNumber", REGISTRATION_CONSTANT);
-                            createUserData(userModel, callback);
-                        } else {
-                            callback.onError(task);
-                        }
-                    }
-                });
-    }
+//    /**
+//     * @param callback
+//     */
+//    @Override
+//    public void createUser(final User userModel, final CallBack callback) {
+//        Constant.AUTH.createUserWithEmailAndPassword(userModel.getMobileNumber() + EMAIL_POSTFIX, userModel.getPassword())
+//                .addOnCompleteListener(_activity, new OnCompleteListener<AuthResult>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<AuthResult> task) {
+//                        if (task.isSuccessful()) {
+//                            final FirebaseUser firebaseUser = Constant.AUTH.getCurrentUser();
+//                            if (firebaseUser == null) {
+//                                callback.onError(task);
+//                                return;
+//                            }
+//                            userModel.setUserId(firebaseUser.getUid());
+//                            //userModel.setPassword(null);
+//                            // FireBase Create User
+//                            Map userMap = userModel.toMap();
+//                            // userMap.put("imeiNumber", REGISTRATION_CONSTANT);
+//                            createUserData(userModel, callback);
+//                        } else {
+//                            callback.onError(task);
+//                        }
+//                    }
+//                });
+//    }
 
     @Override
     public void createUserData(User user, final CallBack callBack) {
@@ -252,6 +253,21 @@ public class UserRepositoryImpl extends FirebaseTemplateRepository implements Us
         });
     }
 
+    @Override
+    public void updateLeed(String leedId, Map leedMap, final CallBack callBack) {
+        final DatabaseReference databaseReference = Constant.USER_TABLE_REF.child(leedId);
+        fireBaseUpdateChildren(databaseReference, leedMap, new CallBack() {
+            @Override
+            public void onSuccess(Object object) {
+                callBack.onSuccess(object);
+            }
+
+            @Override
+            public void onError(Object object) {
+                callBack.onError(object);
+            }
+        });
+    }
 
     @Override
     public void readUserByUserId(String userId, final CallBack callBack) {
@@ -293,7 +309,7 @@ public class UserRepositoryImpl extends FirebaseTemplateRepository implements Us
                     if (dataSnapshot.getValue() != null) {
                         try {
                             if (dataSnapshot.hasChildren()) {
-                                callBack.onSuccess(dataSnapshot.getValue(User.class));
+                                callBack.onSuccess(dataSnapshot.getValue(Users.class));
                             } else {
                                 callBack.onError(null);
                             }

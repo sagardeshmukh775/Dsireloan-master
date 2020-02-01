@@ -47,12 +47,22 @@ public class Add_Updatelead__bankresult_Activity extends AppCompatActivity imple
     EditText etdissbussAmt;
 
     @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return true;
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.admin_bankresult_activity);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_c_details);
 
         setSupportActionBar(toolbar);
+        assert getSupportActionBar() != null;   //null check
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("");
+
         invoice = (Invoice) getIntent().getSerializableExtra(INVICES_LEEDS);
         progressDialogClass = new ProgressDialogClass(this);
         invoiceRepository = new InvoiceRepositoryImpl();

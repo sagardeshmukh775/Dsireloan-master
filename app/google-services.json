@@ -52,6 +52,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "349836985108-jo6g2kl0vlphuvp1o9j7bnqdpk4arh8b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.smartloan.smtrick.dezire_loan_admin",
+            "certificate_hash": "a058c77ec79e3080dd24bca3ee8567f802573eb9"
+          }
+        },
+        {
+          "client_id": "349836985108-gd1rjgh3f07hmhumf3dvt31eu8nt8vpr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.smartloan.smtrick.dezire_loan_admin",
+            "certificate_hash": "c73a204bb4c1b49eac316b439ae1c0be99d7acd2"
+          }
+        },
+        {
           "client_id": "349836985108-pq5gf1q89fmqfqe00ig3034m64njmkmg.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -80,6 +96,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "349836985108-qfjobu49cnk43okt5hn1h715jj0q4npv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.smartloan.smtrick.smart_loan_user",
+            "certificate_hash": "a058c77ec79e3080dd24bca3ee8567f802573eb9"
+          }
+        },
         {
           "client_id": "349836985108-mk7nluf7mn9m7euimh2nu3e7tgvuodcc.apps.googleusercontent.com",
           "client_type": 1,

@@ -10,6 +10,7 @@ import com.smartloan.smtrick.dezire_loan_admin.constants.Constant;
 import com.smartloan.smtrick.dezire_loan_admin.models.Invoice;
 import com.smartloan.smtrick.dezire_loan_admin.models.LeedsModel;
 import com.smartloan.smtrick.dezire_loan_admin.models.User;
+import com.smartloan.smtrick.dezire_loan_admin.models.Users;
 import com.smartloan.smtrick.dezire_loan_admin.repository.FirebaseTemplateRepository;
 import com.smartloan.smtrick.dezire_loan_admin.repository.InvoiceRepository;
 
@@ -55,9 +56,9 @@ public class InvoiceRepositoryImpl extends FirebaseTemplateRepository implements
                 if (object != null) {
                     DataSnapshot dataSnapshot = (DataSnapshot) object;
                     if (dataSnapshot.getValue() != null & dataSnapshot.hasChildren()) {
-                        ArrayList<User> invoiceArrayList = new ArrayList<>();
+                        ArrayList<Users> invoiceArrayList = new ArrayList<>();
                         for (DataSnapshot suggestionSnapshot : dataSnapshot.getChildren()) {
-                            User invoice = suggestionSnapshot.getValue(User.class);
+                            Users invoice = suggestionSnapshot.getValue(Users.class);
                             invoiceArrayList.add(invoice);
                         }
                         callBack.onSuccess(invoiceArrayList);

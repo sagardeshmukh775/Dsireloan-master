@@ -1,28 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#ffffff"
-    tools:context=".view.activites.Phone_Verification_Activity">
+    android:id="@+id/ScrollView01"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
 
     <RelativeLayout
-        android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-       >
+        android:layout_height="match_parent"
+        android:background="#ffffff"
+        tools:context=".view.activites.Phone_Verification_Activity">
 
-        <!--<ImageView-->
+        <RelativeLayout
+            android:id="@+id/relativeLayout"
+            android:layout_width="match_parent"
+            android:layout_height="200dp">
+
+            <!--<ImageView-->
             <!--android:layout_width="120dp"-->
             <!--android:layout_height="120dp"-->
             <!--android:layout_centerHorizontal="true"-->
             <!--android:layout_centerVertical="true"-->
             <!--android:background="@drawable/ic_logo" />-->
 
-    </RelativeLayout>
+        </RelativeLayout>
 
-    <!--<ImageView-->
+        <!--<ImageView-->
         <!--android:id="@+id/imageView"-->
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="120dp"-->
@@ -30,112 +35,126 @@
         <!--android:layout_marginTop="-50dp"-->
         <!--android:background="@drawable/waves" />-->
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/relativeLayout"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        android:text="May I ask you phone number?"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-        android:textColor="#000000" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/textView"
-        android:orientation="horizontal"
-        android:padding="15dp">
-
-        <Spinner
-            android:id="@+id/spinnerCountries"
-            android:layout_width="120dp"
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/edittextanimation"/>
+            android:layout_below="@id/relativeLayout"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:text="May I ask you phone number?"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+            android:textColor="#000000" />
 
         <LinearLayout
-            android:orientation="vertical"
+            android:id="@+id/linearLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView"
+            android:orientation="horizontal"
+            android:padding="15dp">
 
-            <EditText
-                android:id="@+id/editTextPhone"
+            <Spinner
+                android:id="@+id/spinnerCountries"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/edittextanimation" />
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
-                android:layout_toRightOf="@+id/txtdate"
-                android:background="@drawable/edittextanimation"
-                android:padding="10dp"
-                android:text=""
-                android:digits="0123456789"
-                android:hint="enter your number"
-                android:textColor="#000000"
-                android:textColorHint="#000000"
-                android:maxLength="10"
-                android:layout_weight="2"
-                android:textSize="14dp" />
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/editTextPhone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_toRightOf="@+id/txtdate"
+                    android:layout_weight="2"
+                    android:background="@drawable/edittextanimation"
+                    android:digits="0123456789"
+                    android:hint="enter your number"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:padding="10dp"
+                    android:text=""
+                    android:textColor="#000000"
+                    android:textColorHint="#000000"
+                    android:textSize="14dp" />
 
 
-            <EditText
-                android:id="@+id/editTextName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
-                android:layout_toRightOf="@+id/txtdate"
-                android:background="@drawable/edittextanimation"
-                android:padding="10dp"
-                android:text=""
-                android:layout_weight="2"
-                android:textSize="14dp"
-                android:hint="enter your Name"
-                android:textColor="#000000"
-                android:textColorHint="#000000"
-                android:layout_below="@id/linearLayout"/>
+                <EditText
+                    android:id="@+id/editTextName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/linearLayout"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_toRightOf="@+id/txtdate"
+                    android:layout_weight="2"
+                    android:background="@drawable/edittextanimation"
+                    android:hint="enter your Name"
+                    android:padding="10dp"
+                    android:text=""
+                    android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
+                    android:textColor="#000000"
+                    android:textColorHint="#000000"
+                    android:textSize="14dp" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
-    </LinearLayout>
+        <LinearLayout
+            android:id="@+id/buttons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linearLayout"
+            android:layout_marginBottom="5dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/buttonLogin"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="2dp"
+                android:background="@color/hederbackground"
+                android:text="Login"
+                android:textAllCaps="false"
+                android:textColor="#ffffff" />
+
+            <Button
+                android:id="@+id/buttonContinue"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/buttonLogin"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/hederbackground"
+                android:text="Register"
+                android:textAllCaps="false"
+                android:textColor="#ffffff" />
+
+        </LinearLayout>
 
 
-
-    <Button
-        android:layout_marginTop="10dp"
-        android:id="@+id/buttonLogin"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/linearLayout"
-        android:layout_centerHorizontal="true"
-        android:background="@color/hederbackground"
-        android:text="Login"
-        android:textAllCaps="false"
-        android:textColor="#ffffff" />
-
-    <Button
-        android:layout_marginTop="10dp"
-        android:id="@+id/buttonContinue"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/buttonLogin"
-        android:layout_centerHorizontal="true"
-        android:background="@color/hederbackground"
-        android:text="Register"
-        android:textAllCaps="false"
-        android:textColor="#ffffff" />
+        <ProgressBar
+            android:id="@+id/progressbar1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/buttons"
+            android:layout_centerHorizontal="true"
+            android:visibility="gone" />
 
 
-    <ProgressBar
-        android:id="@+id/progressbar1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/buttonContinue"
-        android:layout_centerHorizontal="true"
-        android:visibility="gone" />
+    </RelativeLayout>
 
-
-</RelativeLayout>
+</ScrollView>

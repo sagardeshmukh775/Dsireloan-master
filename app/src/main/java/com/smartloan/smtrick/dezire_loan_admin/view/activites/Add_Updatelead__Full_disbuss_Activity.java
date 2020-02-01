@@ -1,4 +1,4 @@
-package com.smartloan.smtrick.dezire_loan_admin.view.fragements;
+package com.smartloan.smtrick.dezire_loan_admin.view.activites;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,8 +12,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.smartloan.smtrick.dezire_loan_admin.R;
 import com.smartloan.smtrick.dezire_loan_admin.callback.CallBack;
 import com.smartloan.smtrick.dezire_loan_admin.models.Invoice;
@@ -21,7 +19,6 @@ import com.smartloan.smtrick.dezire_loan_admin.preferences.AppSharedPreference;
 import com.smartloan.smtrick.dezire_loan_admin.repository.InvoiceRepository;
 import com.smartloan.smtrick.dezire_loan_admin.repository.impl.InvoiceRepositoryImpl;
 import com.smartloan.smtrick.dezire_loan_admin.utilities.Utility;
-import com.smartloan.smtrick.dezire_loan_admin.view.activites.MainActivity;
 import com.smartloan.smtrick.dezire_loan_admin.view.dialog.ProgressDialogClass;
 
 import java.util.ArrayList;
@@ -29,28 +26,26 @@ import java.util.Map;
 
 import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.GLOBAL_DATE_FORMATE;
 import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.INVICES_LEEDS;
-import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.STATUS_APPROVED;
+import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.STATUS_LOGIN;
 import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.STATUS_REJECTED;
+import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.STATUS_SUBMITED;
 
-public class Add_Updatelead__approvedloan_Activity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class Add_Updatelead__Full_disbuss_Activity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     Spinner spinloantype, spinemptype, spinincome;
-    Button btupdate, btverify, btnsendinvoice, btnnext;
+    Button btupdate, btverify, btnfail, btnnext;
     Invoice invoice;
     ProgressDialogClass progressDialogClass;
     AppSharedPreference appSharedPreference;
     InvoiceRepository invoiceRepository;
     ArrayList<Invoice> leedsModelArrayList;
-    private DatabaseReference mDatabase;
-
     EditText etbankname, etdate, etexloanamount, etcname, etaddress, etloantype, etagentname,
-            etdissbuss, etcontatct, etalternatecontact, etbirthdate, etpanno, etadharno,
-            etoccupation, etincome, etexammount, etgenerated, etdisburseamt, etpaymentdate, etcommition;
-
-    String cExloanamount, cApproved, cDisbuss, cLeedNumber, cBankname, cNmae, cAdress, cLoantype,
-            cAgentname, cAgentid, cContatct, cAltcontatct, cBdate, cPanno, cAdharno,
-            cIncome, cExamount, cLeedid, cApproveddate, cPayment, cCommission;
-
+            etdissbuss, etcontatct, etalternatecontact, etapproveddate, etpanno, etadharno,
+            etoccupation, etincome, etexammount, etgenerated, etdescription;
+    String cExloanamount, cApproved, cDissbus, cDate, cBankname, cNmae, cAdress, cLoantype,
+            cAgentname, cOffaddress, cContatct, cAltcontatct, cApproveddate, cPanno, cAdharno,
+            cIncome, cExamount, lGenby, cDescreption, sploantype, spoccupation;
     TextView txtldate, txtleadid;
+    EditText etdissbussAmt;
 
     @Override
     public boolean onSupportNavigateUp() {
@@ -61,7 +56,7 @@ public class Add_Updatelead__approvedloan_Activity extends AppCompatActivity imp
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.admin_approvedloan_activity);
+        setContentView(R.layout.admin_bankresult_activity);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_c_details);
 
         setSupportActionBar(toolbar);
@@ -77,65 +72,32 @@ public class Add_Updatelead__approvedloan_Activity extends AppCompatActivity imp
         String[] empType = new String[]{"Salaried", "Businessman"};
 
         btnnext = (Button) findViewById(R.id.buttonupdatenext);
-        btnsendinvoice = (Button) findViewById(R.id.buttonsendinvoice);
-
-        mDatabase = FirebaseDatabase.getInstance().getReference("invoice");
+        btverify = (Button) findViewById(R.id.buttonverify);
+        btverify.setText("SUBMIT");
+        btnfail = (Button) findViewById(R.id.buttonfail);
 
 
         btnnext.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-
                 cNmae = etcname.getText().toString();
                 cAdress = etaddress.getText().toString();
                 cContatct = etcontatct.getText().toString();
                 cAltcontatct = etalternatecontact.getText().toString();
                 cLoantype = etloantype.getText().toString();
-                cExloanamount = etexloanamount.getText().toString();
                 cAgentname = etagentname.getText().toString();
+                cExloanamount = etexloanamount.getText().toString();
+                cDate = etdate.getText().toString();
                 cBankname = etbankname.getText().toString();
                 cApproved = etdissbuss.getText().toString();
-                cPayment = etpaymentdate.getText().toString();
-                cCommission = etcommition.getText().toString();
-                cDisbuss = etdisburseamt.getText().toString();
-
+                cDissbus = etdissbussAmt.getText().toString();
+                cApproveddate = etapproveddate.getText().toString();
                 updateLeadDetails(invoice);
-                Toast.makeText(Add_Updatelead__approvedloan_Activity.this, "Lead Update Successfully", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Add_Updatelead__Full_disbuss_Activity.this, "Lead Update Successfully", Toast.LENGTH_SHORT).show();
 
-                Intent i = new Intent(Add_Updatelead__approvedloan_Activity.this, MainActivity.class);
+             /*   Intent i = new Intent(Add_Updatelead_C_Details_Activity.this, MainActivity.class);
                 i.putExtra(INVICES_LEEDS, invoice);
                 startActivity(i);
-                overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
-
-            }
-        });
-
-        btnsendinvoice.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-
-                cNmae = etcname.getText().toString();
-                cLeedid = invoice.getLeedId();
-                cLeedNumber = invoice.getLeedNumber();
-                cAgentid = appSharedPreference.getAgeniId();
-                // cAdress = etaddress.getText().toString();
-                // cContatct = etcontatct.getText().toString();
-                //  cAltcontatct = etalternatecontact.getText().toString();
-                //   cLoantype = etloantype.getText().toString();
-                   cExloanamount = etexloanamount.getText().toString();
-                cAgentname = etagentname.getText().toString();
-                //  cBankname = etbankname.getText().toString();
-                cApproved = etdissbuss.getText().toString();
-                cPayment = etpaymentdate.getText().toString();
-                cCommission = etcommition.getText().toString();
-                cDisbuss = etdisburseamt.getText().toString();
-                cApproveddate = invoice.getApprovedDate();
-
-                generateinvoice(cLeedid);
-                Toast.makeText(Add_Updatelead__approvedloan_Activity.this, "Lead Update Successfully", Toast.LENGTH_SHORT).show();
-
-                Intent i = new Intent(Add_Updatelead__approvedloan_Activity.this, MainActivity.class);
-                i.putExtra(INVICES_LEEDS, invoice);
-                startActivity(i);
-                overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+                overridePendingTransition(R.anim.slide_in, R.anim.slide_out);*/
 
             }
         });
@@ -152,13 +114,29 @@ public class Add_Updatelead__approvedloan_Activity extends AppCompatActivity imp
         etdate = (EditText) findViewById(R.id.txtdatevalue);
         etbankname = (EditText) findViewById(R.id.txtbankvalue);
         etdissbuss = (EditText) findViewById(R.id.txtdissamountvalue);
-        etdisburseamt = (EditText) findViewById(R.id.txtdissamountvalue1);
-        etpaymentdate = (EditText) findViewById(R.id.txtpaymentdate1);
-        etcommition = (EditText) findViewById(R.id.txtcommition1);
+        etdissbussAmt = (EditText) findViewById(R.id.txtdissamountvalue1);
+        etapproveddate = (EditText) findViewById(R.id.txtapproveddate1);
         getdata();
 
 
+        btverify.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                setLeedStatus(invoice);
+            }
+        });
+
+
+        btnfail.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+//                setLeedStatus2(invoice);
+
+            }
+        });
+
+
     }
+
 
     private void getdata() {
 
@@ -175,10 +153,9 @@ public class Add_Updatelead__approvedloan_Activity extends AppCompatActivity imp
             Long ldatetime = invoice.getCreatedDateTimeLong();
             String strdate = Long.toString(ldatetime);
             String sbank = invoice.getBankName();
-            String dissbuss = invoice.getApprovedLoan();
-            String disburseamt = invoice.getDissbussLoan();
-            String paymentdate = invoice.getPaymentDate();
-            String commission = invoice.getCommission();
+            String Approved = invoice.getApprovedLoan();
+            String dissbuss = invoice.getDissbussLoan();
+            String approveddate = invoice.getApprovedDate();
 
             if (leednumber != null) {
                 txtleadid.setText(leednumber);
@@ -217,20 +194,16 @@ public class Add_Updatelead__approvedloan_Activity extends AppCompatActivity imp
                 etbankname.setText(sbank);
             }
 
+            if (Approved != null) {
+                etdissbuss.setText(Approved);
+            }
+
             if (dissbuss != null) {
-                etdissbuss.setText(dissbuss);
+                etdissbussAmt.setText(dissbuss);
             }
 
-            if (disburseamt != null) {
-                etdisburseamt.setText(disburseamt);
-            }
-
-            if (paymentdate != null) {
-                etpaymentdate.setText(paymentdate);
-            }
-
-            if (commission != null) {
-                etcommition.setText(commission);
+            if (approveddate != null) {
+                etapproveddate.setText(approveddate);
             }
 
         } catch (Exception e) {
@@ -240,7 +213,7 @@ public class Add_Updatelead__approvedloan_Activity extends AppCompatActivity imp
 
 
     private void setLeedStatus(Invoice invoice) {
-        invoice.setStatus(STATUS_APPROVED);
+        invoice.setStatus(STATUS_SUBMITED);
         updateLeed(invoice.getLeedId(), invoice.getLeedStatusMap1());
     }
 
@@ -260,29 +233,9 @@ public class Add_Updatelead__approvedloan_Activity extends AppCompatActivity imp
         invoice.setExpectedLoanAmount(cExloanamount);
         invoice.setBankName(cBankname);
         invoice.setApprovedLoan(cApproved);
-        invoice.setDissbussLoan(cDisbuss);
-        invoice.setPaymentDate(cPayment);
-        invoice.setCommission(cCommission);
-        updateLeed(invoice.getLeedId(), invoice.getUpdateLeedMap());
-    }
-
-    private Invoice sendInvoiceDetails() {
-
-        Invoice invoice = new Invoice();
-        invoice.setLeedId(cLeedid);
-        invoice.setLeedNumber(cLeedNumber);
-        invoice.setAgentId(cAgentid);
-        invoice.setCustomerName(cNmae);
-        invoice.setAgentName(cAgentname);
+        invoice.setDissbussLoan(cDissbus);
         invoice.setApprovedDate(cApproveddate);
-        invoice.setApprovedLoan(cApproved);
-        invoice.setDissbussLoan(cDisbuss);
-        invoice.setPaymentDate(cPayment);
-        invoice.setCommission(cCommission);
-        invoice.setExpectedLoanAmount(cExloanamount);
-        invoice.setStatus("PENDING");
-
-        return invoice;
+        updateLeed(invoice.getLeedId(), invoice.getUpdateLeedMap());
     }
 
 
@@ -291,10 +244,10 @@ public class Add_Updatelead__approvedloan_Activity extends AppCompatActivity imp
         invoiceRepository.updateLeed(leedId, leedsMap, new CallBack() {
             @Override
             public void onSuccess(Object object) {
-                Toast.makeText(Add_Updatelead__approvedloan_Activity.this, "", Toast.LENGTH_SHORT).show();
+                //  Toast.makeText(Add_Updatelead__bankresult_Activity.this, "", Toast.LENGTH_SHORT).show();
                 progressDialogClass.dismissDialog();
 
-                Intent i = new Intent(Add_Updatelead__approvedloan_Activity.this, MainActivity.class);
+                Intent i = new Intent(Add_Updatelead__Full_disbuss_Activity.this, MainActivity.class);
                 startActivity(i);
                 overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
             }
@@ -302,32 +255,9 @@ public class Add_Updatelead__approvedloan_Activity extends AppCompatActivity imp
             @Override
             public void onError(Object object) {
                 progressDialogClass.dismissDialog();
-                Utility.showLongMessage(Add_Updatelead__approvedloan_Activity.this, getString(R.string.server_error));
+                Utility.showLongMessage(Add_Updatelead__Full_disbuss_Activity.this, getString(R.string.server_error));
             }
         });
-    }
-
-    private void generateinvoice(String leedId) {
-        Invoice invoice1 = sendInvoiceDetails();
-            progressDialogClass.showDialog(this.getString(R.string.leed_In_loading), this.getString(R.string.PLEASE_WAIT));
-//        invoiceRepository.createInvoice(invoice1, new CallBack() {
-//                @Override
-//                public void onSuccess(Object object) {
-//                    Toast.makeText(Add_Updatelead__approvedloan_Activity.this, "Send Invoice Successfully", Toast.LENGTH_SHORT).show();
-//                    progressDialogClass.dismissDialog();
-//                }
-//
-//                @Override
-//                public void onError(Object object) {
-//                    progressDialogClass.dismissDialog();
-//                    Toast.makeText(Add_Updatelead__approvedloan_Activity.this, "invoice fail", Toast.LENGTH_SHORT).show();
-//
-//                }
-//            });
-
-        String uploadId = mDatabase.push().getKey();
-        mDatabase.child(uploadId).setValue(invoice1);
-
     }
 
 

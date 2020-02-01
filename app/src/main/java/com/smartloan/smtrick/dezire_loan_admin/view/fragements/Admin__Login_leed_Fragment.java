@@ -22,7 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.smartloan.smtrick.dezire_loan_admin.R;
 import com.smartloan.smtrick.dezire_loan_admin.callback.CallBack;
-import com.smartloan.smtrick.dezire_loan_admin.databinding.AdminfragmentSubmitedBinding;
+import com.smartloan.smtrick.dezire_loan_admin.databinding.AdminfragmentLoginBinding;
 import com.smartloan.smtrick.dezire_loan_admin.databinding.InvoicedialogBinding;
 import com.smartloan.smtrick.dezire_loan_admin.models.Invoice;
 import com.smartloan.smtrick.dezire_loan_admin.preferences.AppSharedPreference;
@@ -33,7 +33,8 @@ import com.smartloan.smtrick.dezire_loan_admin.repository.impl.InvoiceRepository
 import com.smartloan.smtrick.dezire_loan_admin.repository.impl.LeedRepositoryImpl;
 import com.smartloan.smtrick.dezire_loan_admin.singleton.AppSingleton;
 import com.smartloan.smtrick.dezire_loan_admin.utilities.Utility;
-import com.smartloan.smtrick.dezire_loan_admin.view.activites.Add_Updatelead__bankresult_Activity;
+import com.smartloan.smtrick.dezire_loan_admin.view.activites.Add_Updatelead__Login_Activity;
+import com.smartloan.smtrick.dezire_loan_admin.view.activites.Add_Updatelead__submittobank_Activity;
 import com.smartloan.smtrick.dezire_loan_admin.view.adapters.InvoiceAdapter;
 import com.smartloan.smtrick.dezire_loan_admin.view.dialog.ProgressDialogClass;
 
@@ -41,15 +42,15 @@ import java.util.ArrayList;
 
 import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.GLOBAL_DATE_FORMATE;
 import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.INVICES_LEEDS;
-import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.STATUS_SUBMITED;
+import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.STATUS_LOGIN;
 import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.STATUS_VERIFIED;
 
-public class Admin__submited_leed_Fragment extends Fragment {
+public class Admin__Login_leed_Fragment extends Fragment {
     InvoiceAdapter invoiceAdapter;
     AppSingleton appSingleton;
     ProgressDialogClass progressDialogClass;
     AppSharedPreference appSharedPreference;
-    AdminfragmentSubmitedBinding fragmentInvoiceBinding;
+    AdminfragmentLoginBinding fragmentInvoiceBinding;
     ArrayList<Invoice> invoiceArrayList;
     InvoiceRepository invoiceRepository;
     LeedRepository leedRepository;
@@ -57,7 +58,7 @@ public class Admin__submited_leed_Fragment extends Fragment {
 
     DatabaseReference databaseReference;
 
-    public Admin__submited_leed_Fragment() {
+    public Admin__Login_leed_Fragment() {
     }
 
     @Override
@@ -69,7 +70,7 @@ public class Admin__submited_leed_Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         if (fragmentInvoiceBinding == null) {
-            fragmentInvoiceBinding = DataBindingUtil.inflate(inflater, R.layout.adminfragment_submited, container, false);
+            fragmentInvoiceBinding = DataBindingUtil.inflate(inflater, R.layout.adminfragment_login, container, false);
             invoiceRepository = new InvoiceRepositoryImpl();
             leedRepository = new LeedRepositoryImpl();
 
@@ -121,13 +122,12 @@ public class Admin__submited_leed_Fragment extends Fragment {
         }
 
 
-
         return fragmentInvoiceBinding.getRoot();
     }
 
     private void setAdapter(final String toString) {
 
-        databaseReference.child("leeds").orderByChild("status").equalTo(STATUS_SUBMITED).addListenerForSingleValueEvent(new ValueEventListener() {
+        databaseReference.child("leeds").orderByChild("status").equalTo(STATUS_LOGIN).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
@@ -167,7 +167,7 @@ public class Admin__submited_leed_Fragment extends Fragment {
             @Override
             public void onClick(View view, int position) {
                 Invoice invoice = getModel(position);
-                Intent intent = new Intent(getActivity(), Add_Updatelead__bankresult_Activity.class);
+                Intent intent = new Intent(getActivity(), Add_Updatelead__Login_Activity.class);
                 intent.putExtra(INVICES_LEEDS, invoice);
                 startActivity(intent);
             }
@@ -181,7 +181,7 @@ public class Admin__submited_leed_Fragment extends Fragment {
 
     private void getInvoices() {
         progressDialogClass.showDialog(this.getString(R.string.loading), this.getString(R.string.PLEASE_WAIT));
-        leedRepository.readLeedsByStatus(STATUS_SUBMITED, new CallBack() {
+        leedRepository.readLeedsByStatus(STATUS_LOGIN, new CallBack() {
             @Override
             public void onSuccess(Object object) {
                 if (object != null) {

@@ -41,6 +41,7 @@ public class Invoice implements Serializable {
     private String dissbussLoan;
     private String paymentDate;
     private String commission;
+    private String note;
     private int colorCode;
     private Boolean isShowColor;
     private Map<String, History> history;
@@ -73,6 +74,7 @@ public class Invoice implements Serializable {
         this.commission = "123456";
         this.paymentDate = "321654684";
         this.approvedDate = "123564";
+        this.note = "123456";
     }
 
     @Exclude
@@ -358,6 +360,14 @@ public class Invoice implements Serializable {
         this.alternetMobileNumber = alternetMobileNumber;
     }
 
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
     public Map<String, History> getHistory() {
         return history;
     }
@@ -392,6 +402,8 @@ public class Invoice implements Serializable {
         objectMap.put("paymentDate", paymentDate);
         objectMap.put("commission", commission);
         objectMap.put("approvedDate", approvedDate);
+        objectMap.put("note", note);
+
         return objectMap;
     }
 

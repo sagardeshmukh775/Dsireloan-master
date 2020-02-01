@@ -9,10 +9,17 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.smartloan.smtrick.dezire_loan_admin.R;
 import com.smartloan.smtrick.dezire_loan_admin.callback.CallBack;
 import com.smartloan.smtrick.dezire_loan_admin.databinding.AdminfragmentVerifiedBinding;
@@ -34,6 +41,7 @@ import java.util.ArrayList;
 
 import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.GLOBAL_DATE_FORMATE;
 import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.INVICES_LEEDS;
+import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.STATUS_GENERATED;
 import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.STATUS_VERIFIED;
 
 public class Admin__verified_leed_Fragment extends Fragment {
@@ -46,6 +54,8 @@ public class Admin__verified_leed_Fragment extends Fragment {
     InvoiceRepository invoiceRepository;
     LeedRepository leedRepository;
     InvoicedialogBinding invoicedialogBinding;
+
+    DatabaseReference databaseReference;
 
     public Admin__verified_leed_Fragment() {
     }
@@ -63,6 +73,7 @@ public class Admin__verified_leed_Fragment extends Fragment {
             invoiceRepository = new InvoiceRepositoryImpl();
             leedRepository = new LeedRepositoryImpl();
 
+            databaseReference = FirebaseDatabase.getInstance().getReference();
 
             progressDialogClass = new ProgressDialogClass(getActivity());
             appSingleton = AppSingleton.getInstance(getActivity());
@@ -75,10 +86,72 @@ public class Admin__verified_leed_Fragment extends Fragment {
                     DividerItemDecoration.VERTICAL));
 
             getInvoices();
+
+            fragmentInvoiceBinding.searchEditText.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+
+                    if (!s.toString().isEmpty()) {
+                        setAdapter(s.toString());
+                    } else {
+                        /*
+                         * Clear the list when editText is empty
+                         * */
+                        if (invoiceArrayList != null) {
+//                            invoiceArrayList.clear();
+                            fragmentInvoiceBinding.recyclerView.removeAllViews();
+                        }
+                    }
+
+                }
+            });
         }
 
 
         return fragmentInvoiceBinding.getRoot();
+    }
+
+    private void setAdapter(final String toString) {
+
+        databaseReference.child("leeds").orderByChild("status").equalTo(STATUS_VERIFIED).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                invoiceArrayList.clear();
+                fragmentInvoiceBinding.recyclerView.removeAllViews();
+
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    String uid = snapshot.getKey();
+                    Invoice leedsModel = snapshot.getValue(Invoice.class);
+
+                    if (leedsModel.getCustomerName() != null) {
+                        if (leedsModel.getCustomerName().toLowerCase().contains(toString)) {
+                            invoiceArrayList.add(leedsModel);
+                        }
+                    }
+
+                }
+
+                serAdapter(invoiceArrayList);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
     }
 
     private Invoice getModel(int position) {
@@ -86,7 +159,7 @@ public class Admin__verified_leed_Fragment extends Fragment {
     }
 
     private void onClickListner() {
-        fragmentInvoiceBinding.recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getActivity().getApplicationContext(), fragmentInvoiceBinding.recyclerView, new RecyclerTouchListener.ClickListener() {
+        fragmentInvoiceBinding.recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getContext(), fragmentInvoiceBinding.recyclerView, new RecyclerTouchListener.ClickListener() {
             @Override
             public void onClick(View view, int position) {
                 Invoice invoice = getModel(position);

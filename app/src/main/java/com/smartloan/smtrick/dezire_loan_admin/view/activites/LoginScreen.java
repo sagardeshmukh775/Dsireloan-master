@@ -20,6 +20,7 @@ import com.smartloan.smtrick.dezire_loan_admin.callback.CallBack;
 import com.smartloan.smtrick.dezire_loan_admin.constants.Constant;
 import com.smartloan.smtrick.dezire_loan_admin.exception.ExceptionUtil;
 import com.smartloan.smtrick.dezire_loan_admin.models.User;
+import com.smartloan.smtrick.dezire_loan_admin.models.Users;
 import com.smartloan.smtrick.dezire_loan_admin.preferences.AppSharedPreference;
 import com.smartloan.smtrick.dezire_loan_admin.repository.UserRepository;
 import com.smartloan.smtrick.dezire_loan_admin.repository.impl.UserRepositoryImpl;
@@ -139,7 +140,7 @@ public class LoginScreen extends AppCompatActivity {
             @Override
             public void onSuccess(Object object) {
                 if (object != null) {
-                    User user = (User) object;
+                    Users user = (Users) object;
                     appSharedPreference.createUserLoginSession();
                     appSharedPreference.addUserDetails(user);
                     loginToApp();

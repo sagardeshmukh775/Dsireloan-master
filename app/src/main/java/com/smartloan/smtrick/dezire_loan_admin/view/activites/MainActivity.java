@@ -19,9 +19,12 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -75,6 +78,8 @@ public class MainActivity extends AppCompatActivity
         Intent intent =getIntent();
         mobile = intent.getStringExtra("mobile");
         agentId = intent.getStringExtra("agentid");
+        String id = appSharedPreference.getAgeniId();
+        String id1 = appSharedPreference.getMobileNo();
         // NOTE : Just remove the fab button
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -150,6 +155,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.item_logout) {
             FirebaseAuth.getInstance().signOut();
             finish();
+            appSharedPreference.clear();
             Intent logout = new Intent(MainActivity.this,Phone_Verification_Activity.class);
             startActivity(logout);
           //  fragment = new Admin_Userslist_Fragment();
@@ -211,6 +217,8 @@ public class MainActivity extends AppCompatActivity
             final TextView textViewMobileNumber = (TextView) header.findViewById(R.id.textView_contact);
             ImageView imageViewProfile = (ImageView) header.findViewById(R.id.image_view_profile);
            // Button btneditprofile = (Button) header.findViewById(R.id.buttonviewprofile);
+            textViewUserName.setText(appSharedPreference.getUserName());
+            textViewMobileNumber.setText(appSharedPreference.getMobileNo());
 
             DatabaseReference Dref = FirebaseDatabase.getInstance().getReference("users");
             Dref.orderByChild("mobilenumber").equalTo(mobile).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -262,6 +270,7 @@ public class MainActivity extends AppCompatActivity
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(MainActivity.this, UpdateProfileActivity.class);
+                    intent.putExtra("agentid",appSharedPreference.getAgeniId());
                     startActivityForResult(intent, REQUEST_CODE);
                 }
             });
@@ -325,4 +334,30 @@ public class MainActivity extends AppCompatActivity
             updateNavigationHeader();
         }
     }
+
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        MenuInflater inflater = getMenuInflater();
+//        inflater.inflate(R.menu.menu_search, menu);
+//        MenuItem item = menu.findItem(R.id.menuSearch);
+//        SearchView searchView = (SearchView)item.getActionView();
+//
+//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//            @Override
+//            public boolean onQueryTextSubmit(String query) {
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean onQueryTextChange(String newText) {
+////                adapter.getFilter().filter(newText);
+//
+//                return false;
+//            }
+//        });
+//
+//
+//        return super.onCreateOptionsMenu(menu);
+//    }
+
 }

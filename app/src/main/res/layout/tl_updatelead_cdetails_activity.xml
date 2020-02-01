@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_height="fill_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
 
     <RelativeLayout
         android:id="@+id/layouttop"
@@ -9,6 +12,14 @@
         android:layout_height="wrap_content"
         android:background="@color/hederbackground"
         android:gravity="center_horizontal">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar_c_details"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary">
+
+        </android.support.v7.widget.Toolbar>
 
         <TextView
             android:id="@+id/textheader"
@@ -21,6 +32,8 @@
             android:textColor="#ffffff"
             android:textSize="18sp"
             android:textStyle="normal|bold" />
+
+
     </RelativeLayout>
 
     <LinearLayout
@@ -135,6 +148,7 @@
                         android:background="@drawable/edittextanimation"
                         android:padding="10dp"
                         android:text=""
+                        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
                         android:textColor="@color/mainTextColor"
                         android:textSize="14dp" />
                 </RelativeLayout>
@@ -202,6 +216,8 @@
                             android:background="@drawable/edittextanimation"
                             android:padding="10dp"
                             android:text=""
+                            android:inputType="number"
+                            android:maxLength="10"
                             android:textColor="@color/mainTextColor"
                             android:textSize="14dp" />
 
@@ -237,6 +253,8 @@
                             android:background="@drawable/edittextanimation"
                             android:padding="10dp"
                             android:text=""
+                            android:inputType="number"
+                            android:maxLength="10"
                             android:textColor="@color/mainTextColor"
                             android:textSize="14dp" />
 
@@ -305,6 +323,7 @@
                             android:background="@drawable/edittextanimation"
                             android:padding="10dp"
                             android:text=""
+                            android:inputType="number"
                             android:textColor="@color/mainTextColor"
                             android:textSize="14dp" />
 
@@ -344,13 +363,46 @@
                             android:textSize="14dp" />
                     </RelativeLayout>
 
+                    <RelativeLayout
+                        android:id="@+id/layoutnote"
+                        android:layout_width="match_parent"
+                        android:layout_below="@+id/layoutgeneratedby"
+                        android:layout_height="fill_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:id="@+id/txtnote"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginTop="5dp"
+                            android:padding="10dp"
+                            android:text="Note:"
+                            android:textColor="@color/darkgraycolor"
+                            android:textSize="14dp" />
+
+                        <EditText
+                            android:id="@+id/txtnotevalue"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_toRightOf="@+id/txtnote"
+                            android:background="@drawable/edittextanimation"
+                            android:padding="10dp"
+                            android:text=""
+                            android:textColor="@color/mainTextColor"
+                            android:textSize="14dp" />
+                    </RelativeLayout>
+
 
 
                     <RelativeLayout
                         android:id="@+id/layoutbuttonnext"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/layoutgeneratedby"
+                        android:layout_below="@+id/layoutnote"
                         android:padding="20dp"
                         android:layout_gravity="center_horizontal"
                         android:gravity="center_horizontal">

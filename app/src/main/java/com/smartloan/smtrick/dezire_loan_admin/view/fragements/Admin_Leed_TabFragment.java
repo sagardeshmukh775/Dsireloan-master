@@ -6,8 +6,12 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SearchView;
 
 import com.smartloan.smtrick.dezire_loan_admin.R;
 import com.smartloan.smtrick.dezire_loan_admin.interfaces.OnFragmentInteractionListener;
@@ -33,12 +37,20 @@ public class Admin_Leed_TabFragment extends Fragment {
         viewPagerAdapter = new ViewPagerAdapter(getChildFragmentManager());
         viewPagerAdapter.addFragement(new Admin_generate_leed_Fragment(), "Generated");
         viewPagerAdapter.addFragement(new Admin__verified_leed_Fragment(), "Veryfied");
+
+        viewPagerAdapter.addFragement(new Admin__Inprocess_leed_Fragment(), "In_Process");
+        viewPagerAdapter.addFragement(new Admin__Login_leed_Fragment(), "Login");
+        viewPagerAdapter.addFragement(new Admin__Sanction_leed_Fragment(), "Sanction");
+        viewPagerAdapter.addFragement(new Admin__Submitted_for_Disbuss_leed_Fragment(), "Submitted_for_Disbuss");
+        viewPagerAdapter.addFragement(new Admin__Partialy_disbuss_leed_Fragment(), "Partialy_Disbuss");
+        viewPagerAdapter.addFragement(new Admin__Full_disbuss_leed_Fragment(), "Full_Disbuss");
+
         viewPagerAdapter.addFragement(new Admin__submited_leed_Fragment(), "Submited");
         viewPagerAdapter.addFragement(new Admin__approved_leed_Fragment(), "Approved");
         viewPagerAdapter.addFragement(new Admin__Rejected_leed_Fragment(), "Rejected");
         viewPager.setAdapter(viewPagerAdapter);
         tabLayout = (TabLayout) view.findViewById(R.id.tabs);
-        tabLayout.setTabMode(1);
+//        tabLayout.setTabMode(1);
         tabLayout.setupWithViewPager(viewPager);
         return view;
     }
@@ -59,4 +71,7 @@ public class Admin_Leed_TabFragment extends Fragment {
         super.onDetach();
         mListener = null;
     }
+
+
+
 }

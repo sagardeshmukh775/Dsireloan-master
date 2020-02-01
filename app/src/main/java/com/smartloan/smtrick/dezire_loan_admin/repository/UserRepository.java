@@ -19,7 +19,7 @@ public interface UserRepository {
 
     void changePassword(final String newPassword, final CallBack callback);
 
-    void createUser(final User userModel, final CallBack callback);
+  //  void createUser(final User userModel, final CallBack callback);
 
     void createUserData(final User userModel, final CallBack callback);
 
@@ -28,6 +28,8 @@ public interface UserRepository {
     void deleteUser(final String userId, final CallBack callback);
 
     void updateUser(final String regId, final Map userMap, final CallBack callback);
+
+    void updateLeed(final String leedId, final Map leedsMap, final CallBack callBack);
 
     void readUserByUserId(final String regId, final CallBack callBack);
 

@@ -10,6 +10,14 @@
         android:background="@color/hederbackground"
         android:gravity="center_horizontal">
 
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar_c_details"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary">
+
+        </android.support.v7.widget.Toolbar>
+
         <TextView
             android:id="@+id/textheader"
             android:layout_width="fill_parent"
@@ -207,8 +215,9 @@
                             android:background="@drawable/edittextanimation"
                             android:padding="10dp"
                             android:editable="false"
-
                             android:text=""
+                            android:inputType="number"
+                            android:maxLength="10"
                             android:textColor="@color/mainTextColor"
                             android:textSize="14dp" />
 
@@ -244,7 +253,8 @@
                             android:background="@drawable/edittextanimation"
                             android:padding="10dp"
                             android:editable="false"
-
+                            android:inputType="number"
+                            android:maxLength="10"
                             android:text=""
                             android:textColor="@color/mainTextColor"
                             android:textSize="14dp" />
@@ -317,7 +327,7 @@
                             android:padding="10dp"
                             android:text=""
                             android:editable="false"
-
+                            android:inputType="number"
                             android:textColor="@color/mainTextColor"
                             android:textSize="14dp" />
 

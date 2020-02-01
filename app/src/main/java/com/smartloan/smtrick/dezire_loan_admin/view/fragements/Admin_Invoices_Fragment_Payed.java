@@ -83,7 +83,7 @@ public class Admin_Invoices_Fragment_Payed extends Fragment {
     }
 
     private void onClickListner() {
-        fragmentInvoiceBinding.recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getActivity().getApplicationContext(), fragmentInvoiceBinding.recyclerView, new RecyclerTouchListener.ClickListener() {
+        fragmentInvoiceBinding.recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getContext(), fragmentInvoiceBinding.recyclerView, new RecyclerTouchListener.ClickListener() {
             @Override
             public void onClick(View view, int position) {
                 Invoice invoice = getModel(position);

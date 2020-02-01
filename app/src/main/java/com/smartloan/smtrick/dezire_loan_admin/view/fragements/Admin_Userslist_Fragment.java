@@ -8,17 +8,26 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.smartloan.smtrick.dezire_loan_admin.R;
 import com.smartloan.smtrick.dezire_loan_admin.callback.CallBack;
 import com.smartloan.smtrick.dezire_loan_admin.databinding.FragmentInvoiceBinding;
 import com.smartloan.smtrick.dezire_loan_admin.databinding.InvoicedialogBinding;
 import com.smartloan.smtrick.dezire_loan_admin.databinding.UserdialogBinding;
 
+import com.smartloan.smtrick.dezire_loan_admin.models.Invoice;
 import com.smartloan.smtrick.dezire_loan_admin.models.User;
+import com.smartloan.smtrick.dezire_loan_admin.models.Users;
 import com.smartloan.smtrick.dezire_loan_admin.preferences.AppSharedPreference;
 import com.smartloan.smtrick.dezire_loan_admin.recyclerListener.RecyclerTouchListener;
 import com.smartloan.smtrick.dezire_loan_admin.repository.InvoiceRepository;
@@ -31,6 +40,7 @@ import com.smartloan.smtrick.dezire_loan_admin.view.dialog.ProgressDialogClass;
 import java.util.ArrayList;
 
 import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.GLOBAL_DATE_FORMATE;
+import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.STATUS_GENERATED;
 
 public class Admin_Userslist_Fragment extends Fragment {
     UserAdapter invoiceAdapter;
@@ -38,10 +48,13 @@ public class Admin_Userslist_Fragment extends Fragment {
     ProgressDialogClass progressDialogClass;
     AppSharedPreference appSharedPreference;
     FragmentInvoiceBinding fragmentInvoiceBinding;
-    ArrayList<User> invoiceArrayList;
+    ArrayList<Users> invoiceArrayList;
     InvoiceRepository invoiceRepository;
     InvoicedialogBinding invoicedialogBinding;
     UserdialogBinding userdialogBinding;
+
+    DatabaseReference databaseReference;
+
     public Admin_Userslist_Fragment() {
     }
 
@@ -66,21 +79,85 @@ public class Admin_Userslist_Fragment extends Fragment {
             fragmentInvoiceBinding.recyclerView.setItemAnimator(new DefaultItemAnimator());
             fragmentInvoiceBinding.recyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
 
+            databaseReference = FirebaseDatabase.getInstance().getReference();
+
             getuserlist();
+
+            fragmentInvoiceBinding.searchEditText.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                    if (!s.toString().isEmpty()) {
+                        setAdapter(s.toString());
+                    } else {
+                        /*
+                         * Clear the list when editText is empty
+                         * */
+//                        invoiceArrayList1.clear();
+                        if (invoiceArrayList != null) {
+                            invoiceArrayList.clear();
+                            fragmentInvoiceBinding.recyclerView.removeAllViews();
+                        }
+                    }
+
+                }
+            });
         }
         return fragmentInvoiceBinding.getRoot();
     }
 
-    private User getModel(int position) {
+    private void setAdapter(final String toString) {
+
+        databaseReference.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                invoiceArrayList.clear();
+                fragmentInvoiceBinding.recyclerView.removeAllViews();
+
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    String uid = snapshot.getKey();
+                    Users leedsModel = snapshot.getValue(Users.class);
+
+                    if (leedsModel.getName() != null) {
+                        if (leedsModel.getName().toLowerCase().contains(toString)) {
+                            invoiceArrayList.add(leedsModel);
+                        }
+                    }
+
+                }
+
+                serAdapter(invoiceArrayList);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
+    private Users getModel(int position) {
         return invoiceArrayList.get(invoiceArrayList.size() - 1 - position);
     }
 
     private void onClickListner() {
-        fragmentInvoiceBinding.recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getActivity().getApplicationContext(), fragmentInvoiceBinding.recyclerView, new RecyclerTouchListener.ClickListener() {
+        fragmentInvoiceBinding.recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getActivity(), fragmentInvoiceBinding.recyclerView, new RecyclerTouchListener.ClickListener() {
             @Override
             public void onClick(View view, int position)
             {
-                User user = getModel(position);
+                Users user = getModel(position);
                showInvoiceDialog(user);
             }
 
@@ -97,7 +174,7 @@ public class Admin_Userslist_Fragment extends Fragment {
             @Override
             public void onSuccess(Object object) {
                 if (object != null) {
-                    invoiceArrayList = (ArrayList<User>) object;
+                    invoiceArrayList = (ArrayList<Users>) object;
                     filterList(invoiceArrayList);
                 }
                 progressDialogClass.dismissDialog();
@@ -111,10 +188,10 @@ public class Admin_Userslist_Fragment extends Fragment {
         });
     }
 
-    private void filterList(ArrayList<User> invoiceArrayList) {
-        ArrayList<User> arrayList = new ArrayList<>();
+    private void filterList(ArrayList<Users> invoiceArrayList) {
+        ArrayList<Users> arrayList = new ArrayList<>();
         if (invoiceArrayList != null) {
-            for (User invoice : invoiceArrayList) {
+            for (Users invoice : invoiceArrayList) {
                 // if (!Utility.isEmptyOrNull(invoice.getStatus()) && invoice.getStatus().equalsIgnoreCase(STATUS_SENT))
                 arrayList.add(invoice);
             }
@@ -122,32 +199,32 @@ public class Admin_Userslist_Fragment extends Fragment {
         serAdapter(arrayList);
     }
 
-    private void serAdapter(ArrayList<User> invoiceArrayList) {
+    private void serAdapter(ArrayList<Users> invoiceArrayList) {
         if (invoiceArrayList != null) {
             if (invoiceAdapter == null) {
                 invoiceAdapter = new UserAdapter(getActivity(), invoiceArrayList);
                 fragmentInvoiceBinding.recyclerView.setAdapter(invoiceAdapter);
                 onClickListner();
             } else {
-                ArrayList<User> arrayList = new ArrayList<>();
+                ArrayList<Users> arrayList = new ArrayList<>();
                 arrayList.addAll(invoiceArrayList);
                 invoiceAdapter.reload(arrayList);
             }
         }
     }
 
-    private void showInvoiceDialog(User invoice) {
+    private void showInvoiceDialog(Users invoice) {
         final Dialog dialog = new Dialog(getActivity());
         userdialogBinding = DataBindingUtil.inflate(LayoutInflater.from(getActivity()), R.layout.userdialog, null, false);
         dialog.setContentView(userdialogBinding.getRoot());
         dialog.setTitle("Title...");
         userdialogBinding.txtagentid.setText(invoice.getAgentId());
-        userdialogBinding.txtcnamevalue.setText(invoice.getUserName());
-        userdialogBinding.txtccontactvalue.setText(invoice.getMobileNumber());
-        userdialogBinding.txtcaddressvalue.setText(invoice.getAddress());
-        userdialogBinding.txtemailidvalue.setText(invoice.getEmail());
+        userdialogBinding.txtcnamevalue.setText(invoice.getAgentId());
+        userdialogBinding.txtccontactvalue.setText(invoice.getMobilenumber());
+        userdialogBinding.txtcaddressvalue.setText(invoice.getName());
+//        userdialogBinding.txtemailidvalue.setText(invoice.getEmail());
 
-        userdialogBinding.txtdatevalue.setText(Utility.convertMilliSecondsToFormatedDate(invoice.getCreatedDateTimeLong(), GLOBAL_DATE_FORMATE));
+//        userdialogBinding.txtdatevalue.setText(Utility.convertMilliSecondsToFormatedDate(invoice.getCreatedDateTimeLong(), GLOBAL_DATE_FORMATE));
         userdialogBinding.dialogButtonaccept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

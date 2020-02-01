@@ -1,9 +1,20 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <android.support.design.widget.CoordinatorLayout
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_margin="3dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <EditText
+            android:id="@+id/search_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_below="@+id/layoutmainproduct1"
+            android:hint="Search Text..."/>
+
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_view"
@@ -12,5 +23,5 @@
             android:background="@color/whiteheadercolor"
             android:scrollbars="vertical"
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-    </android.support.design.widget.CoordinatorLayout>
+    </LinearLayout>
 </layout>

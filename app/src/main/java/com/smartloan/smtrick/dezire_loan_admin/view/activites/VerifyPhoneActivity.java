@@ -21,6 +21,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.smartloan.smtrick.dezire_loan_admin.R;
 import com.smartloan.smtrick.dezire_loan_admin.models.Users;
+import com.smartloan.smtrick.dezire_loan_admin.preferences.AppSharedPreference;
 import com.smartloan.smtrick.dezire_loan_admin.utilities.Utility;
 
 import java.util.concurrent.TimeUnit;
@@ -35,6 +36,7 @@ public class VerifyPhoneActivity extends AppCompatActivity {
     private ProgressBar progressBar;
     private EditText editText;
     private DatabaseReference mDatabase;
+    private AppSharedPreference appSharedPreference;
 
     String phonenumber,username;
 
@@ -44,6 +46,7 @@ public class VerifyPhoneActivity extends AppCompatActivity {
         setContentView(R.layout.activity_verify_phone);
 
         mAuth = FirebaseAuth.getInstance();
+        appSharedPreference = new AppSharedPreference(this);
 
         progressBar = findViewById(R.id.progressbar);
         editText = findViewById(R.id.editTextCode);
@@ -83,10 +86,15 @@ public class VerifyPhoneActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
 
-                            Users user = new Users(username,phonenumber, Utility.generateAgentId(AGENT_PREFIX));
+                            Users user = new Users();
+                            user.setName(username);
+                            user.setMobilenumber(phonenumber);
+                            user.setAgentId(Utility.generateAgentId(AGENT_PREFIX));
                             String uploadId = mDatabase.push().getKey();
+                            user.setUserid(uploadId);
                             mDatabase.child(uploadId).setValue(user);
-
+                            appSharedPreference.addUserDetails(user);
+                            appSharedPreference.createUserLoginSession();
                             Intent intent = new Intent(VerifyPhoneActivity.this, MainActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 

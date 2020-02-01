@@ -27,27 +27,40 @@ import java.util.Map;
 
 import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.GLOBAL_DATE_FORMATE;
 import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.INVICES_LEEDS;
+import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.STATUS_INPROCESS;
+import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.STATUS_IN_PROGRESS;
 import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.STATUS_SUBMITED;
 
 public class Add_Updatelead__submittobank_Activity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     Spinner spinloantype, spinemptype, spinincome;
-    Button btupdate, btverify, btcancel,btnnext;
-  Invoice invoice;
+    Button btupdate, btverify, btcancel, btnnext;
+    Invoice invoice;
     ProgressDialogClass progressDialogClass;
     AppSharedPreference appSharedPreference;
     InvoiceRepository invoiceRepository;
     ArrayList<Invoice> leedsModelArrayList;
-    EditText etbankname,etdate,etexloanamount,etcname, etaddress, etloantype,etagentname, etoffaddress, etcontatct, etalternatecontact, etbirthdate, etpanno, etadharno, etoccupation, etincome, etexammount, etgenerated, etdescription;
-    String cExloanamount,cDate,cBankname,cNmae, cAdress, cLoantype,cAgentname,cOffaddress, cContatct, cAltcontatct, cBdate, cPanno, cAdharno, cIncome, cExamount, lGenby, cDescreption, sploantype, spoccupation;
+    EditText etbankname, etdate, etexloanamount, etcname, etaddress, etloantype, etagentname, etoffaddress, etcontatct, etalternatecontact, etbirthdate, etpanno, etadharno, etoccupation, etincome, etexammount, etgenerated, etdescription;
+    String cExloanamount, cDate, cBankname, cNmae, cAdress, cLoantype, cAgentname, cOffaddress, cContatct, cAltcontatct, cBdate, cPanno, cAdharno, cIncome, cExamount, lGenby, cDescreption, sploantype, spoccupation;
     TextView txtldate, txtleadid;
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return true;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.admin_submitbank_activity);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_c_details);
 
         setSupportActionBar(toolbar);
+
+        assert getSupportActionBar() != null;   //null check
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("");
+
         invoice = (Invoice) getIntent().getSerializableExtra(INVICES_LEEDS);
         progressDialogClass = new ProgressDialogClass(this);
         invoiceRepository = new InvoiceRepositoryImpl();
@@ -60,15 +73,15 @@ public class Add_Updatelead__submittobank_Activity extends AppCompatActivity imp
 
         btnnext.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                cNmae=etcname.getText().toString();
-                cAdress=etaddress.getText().toString();
-                cContatct=etcontatct.getText().toString();
-                cAltcontatct=etalternatecontact.getText().toString();
-                cLoantype=etloantype.getText().toString();
-                cAgentname=etagentname.getText().toString();
-                cExloanamount=etexloanamount.getText().toString();
-                cDate=etdate.getText().toString();
-                cBankname=etbankname.getText().toString();
+                cNmae = etcname.getText().toString();
+                cAdress = etaddress.getText().toString();
+                cContatct = etcontatct.getText().toString();
+                cAltcontatct = etalternatecontact.getText().toString();
+                cLoantype = etloantype.getText().toString();
+                cAgentname = etagentname.getText().toString();
+                cExloanamount = etexloanamount.getText().toString();
+                cDate = etdate.getText().toString();
+                cBankname = etbankname.getText().toString();
 
                 if (TextUtils.isEmpty(cBankname)) {
                     etbankname.setError("Required");
@@ -101,10 +114,16 @@ public class Add_Updatelead__submittobank_Activity extends AppCompatActivity imp
         getdata();
 
 
-
         btverify.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                setLeedStatus(invoice);
+                String number = etbankname.getText().toString().trim();
+                if (number.isEmpty() || number.length() < 10) {
+                    etbankname.setError("Valid number is required");
+                    etbankname.requestFocus();
+                    return;
+                }else {
+                    setLeedStatus(invoice);
+                }
             }
         });
 
@@ -123,7 +142,6 @@ public class Add_Updatelead__submittobank_Activity extends AppCompatActivity imp
     }//end of oncreate
 
 
-
     private void getdata() {
 
         try {
@@ -140,58 +158,51 @@ public class Add_Updatelead__submittobank_Activity extends AppCompatActivity imp
             String strdate = Long.toString(ldatetime);
             String sbank = invoice.getBankName();
 
-            if(leednumber != null)
-             {
-                 txtleadid.setText(leednumber);
+            if (leednumber != null) {
+                txtleadid.setText(leednumber);
 
-             }
-            if(strdate != null)
-            {
+            }
+            if (strdate != null) {
                 etdate.setText(Utility.convertMilliSecondsToFormatedDate(invoice.getCreatedDateTimeLong(), GLOBAL_DATE_FORMATE));
 
-            }if(cname != null)
-             {
-                 etcname.setText(cname);
+            }
+            if (cname != null) {
+                etcname.setText(cname);
 
-             } if(caddress != null)
-             {
-                 etaddress.setText(caddress);
+            }
+            if (caddress != null) {
+                etaddress.setText(caddress);
 
-             }
+            }
 
-            if(contact != null)
-             {
-                 etcontatct.setText(contact);
+            if (contact != null) {
+                etcontatct.setText(contact);
 
-             }
-             if(altcontact != null)
-             {
-                 etalternatecontact.setText(altcontact);
-             }
-            if(loantype != null)
-            {
+            }
+            if (altcontact != null) {
+                etalternatecontact.setText(altcontact);
+            }
+            if (loantype != null) {
                 etloantype.setText(loantype);
             }
-            if(agentname != null)
-            {
+            if (agentname != null) {
                 etagentname.setText(agentname);
             }
-            if(exloanamount != null)
-            {
+            if (exloanamount != null) {
                 etexloanamount.setText(exloanamount);
             }
-            if(sbank != null)
-            {
+            if (sbank != null) {
                 etbankname.setText(sbank);
             }
 
-        }catch (Exception e){}
+        } catch (Exception e) {
+        }
 
     }
 
 
     private void setLeedStatus(Invoice invoice) {
-        invoice.setStatus(STATUS_SUBMITED);
+        invoice.setStatus(STATUS_INPROCESS);
         updateLeed(invoice.getLeedId(), invoice.getLeedStatusMap1());
     }
 
@@ -210,13 +221,12 @@ public class Add_Updatelead__submittobank_Activity extends AppCompatActivity imp
     }
 
 
-
     private void updateLeed(String leedId, Map leedsMap) {
         progressDialogClass.showDialog(this.getString(R.string.loading), this.getString(R.string.PLEASE_WAIT));
         invoiceRepository.updateLeed(leedId, leedsMap, new CallBack() {
             @Override
             public void onSuccess(Object object) {
-               Toast.makeText(Add_Updatelead__submittobank_Activity.this, "Lead Submited to bank Successfully", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Add_Updatelead__submittobank_Activity.this, "Lead Submited to bank Successfully", Toast.LENGTH_SHORT).show();
                 progressDialogClass.dismissDialog();
 
                 Intent i = new Intent(Add_Updatelead__submittobank_Activity.this, MainActivity.class);

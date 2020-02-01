@@ -38,15 +38,27 @@ public class Add_Updatelead_C_Details_Activity extends AppCompatActivity impleme
     ArrayList<Invoice> leedsModelArrayList;
     EditText eparents,etdate,etexloanamount,etcname, etaddress, etloantype,etagentname, etoffaddress, etcontatct, etalternatecontact, etbirthdate, etpanno, etadharno, etoccupation, etincome, etexammount, etgenerated, etdescription;
     String cExloanamount,cDate,cparents,cNmae, cAdress, cLoantype,cAgentname,cOffaddress, cContatct, cAltcontatct, cBdate, cPanno, cAdharno, cIncome, cExamount, lGenby, cDescreption, sploantype, spoccupation;
+   String cNote;
     TextView txtldate, txtleadid;
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        finish();
+        return true;
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tl_updatelead_cdetails_activity);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_c_details);
 
         setSupportActionBar(toolbar);
+
+        assert getSupportActionBar() != null;   //null check
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         invoice = (Invoice) getIntent().getSerializableExtra(INVICES_LEEDS);
         progressDialogClass = new ProgressDialogClass(this);
         invoiceRepository = new InvoiceRepositoryImpl();
@@ -67,6 +79,7 @@ public class Add_Updatelead_C_Details_Activity extends AppCompatActivity impleme
                 cAgentname=etagentname.getText().toString();
                 cExloanamount=etexloanamount.getText().toString();
                 cDate=etdate.getText().toString();
+                cNote = etdescription.getText().toString();
 
 
                 updateLeadDetails(invoice);
@@ -90,7 +103,9 @@ public class Add_Updatelead_C_Details_Activity extends AppCompatActivity impleme
         etagentname = (EditText) findViewById(R.id.txtgenbyvalue);
         etexloanamount = (EditText) findViewById(R.id.txtexloanamountvalue);
         etdate = (EditText) findViewById(R.id.txtdatevalue);
+        etdescription = (EditText) findViewById(R.id.txtnotevalue);
         getdata();
+        getSupportActionBar().setTitle("");
 
 
 
@@ -130,6 +145,11 @@ public class Add_Updatelead_C_Details_Activity extends AppCompatActivity impleme
             String exloanamount = invoice.getExpectedLoanAmount();
             Long ldatetime = invoice.getCreatedDateTimeLong();
             String strdate = Long.toString(ldatetime);
+            String note = invoice.getNote();
+
+            if (note != null){
+                etdescription.setText(note);
+            }
 
 
             if(leednumber != null)
@@ -193,6 +213,7 @@ public class Add_Updatelead_C_Details_Activity extends AppCompatActivity impleme
         invoice.setLoanType(cLoantype);
         invoice.setAgentName(cAgentname);
         invoice.setExpectedLoanAmount(cExloanamount);
+        invoice.setNote(cNote);
         updateLeed(invoice.getLeedId(), invoice.getUpdateLeedMap());
     }
 

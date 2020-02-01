@@ -22,6 +22,7 @@ import com.smartloan.smtrick.dezire_loan_admin.preferences.AppSharedPreference;
 import com.smartloan.smtrick.dezire_loan_admin.recyclerListener.RecyclerTouchListener;
 import com.smartloan.smtrick.dezire_loan_admin.repository.InvoiceRepository;
 import com.smartloan.smtrick.dezire_loan_admin.repository.LeedRepository;
+import com.smartloan.smtrick.dezire_loan_admin.repository.UserRepository;
 import com.smartloan.smtrick.dezire_loan_admin.repository.impl.InvoiceRepositoryImpl;
 import com.smartloan.smtrick.dezire_loan_admin.repository.impl.LeedRepositoryImpl;
 import com.smartloan.smtrick.dezire_loan_admin.singleton.AppSingleton;
@@ -44,6 +45,7 @@ public class Invoices_Fragment extends Fragment {
     ArrayList<Invoice> invoiceArrayList;
     ArrayList<Invoice> invoiceArrayList1;
     InvoiceRepository invoiceRepository;
+
     LeedRepository leedRepository;
     InvoicedialogBinding invoicedialogBinding;
 
