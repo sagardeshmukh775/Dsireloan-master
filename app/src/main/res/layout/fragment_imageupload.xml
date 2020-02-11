@@ -28,6 +28,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:background="@drawable/edittextanimation"
+                android:padding="10dp"
                 android:hint="Offer Name"
                 />
 
@@ -45,6 +47,8 @@
                 android:layout_height="150dp"
                 android:layout_marginTop="10dp"
                 android:hint="Offer Details"
+                android:background="@drawable/edittextanimation"
+                android:padding="10dp"
                 android:gravity="top"
                 android:scrollbars="vertical"
                 android:inputType="textMultiLine"

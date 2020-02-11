@@ -3,22 +3,14 @@
 
     <!-- Note:  android:checkableBehavior="single" -->
     <group android:checkableBehavior="single">
-        <!--<item-->
-            <!--android:id="@+id/generateleads"-->
-            <!--android:icon="@drawable/leadsimage"-->
-            <!--android:title="New Lead"-->
-            <!--android:textSize="22sp"-->
-            <!--android:textColor="@color/textcolor"-->
-            <!--android:textStyle="normal|bold"/>-->
 
-        <!--<item-->
-            <!--android:id="@+id/Leads"-->
-            <!--android:icon="@drawable/usersimage2"-->
-            <!--android:title="User Leads"-->
-            <!--android:textSize="22sp"-->
-            <!--android:textColor="@color/textcolor"-->
-            <!--android:textStyle="normal|bold"/>-->
-
+        <item
+            android:id="@+id/adleeds"
+            android:icon="@drawable/usersimage2"
+            android:title="Leeds"
+            android:textSize="22sp"
+            android:textColor="@color/textcolor"
+            android:textStyle="normal|bold"/>
 
         <item
             android:id="@+id/Reports"
@@ -28,34 +20,10 @@
             android:textColor="@color/textcolor"
             android:textStyle="normal|bold" />
 
-        <!--<item-->
-            <!--android:id="@+id/invoice"-->
-            <!--android:icon="@drawable/invoices"-->
-            <!--android:title="Invoices"-->
-            <!--android:textSize="22sp"-->
-            <!--android:textColor="@color/textcolor"-->
-            <!--android:textStyle="normal|bold"/>-->
-
-        <item
-            android:id="@+id/Calulator"
-            android:icon="@drawable/calculatoricon"
-            android:title="Loan Calculator"
-            android:textSize="22sp"
-            android:textColor="@color/textcolor"
-            android:textStyle="normal|bold"/>
-
         <item
             android:id="@+id/users"
             android:icon="@drawable/usersimage2"
             android:title="Users"
-            android:textSize="22sp"
-            android:textColor="@color/textcolor"
-            android:textStyle="normal|bold"/>
-
-        <item
-            android:id="@+id/adleeds"
-            android:icon="@drawable/usersimage2"
-            android:title="Leeds"
             android:textSize="22sp"
             android:textColor="@color/textcolor"
             android:textStyle="normal|bold"/>
@@ -68,7 +36,6 @@
             android:textColor="@color/textcolor"
             android:textStyle="normal|bold"/>
 
-
         <item
             android:id="@+id/admininvoice"
             android:icon="@drawable/usersimage2"
@@ -76,6 +43,23 @@
             android:textSize="22sp"
             android:textColor="@color/textcolor"
             android:textStyle="normal|bold"/>
+
+        <item
+            android:id="@+id/Calulator"
+            android:icon="@drawable/calculatoricon"
+            android:title="Loan Calculator"
+            android:textSize="22sp"
+            android:textColor="@color/textcolor"
+            android:textStyle="normal|bold"/>
+
+
+
+
+
+
+
+
+
 
         <item
             android:id="@+id/item_logout"

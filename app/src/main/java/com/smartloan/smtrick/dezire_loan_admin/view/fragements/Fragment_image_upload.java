@@ -59,8 +59,6 @@ public class Fragment_image_upload extends Fragment implements View.OnClickListe
     //uri to store file
     private Uri filePath;
 
-
-
     //firebase objects
     private StorageReference storageReference;
     private DatabaseReference mDatabase;
@@ -92,8 +90,7 @@ public class Fragment_image_upload extends Fragment implements View.OnClickListe
         Idescription = (EditText) view.findViewById(R.id.description);
         storageReference = FirebaseStorage.getInstance().getReference();
         mDatabase = FirebaseDatabase.getInstance().getReference(Constants.DATABASE_PATH_UPLOADS);
-
-
+        
 //          Boolean per = isStoragePermissionGranted();
 //        spinnervalue();
 //        subspinnervalue();
