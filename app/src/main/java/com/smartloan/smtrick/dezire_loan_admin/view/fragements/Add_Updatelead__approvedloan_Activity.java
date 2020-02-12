@@ -17,6 +17,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.smartloan.smtrick.dezire_loan_admin.R;
 import com.smartloan.smtrick.dezire_loan_admin.callback.CallBack;
 import com.smartloan.smtrick.dezire_loan_admin.models.Invoice;
+import com.smartloan.smtrick.dezire_loan_admin.models.LeedsModel;
 import com.smartloan.smtrick.dezire_loan_admin.preferences.AppSharedPreference;
 import com.smartloan.smtrick.dezire_loan_admin.repository.InvoiceRepository;
 import com.smartloan.smtrick.dezire_loan_admin.repository.impl.InvoiceRepositoryImpl;
@@ -35,11 +36,11 @@ import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.STATUS_
 public class Add_Updatelead__approvedloan_Activity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     Spinner spinloantype, spinemptype, spinincome;
     Button btupdate, btverify, btnsendinvoice, btnnext;
-    Invoice invoice;
+    LeedsModel invoice;
     ProgressDialogClass progressDialogClass;
     AppSharedPreference appSharedPreference;
     InvoiceRepository invoiceRepository;
-    ArrayList<Invoice> leedsModelArrayList;
+    ArrayList<LeedsModel> leedsModelArrayList;
     private DatabaseReference mDatabase;
 
     EditText etbankname, etdate, etexloanamount, etcname, etaddress, etloantype, etagentname,
@@ -69,7 +70,7 @@ public class Add_Updatelead__approvedloan_Activity extends AppCompatActivity imp
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("");
 
-        invoice = (Invoice) getIntent().getSerializableExtra(INVICES_LEEDS);
+        invoice = (LeedsModel) getIntent().getSerializableExtra(INVICES_LEEDS);
         progressDialogClass = new ProgressDialogClass(this);
         invoiceRepository = new InvoiceRepositoryImpl();
         appSharedPreference = new AppSharedPreference(this);
@@ -168,7 +169,7 @@ public class Add_Updatelead__approvedloan_Activity extends AppCompatActivity imp
             String cname = invoice.getCustomerName();
             String caddress = invoice.getAddress();
             String contact = invoice.getMobileNumber();
-            String altcontact = invoice.getAltmobile();
+            String altcontact = invoice.getaltmobile();
             String loantype = invoice.getLoanType();
             String agentname = invoice.getAgentName();
             String exloanamount = invoice.getExpectedLoanAmount();
@@ -176,7 +177,7 @@ public class Add_Updatelead__approvedloan_Activity extends AppCompatActivity imp
             String strdate = Long.toString(ldatetime);
             String sbank = invoice.getBankName();
             String dissbuss = invoice.getApprovedLoan();
-            String disburseamt = invoice.getDissbussLoan();
+            String disburseamt = invoice.getDissbussloan();
             String paymentdate = invoice.getPaymentDate();
             String commission = invoice.getCommission();
 
@@ -249,7 +250,7 @@ public class Add_Updatelead__approvedloan_Activity extends AppCompatActivity imp
         updateLeed(invoice.getLeedId(), invoice.getLeedStatusMap1());
     }
 
-    private void updateLeadDetails(Invoice invoice) {
+    private void updateLeadDetails(LeedsModel invoice) {
 
         invoice.setCustomerName(cNmae);
         invoice.setAddress(cAdress);
@@ -260,10 +261,10 @@ public class Add_Updatelead__approvedloan_Activity extends AppCompatActivity imp
         invoice.setExpectedLoanAmount(cExloanamount);
         invoice.setBankName(cBankname);
         invoice.setApprovedLoan(cApproved);
-        invoice.setDissbussLoan(cDisbuss);
+        invoice.setdissbussloan(cDisbuss);
         invoice.setPaymentDate(cPayment);
         invoice.setCommission(cCommission);
-        updateLeed(invoice.getLeedId(), invoice.getUpdateLeedMap());
+        updateLeed(invoice.getLeedId(), invoice.getLeedStatusMap());
     }
 
     private Invoice sendInvoiceDetails() {

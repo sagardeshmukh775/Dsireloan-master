@@ -17,6 +17,7 @@ import com.smartloan.smtrick.dezire_loan_admin.callback.CallBack;
 import com.smartloan.smtrick.dezire_loan_admin.databinding.FragmentInvoiceBinding;
 import com.smartloan.smtrick.dezire_loan_admin.databinding.InvoicedialogBinding;
 import com.smartloan.smtrick.dezire_loan_admin.models.Invoice;
+import com.smartloan.smtrick.dezire_loan_admin.models.LeedsModel;
 import com.smartloan.smtrick.dezire_loan_admin.preferences.AppSharedPreference;
 import com.smartloan.smtrick.dezire_loan_admin.recyclerListener.RecyclerTouchListener;
 import com.smartloan.smtrick.dezire_loan_admin.repository.InvoiceRepository;
@@ -37,7 +38,7 @@ public class RejectedInvoiceFragment extends Fragment {
     ProgressDialogClass progressDialogClass;
     AppSharedPreference appSharedPreference;
     FragmentInvoiceBinding fragmentInvoiceBinding;
-    ArrayList<Invoice> invoiceArrayList;
+    ArrayList<LeedsModel> invoiceArrayList;
     InvoiceRepository invoiceRepository;
     InvoicedialogBinding invoicedialogBinding;
 
@@ -69,7 +70,7 @@ public class RejectedInvoiceFragment extends Fragment {
         return fragmentInvoiceBinding.getRoot();
     }
 
-    private Invoice getModel(int position) {
+    private LeedsModel getModel(int position) {
         return invoiceArrayList.get(invoiceArrayList.size() - 1 - position);
     }
 
@@ -77,7 +78,7 @@ public class RejectedInvoiceFragment extends Fragment {
         fragmentInvoiceBinding.recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getActivity().getApplicationContext(), fragmentInvoiceBinding.recyclerView, new RecyclerTouchListener.ClickListener() {
             @Override
             public void onClick(View view, int position) {
-                Invoice invoice = getModel(position);
+                LeedsModel invoice = getModel(position);
                 showInvoiceDialog(invoice);
             }
 
@@ -94,7 +95,7 @@ public class RejectedInvoiceFragment extends Fragment {
             @Override
             public void onSuccess(Object object) {
                 if (object != null) {
-                    invoiceArrayList = (ArrayList<Invoice>) object;
+                    invoiceArrayList = (ArrayList<LeedsModel>) object;
                     filterList(invoiceArrayList);
                 }
                 progressDialogClass.dismissDialog();
@@ -108,10 +109,10 @@ public class RejectedInvoiceFragment extends Fragment {
         });
     }
 
-    private void filterList(ArrayList<Invoice> invoiceArrayList) {
-        ArrayList<Invoice> arrayList = new ArrayList<>();
+    private void filterList(ArrayList<LeedsModel> invoiceArrayList) {
+        ArrayList<LeedsModel> arrayList = new ArrayList<>();
         if (invoiceArrayList != null) {
-            for (Invoice invoice : invoiceArrayList) {
+            for (LeedsModel invoice : invoiceArrayList) {
                 if (!Utility.isEmptyOrNull(invoice.getStatus()) && invoice.getStatus().equalsIgnoreCase(STATUS_REJECTED))
                     arrayList.add(invoice);
             }
@@ -119,21 +120,21 @@ public class RejectedInvoiceFragment extends Fragment {
         serAdapter(arrayList);
     }
 
-    private void serAdapter(ArrayList<Invoice> invoiceArrayList) {
+    private void serAdapter(ArrayList<LeedsModel> invoiceArrayList) {
         if (invoiceArrayList != null) {
             if (invoiceAdapter == null) {
                 invoiceAdapter = new InvoiceAdapter(getActivity(), invoiceArrayList);
                 fragmentInvoiceBinding.recyclerView.setAdapter(invoiceAdapter);
                 onClickListner();
             } else {
-                ArrayList<Invoice> arrayList = new ArrayList<>();
+                ArrayList<LeedsModel> arrayList = new ArrayList<>();
                 arrayList.addAll(invoiceArrayList);
                 invoiceAdapter.reload(arrayList);
             }
         }
     }
 
-    private void showInvoiceDialog(Invoice invoice) {
+    private void showInvoiceDialog(LeedsModel invoice) {
         final Dialog dialog = new Dialog(getActivity());
         invoicedialogBinding = DataBindingUtil.inflate(LayoutInflater.from(getActivity()), R.layout.invoicedialog, null, false);
         dialog.setContentView(invoicedialogBinding.getRoot());

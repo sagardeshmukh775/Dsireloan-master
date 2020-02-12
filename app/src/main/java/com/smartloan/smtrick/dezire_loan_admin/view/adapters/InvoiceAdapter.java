@@ -11,16 +11,17 @@ import com.bumptech.glide.request.RequestOptions;
 import com.smartloan.smtrick.dezire_loan_admin.R;
 import com.smartloan.smtrick.dezire_loan_admin.databinding.InvoiceAdapterLayoutBinding;
 import com.smartloan.smtrick.dezire_loan_admin.models.Invoice;
+import com.smartloan.smtrick.dezire_loan_admin.models.LeedsModel;
 import com.smartloan.smtrick.dezire_loan_admin.view.holders.InvoiceViewHolder;
 
 import java.util.ArrayList;
 
 public class InvoiceAdapter extends RecyclerView.Adapter<InvoiceViewHolder> {
 
-    private ArrayList<Invoice> invoiceArrayList;
+    private ArrayList<LeedsModel> invoiceArrayList;
     private Context context;
 
-    public InvoiceAdapter(Context context, ArrayList<Invoice> data) {
+    public InvoiceAdapter(Context context, ArrayList<LeedsModel> data) {
         this.invoiceArrayList = data;
         this.context = context;
     }
@@ -32,14 +33,14 @@ public class InvoiceAdapter extends RecyclerView.Adapter<InvoiceViewHolder> {
         return new InvoiceViewHolder(invoiceAdapterLayoutBinding);
     }
 
-    private Invoice getModel(int position) {
+    private LeedsModel getModel(int position) {
         return (invoiceArrayList.get(invoiceArrayList.size() - 1 - position));
     }
 
     @Override
     public void onBindViewHolder(final InvoiceViewHolder holder, final int listPosition) {
         try {
-            Invoice invoice = getModel(listPosition);
+            LeedsModel invoice = getModel(listPosition);
             holder.invoiceAdapterLayoutBinding.txtidvalue.setText(invoice.getLeedNumber());
             holder.invoiceAdapterLayoutBinding.txtcnamevalue.setText(invoice.getCustomerName());
             holder.invoiceAdapterLayoutBinding.txtbankvalue.setText(invoice.getExpectedLoanAmount());
@@ -90,7 +91,7 @@ public class InvoiceAdapter extends RecyclerView.Adapter<InvoiceViewHolder> {
         return invoiceArrayList.size();
     }
 
-    public void reload(ArrayList<Invoice> arrayList) {
+    public void reload(ArrayList<LeedsModel> arrayList) {
         invoiceArrayList.clear();
         invoiceArrayList.addAll(arrayList);
         notifyDataSetChanged();

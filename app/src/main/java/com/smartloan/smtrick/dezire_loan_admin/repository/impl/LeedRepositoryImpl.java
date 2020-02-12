@@ -130,9 +130,9 @@ public class LeedRepositoryImpl extends FirebaseTemplateRepository implements Le
                 if (object != null) {
                     DataSnapshot dataSnapshot = (DataSnapshot) object;
                     if (dataSnapshot.getValue() != null & dataSnapshot.hasChildren()) {
-                        ArrayList<Invoice> leedsModelArrayList = new ArrayList<>();
+                        ArrayList<LeedsModel> leedsModelArrayList = new ArrayList<>();
                         for (DataSnapshot suggestionSnapshot : dataSnapshot.getChildren()) {
-                            Invoice leedsModel = suggestionSnapshot.getValue(Invoice.class);
+                            LeedsModel leedsModel = suggestionSnapshot.getValue(LeedsModel.class);
                             leedsModelArrayList.add(leedsModel);
                         }
                         callBack.onSuccess(leedsModelArrayList);

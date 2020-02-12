@@ -19,12 +19,9 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,7 +45,7 @@ import com.smartloan.smtrick.dezire_loan_admin.view.fragements.Admin_Userslist_F
 import com.smartloan.smtrick.dezire_loan_admin.view.fragements.Fragment5;
 import com.smartloan.smtrick.dezire_loan_admin.view.fragements.Fragment_Calculator;
 import com.smartloan.smtrick.dezire_loan_admin.view.fragements.Fragment_Reports;
-import com.smartloan.smtrick.dezire_loan_admin.view.fragements.Fragment_image_upload;
+import com.smartloan.smtrick.dezire_loan_admin.view.fragements.Fragment_Upload_Offers;
 import com.smartloan.smtrick.dezire_loan_admin.view.fragements.InvoicesTabFragment;
 import com.squareup.picasso.Picasso;
 
@@ -167,11 +164,8 @@ public class MainActivity extends AppCompatActivity
             fragment = new Admin_Leed_TabFragment();
         }
         else if (id == R.id.offers) {
-            fragment = new Fragment_image_upload();
+            fragment = new Fragment_Upload_Offers();
         }
-//        else if (id == R.id.invoice) {
-//            fragment = new Admin_Invoices_TabFragment();
-//        }
         else if (id == R.id.admininvoice) {
             fragment = new Admin1_Invoices_TabFragment();
         }

@@ -41,7 +41,7 @@ import java.io.File;
 
 import static android.app.Activity.RESULT_OK;
 
-public class Fragment_image_upload extends Fragment implements View.OnClickListener {
+public class Fragment_Upload_Offers extends Fragment implements View.OnClickListener {
 
     private static final int REQUEST_PICK_IMAGE = 1002;
     String image;
@@ -66,7 +66,7 @@ public class Fragment_image_upload extends Fragment implements View.OnClickListe
     // NOTE: Removed Some unwanted Boiler Plate Codes
     private OnFragmentInteractionListener mListener;
 
-    public Fragment_image_upload() {}
+    public Fragment_Upload_Offers() {}
 
 
 

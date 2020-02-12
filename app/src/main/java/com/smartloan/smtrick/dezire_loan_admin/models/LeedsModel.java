@@ -38,23 +38,27 @@ public class LeedsModel implements Serializable {
     private String officeAdderess;
     private String propertyAddress;
     private String description;
-    private String  dissbussloan;
-    private String  adharNo;
-    private String  altmobile;
-    private String  income;
-    private String  parents;
-    private String  recidential;
-    private String  peraddress;
-    private String  mincome;
-    private String  yincome;
-    private String  flatno;
-    private String  projectname;
-    private String  propaddress;
-    private String  propage;
-    private String  proparea;
-    private String  pincode;
-    private String  pcity;
-    private String  pstate;
+    private String dissbussloan;
+    private String approvedDate;
+    private String adharNo;
+    private String altmobile;
+    private String income;
+    private String parents;
+    private String recidential;
+    private String peraddress;
+    private String mincome;
+    private String yincome;
+    private String flatno;
+    private String projectname;
+    private String propaddress;
+    private String propage;
+    private String proparea;
+    private String pincode;
+    private String pcity;
+    private String pstate;
+    private String note;
+    private String paymentDate;
+    private String commission;
 
 
     private View.OnClickListener requestBtnClickListener;
@@ -63,7 +67,6 @@ public class LeedsModel implements Serializable {
     }
 
     public LeedsModel(int id) {
-
 
 
         this.flatno = "Prateek Patel";
@@ -98,12 +101,16 @@ public class LeedsModel implements Serializable {
         this.approvedLoan = "3564545";
         this.dissbussloan = "3564545";
         this.gst = "2%";
-        this.officeAdderess="na";
-        this.propertyAddress="na";
-        this.description="na";
-        this.altmobile="na";
-        this.adharNo="na";
-        this.income="na";
+        this.officeAdderess = "na";
+        this.propertyAddress = "na";
+        this.description = "na";
+        this.altmobile = "na";
+        this.adharNo = "na";
+        this.income = "na";
+        this.approvedDate = "na";
+        this.note = "na";
+        this.commission = "123456";
+        this.paymentDate = "321654684";
     }
 
     @Exclude
@@ -139,13 +146,14 @@ public class LeedsModel implements Serializable {
     public void setOfficeAdderess(String officeAdderess) {
         this.officeAdderess = officeAdderess;
     }
+
     public String getpropertyAddress() {
         return propertyAddress;
     }
+
     public String getdescription() {
         return description;
     }
-
 
 
     public String getCustomerName() {
@@ -155,24 +163,31 @@ public class LeedsModel implements Serializable {
     public void setAltmobile(String altmobile) {
         this.altmobile = altmobile;
     }
+
     public String getaltmobile() {
         return altmobile;
     }
+
     public void setCustomerName(String customerName) {
         this.customerName = customerName;
     }
+
     public String getMobileNumber() {
         return mobileNumber;
     }
+
     public void setMobileNumber(String mobileNumber) {
         this.mobileNumber = mobileNumber;
     }
+
     public String getAddress() {
         return address;
     }
+
     public void setAddress(String address) {
         this.address = address;
     }
+
     public String getGender() {
         return gender;
     }
@@ -224,10 +239,6 @@ public class LeedsModel implements Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
-
-
-
-
 
 
     public String getFlatno() {
@@ -285,6 +296,7 @@ public class LeedsModel implements Serializable {
     public String getPcity() {
         return pcity;
     }
+
     public void setPcity(String pcity) {
         this.pcity = pcity;
     }
@@ -293,13 +305,10 @@ public class LeedsModel implements Serializable {
     public String getPstate() {
         return pstate;
     }
+
     public void setPstate(String pstate) {
         this.pstate = pstate;
     }
-
-
-
-
 
 
     public String getMincome() {
@@ -342,6 +351,7 @@ public class LeedsModel implements Serializable {
     public void setExpectedLoanAmount(String expectedLoanAmount) {
         this.expectedLoanAmount = expectedLoanAmount;
     }
+
     public String getOccupation() {
         return occupation;
     }
@@ -433,8 +443,6 @@ public class LeedsModel implements Serializable {
     }
 
 
-
-
     public String getPayout() {
         return payout;
     }
@@ -473,6 +481,38 @@ public class LeedsModel implements Serializable {
 
     public void setRequestBtnClickListener(View.OnClickListener requestBtnClickListener) {
         this.requestBtnClickListener = requestBtnClickListener;
+    }
+
+    public String getApprovedDate() {
+        return approvedDate;
+    }
+
+    public void setApprovedDate(String approvedDate) {
+        this.approvedDate = approvedDate;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    public String getPaymentDate() {
+        return paymentDate;
+    }
+
+    public void setPaymentDate(String paymentDate) {
+        this.paymentDate = paymentDate;
+    }
+
+    public String getCommission() {
+        return commission;
+    }
+
+    public void setCommission(String commission) {
+        this.commission = commission;
     }
 
     public static ArrayList<LeedsModel> getLeeds() {
@@ -515,12 +555,15 @@ public class LeedsModel implements Serializable {
         leedMap.put("pcity", getPcity());
         leedMap.put("pstate", getPstate());
         leedMap.put("propaddress", getPropaddress());
-
+        leedMap.put("approvedDate", getApprovedDate());
+        leedMap.put("note", getNote());
+        leedMap.put("paymentDate", getPaymentDate());
+        leedMap.put("commission", getCommission());
         return leedMap;
     }
 
     @Exclude
-    public Map getLeedStatusMap1(){
+    public Map getLeedStatusMap1() {
         Map<String, Object> leedMap = new HashMap<>();
         leedMap.put("status", getStatus());
         leedMap.put("updatedDateTime", getUpdatedDateTime());

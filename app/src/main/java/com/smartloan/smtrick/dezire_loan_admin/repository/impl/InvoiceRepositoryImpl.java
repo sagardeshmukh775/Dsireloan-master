@@ -166,9 +166,9 @@ public class InvoiceRepositoryImpl extends FirebaseTemplateRepository implements
                 if (object != null) {
                     DataSnapshot dataSnapshot = (DataSnapshot) object;
                     if (dataSnapshot.getValue() != null & dataSnapshot.hasChildren()) {
-                        ArrayList<Invoice> invoiceArrayList = new ArrayList<>();
+                        ArrayList<LeedsModel> invoiceArrayList = new ArrayList<>();
                         for (DataSnapshot suggestionSnapshot : dataSnapshot.getChildren()) {
-                            Invoice invoice = suggestionSnapshot.getValue(Invoice.class);
+                            LeedsModel invoice = suggestionSnapshot.getValue(LeedsModel.class);
                             invoiceArrayList.add(invoice);
                         }
                         callBack.onSuccess(invoiceArrayList);

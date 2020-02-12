@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.smartloan.smtrick.dezire_loan_admin.R;
 import com.smartloan.smtrick.dezire_loan_admin.callback.CallBack;
 import com.smartloan.smtrick.dezire_loan_admin.models.Invoice;
+import com.smartloan.smtrick.dezire_loan_admin.models.LeedsModel;
 import com.smartloan.smtrick.dezire_loan_admin.preferences.AppSharedPreference;
 import com.smartloan.smtrick.dezire_loan_admin.repository.InvoiceRepository;
 import com.smartloan.smtrick.dezire_loan_admin.repository.impl.InvoiceRepositoryImpl;
@@ -31,11 +32,11 @@ import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.STATUS_
 public class Add_Updatelead_C_Details_Activity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     Spinner spinloantype, spinemptype, spinincome;
     Button btupdate, btverify, btcancel,btnnext;
-  Invoice invoice;
+    LeedsModel invoice;
     ProgressDialogClass progressDialogClass;
     AppSharedPreference appSharedPreference;
     InvoiceRepository invoiceRepository;
-    ArrayList<Invoice> leedsModelArrayList;
+    ArrayList<LeedsModel> leedsModelArrayList;
     EditText eparents,etdate,etexloanamount,etcname, etaddress, etloantype,etagentname, etoffaddress, etcontatct, etalternatecontact, etbirthdate, etpanno, etadharno, etoccupation, etincome, etexammount, etgenerated, etdescription;
     String cExloanamount,cDate,cparents,cNmae, cAdress, cLoantype,cAgentname,cOffaddress, cContatct, cAltcontatct, cBdate, cPanno, cAdharno, cIncome, cExamount, lGenby, cDescreption, sploantype, spoccupation;
    String cNote;
@@ -59,7 +60,7 @@ public class Add_Updatelead_C_Details_Activity extends AppCompatActivity impleme
         assert getSupportActionBar() != null;   //null check
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        invoice = (Invoice) getIntent().getSerializableExtra(INVICES_LEEDS);
+        invoice = (LeedsModel) getIntent().getSerializableExtra(INVICES_LEEDS);
         progressDialogClass = new ProgressDialogClass(this);
         invoiceRepository = new InvoiceRepositoryImpl();
         appSharedPreference = new AppSharedPreference(this);
@@ -139,7 +140,7 @@ public class Add_Updatelead_C_Details_Activity extends AppCompatActivity impleme
             String cname = invoice.getCustomerName();
             String caddress = invoice.getAddress();
             String contact = invoice.getMobileNumber();
-            String altcontact = invoice.getAltmobile();
+            String altcontact = invoice.getaltmobile();
             String loantype = invoice.getLoanType();
             String agentname = invoice.getAgentName();
             String exloanamount = invoice.getExpectedLoanAmount();
@@ -198,13 +199,13 @@ public class Add_Updatelead_C_Details_Activity extends AppCompatActivity impleme
     }
 
 
-    private void setLeedStatus(Invoice invoice) {
+    private void setLeedStatus(LeedsModel invoice) {
         invoice.setStatus(STATUS_VERIFIED);
         updateLeed(invoice.getLeedId(), invoice.getLeedStatusMap1());
     }
 
 
-    private void updateLeadDetails(Invoice invoice) {
+    private void updateLeadDetails(LeedsModel invoice) {
 
         invoice.setCustomerName(cNmae);
         invoice.setAddress(cAdress);
@@ -214,7 +215,7 @@ public class Add_Updatelead_C_Details_Activity extends AppCompatActivity impleme
         invoice.setAgentName(cAgentname);
         invoice.setExpectedLoanAmount(cExloanamount);
         invoice.setNote(cNote);
-        updateLeed(invoice.getLeedId(), invoice.getUpdateLeedMap());
+        updateLeed(invoice.getLeedId(), invoice.getLeedStatusMap());
     }
 
 

@@ -22,7 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.smartloan.smtrick.dezire_loan_admin.R;
 import com.smartloan.smtrick.dezire_loan_admin.callback.CallBack;
-import com.smartloan.smtrick.dezire_loan_admin.databinding.AdminfragmentRejectBinding;
+import com.smartloan.smtrick.dezire_loan_admin.databinding.AdminfragmentInprocessBinding;
 import com.smartloan.smtrick.dezire_loan_admin.databinding.InvoicedialogBinding;
 import com.smartloan.smtrick.dezire_loan_admin.models.Invoice;
 import com.smartloan.smtrick.dezire_loan_admin.models.LeedsModel;
@@ -34,7 +34,7 @@ import com.smartloan.smtrick.dezire_loan_admin.repository.impl.InvoiceRepository
 import com.smartloan.smtrick.dezire_loan_admin.repository.impl.LeedRepositoryImpl;
 import com.smartloan.smtrick.dezire_loan_admin.singleton.AppSingleton;
 import com.smartloan.smtrick.dezire_loan_admin.utilities.Utility;
-import com.smartloan.smtrick.dezire_loan_admin.view.activites.Add_Updatelead_C_Details_Activity;
+import com.smartloan.smtrick.dezire_loan_admin.view.activites.Add_Updatelead__Inprocess_Activity;
 import com.smartloan.smtrick.dezire_loan_admin.view.adapters.InvoiceAdapter;
 import com.smartloan.smtrick.dezire_loan_admin.view.dialog.ProgressDialogClass;
 
@@ -42,15 +42,15 @@ import java.util.ArrayList;
 
 import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.GLOBAL_DATE_FORMATE;
 import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.INVICES_LEEDS;
-import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.STATUS_REJECTED;
-import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.STATUS_VERIFIED;
+import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.STATUS_DOCPICKUP;
+import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.STATUS_INPROCESS;
 
-public class Admin__Rejected_leed_Fragment extends Fragment {
+public class Admin__DocPickup_leed_Fragment extends Fragment {
     InvoiceAdapter invoiceAdapter;
     AppSingleton appSingleton;
     ProgressDialogClass progressDialogClass;
     AppSharedPreference appSharedPreference;
-    AdminfragmentRejectBinding fragmentInvoiceBinding;
+    AdminfragmentInprocessBinding fragmentInvoiceBinding;
     ArrayList<LeedsModel> invoiceArrayList;
     InvoiceRepository invoiceRepository;
     LeedRepository leedRepository;
@@ -58,7 +58,7 @@ public class Admin__Rejected_leed_Fragment extends Fragment {
 
     DatabaseReference databaseReference;
 
-    public Admin__Rejected_leed_Fragment() {
+    public Admin__DocPickup_leed_Fragment() {
     }
 
     @Override
@@ -70,7 +70,7 @@ public class Admin__Rejected_leed_Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         if (fragmentInvoiceBinding == null) {
-            fragmentInvoiceBinding = DataBindingUtil.inflate(inflater, R.layout.adminfragment_reject, container, false);
+            fragmentInvoiceBinding = DataBindingUtil.inflate(inflater, R.layout.adminfragment_inprocess, container, false);
             invoiceRepository = new InvoiceRepositoryImpl();
             leedRepository = new LeedRepositoryImpl();
 
@@ -120,12 +120,14 @@ public class Admin__Rejected_leed_Fragment extends Fragment {
             });
 
         }
+
+
         return fragmentInvoiceBinding.getRoot();
     }
 
     private void setAdapter(final String toString) {
 
-        databaseReference.child("leeds").orderByChild("status").equalTo(STATUS_REJECTED).addListenerForSingleValueEvent(new ValueEventListener() {
+        databaseReference.child("leeds").orderByChild("status").equalTo(STATUS_INPROCESS).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
@@ -155,16 +157,17 @@ public class Admin__Rejected_leed_Fragment extends Fragment {
 
     }
 
+
     private LeedsModel getModel(int position) {
         return invoiceArrayList.get(invoiceArrayList.size() - 1 - position);
     }
 
     private void onClickListner() {
-        fragmentInvoiceBinding.recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getContext(), fragmentInvoiceBinding.recyclerView, new RecyclerTouchListener.ClickListener() {
+        fragmentInvoiceBinding.recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getActivity().getApplicationContext(), fragmentInvoiceBinding.recyclerView, new RecyclerTouchListener.ClickListener() {
             @Override
             public void onClick(View view, int position) {
                 LeedsModel invoice = getModel(position);
-                Intent intent = new Intent(getActivity(), Add_Updatelead_C_Details_Activity.class);
+                Intent intent = new Intent(getActivity(), Add_Updatelead__Inprocess_Activity.class);
                 intent.putExtra(INVICES_LEEDS, invoice);
                 startActivity(intent);
             }
@@ -178,7 +181,7 @@ public class Admin__Rejected_leed_Fragment extends Fragment {
 
     private void getInvoices() {
         progressDialogClass.showDialog(this.getString(R.string.loading), this.getString(R.string.PLEASE_WAIT));
-        leedRepository.readLeedsByStatus(STATUS_REJECTED, new CallBack() {
+        leedRepository.readLeedsByStatus(STATUS_DOCPICKUP, new CallBack() {
             @Override
             public void onSuccess(Object object) {
                 if (object != null) {
@@ -224,7 +227,7 @@ public class Admin__Rejected_leed_Fragment extends Fragment {
         }
     }
 
-    private void showInvoiceDialog(LeedsModel invoice) {
+    private void showInvoiceDialog(Invoice invoice) {
         final Dialog dialog = new Dialog(getActivity());
         invoicedialogBinding = DataBindingUtil.inflate(LayoutInflater.from(getActivity()), R.layout.invoicedialog, null, false);
         dialog.setContentView(invoicedialogBinding.getRoot());
@@ -243,12 +246,7 @@ public class Admin__Rejected_leed_Fragment extends Fragment {
                 dialog.dismiss();
             }
         });
-       /* invoicedialogBinding.dialogButtonreject.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });*/
+
         dialog.show();
     }
 }
