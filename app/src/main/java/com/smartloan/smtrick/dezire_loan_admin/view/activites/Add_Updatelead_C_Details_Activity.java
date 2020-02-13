@@ -35,18 +35,19 @@ import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.STATUS_
 
 public class Add_Updatelead_C_Details_Activity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     Spinner spinloantype, spinemptype, spinincome;
-    Button btupdate, btverify, btReject,btnnext;
+    Button btupdate, btverify, btReject, btnnext;
     LeedsModel invoice;
     ProgressDialogClass progressDialogClass;
     AppSharedPreference appSharedPreference;
     InvoiceRepository invoiceRepository;
     ArrayList<LeedsModel> leedsModelArrayList;
-    EditText eparents,etdate,etexloanamount,etcname, etaddress, etloantype,etagentname, etoffaddress, etcontatct,
+    ArrayList<String> NotesList;
+    EditText eparents, etdate, etexloanamount, etcname, etaddress, etloantype, etagentname, etoffaddress, etcontatct,
             etalternatecontact, etbirthdate, etpanno, etadharno, etoccupation, etincome, etexammount, etgenerated,
-            etemail,etdescription;
-    String cExloanamount,cDate,cparents,cNmae, cAdress, cLoantype,cAgentname,cOffaddress, cContatct,
+            etemail, etdescription,etNote;
+    String cExloanamount, cDate, cparents, cNmae, cAdress, cLoantype, cAgentname, cOffaddress, cContatct,
             cAltcontatct, cBdate, cPanno, cAdharno, cIncome, cExamount, lGenby, cDescreption, sploantype, spoccupation;
-   String cNote,cEmail;
+    String cNote, cEmail;
     TextView txtldate, txtleadid;
 
     @Override
@@ -74,22 +75,25 @@ public class Add_Updatelead_C_Details_Activity extends AppCompatActivity impleme
         String[] loanType = new String[]{"HL", "LAP"};
         String[] empType = new String[]{"Salaried", "Businessman"};
 
+        NotesList = new ArrayList<>();
+
         btnnext = (Button) findViewById(R.id.buttonupdatenext);
         btverify = (Button) findViewById(R.id.buttonverify);
         btReject = (Button) findViewById(R.id.buttonReject);
 
         btnnext.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                cNmae=etcname.getText().toString();
-                cAdress=etaddress.getText().toString();
-                cContatct=etcontatct.getText().toString();
-                cAltcontatct=etalternatecontact.getText().toString();
-                cLoantype=etloantype.getText().toString();
-                cAgentname=etagentname.getText().toString();
-                cExloanamount=etexloanamount.getText().toString();
-                cDate=etdate.getText().toString();
+                cNmae = etcname.getText().toString();
+                cAdress = etaddress.getText().toString();
+                cContatct = etcontatct.getText().toString();
+                cAltcontatct = etalternatecontact.getText().toString();
+                cLoantype = etloantype.getText().toString();
+                cAgentname = etagentname.getText().toString();
+                cExloanamount = etexloanamount.getText().toString();
+                cDate = etdate.getText().toString();
                 cNote = etdescription.getText().toString();
                 cEmail = etemail.getText().toString();
+                NotesList.add(etNote.getText().toString());
 
 
                 updateLeadDetails(invoice);
@@ -115,9 +119,9 @@ public class Add_Updatelead_C_Details_Activity extends AppCompatActivity impleme
         etdate = (EditText) findViewById(R.id.txtdatevalue);
         etdescription = (EditText) findViewById(R.id.txtnotevalue);
         etemail = (EditText) findViewById(R.id.txtaltemailvalue);
+        etNote = (EditText) findViewById(R.id.txtnotevalue);
         getdata();
         getSupportActionBar().setTitle("");
-
 
 
         btverify.setOnClickListener(new View.OnClickListener() {
@@ -130,7 +134,7 @@ public class Add_Updatelead_C_Details_Activity extends AppCompatActivity impleme
                 Yes.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        setLeedStatus(invoice,STATUS_VERIFIED);
+                        setLeedStatus(invoice, STATUS_VERIFIED);
                     }
                 });
                 No.setOnClickListener(new View.OnClickListener() {
@@ -157,7 +161,7 @@ public class Add_Updatelead_C_Details_Activity extends AppCompatActivity impleme
                 Yes.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        setLeedStatus(invoice,STATUS_REJECTED);
+                        setLeedStatus(invoice, STATUS_REJECTED);
                     }
                 });
                 No.setOnClickListener(new View.OnClickListener() {
@@ -175,7 +179,6 @@ public class Add_Updatelead_C_Details_Activity extends AppCompatActivity impleme
     }//end of oncreate
 
 
-
     private void getdata() {
 
         try {
@@ -191,63 +194,66 @@ public class Add_Updatelead_C_Details_Activity extends AppCompatActivity impleme
             Long ldatetime = invoice.getCreatedDateTimeLong();
             String strdate = Long.toString(ldatetime);
             String note = invoice.getNote();
+            String email = invoice.getEmail();
 
-            if (note != null){
+            if (invoice.getNotes() != null){
+                NotesList = invoice.getNotes();
+            }
+
+            if (email != null) {
+                etemail.setText(email);
+            }
+
+            if (note != null) {
                 etdescription.setText(note);
             }
 
 
-            if(leednumber != null)
-             {
-                 txtleadid.setText(leednumber);
+            if (leednumber != null) {
+                txtleadid.setText(leednumber);
 
-             }
-            if(strdate != null)
-            {
+            }
+            if (strdate != null) {
                 etdate.setText(Utility.convertMilliSecondsToFormatedDate(invoice.getCreatedDateTimeLong(), GLOBAL_DATE_FORMATE));
 
-            }if(cname != null)
-             {
-                 etcname.setText(cname);
+            }
+            if (cname != null) {
+                etcname.setText(cname);
 
-             } if(caddress != null)
-             {
-                 etaddress.setText(caddress);
+            }
+            if (caddress != null) {
+                etaddress.setText(caddress);
 
-             }
+            }
 
-            if(contact != null)
-             {
-                 etcontatct.setText(contact);
+            if (contact != null) {
+                etcontatct.setText(contact);
 
-             }
-             if(altcontact != null)
-             {
-                 etalternatecontact.setText(altcontact);
-             }
-            if(loantype != null)
-            {
+            }
+            if (altcontact != null) {
+                etalternatecontact.setText(altcontact);
+            }
+            if (loantype != null) {
                 etloantype.setText(loantype);
             }
-            if(agentname != null)
-            {
+            if (agentname != null) {
                 etagentname.setText(agentname);
             }
-            if(exloanamount != null)
-            {
+            if (exloanamount != null) {
                 etexloanamount.setText(exloanamount);
             }
 
-        }catch (Exception e){}
+        } catch (Exception e) {
+        }
 
     }
 
 
-    private void setLeedStatus(LeedsModel invoice,String status) {
+    private void setLeedStatus(LeedsModel invoice, String status) {
         if (status.equalsIgnoreCase(STATUS_VERIFIED)) {
             invoice.setStatus(STATUS_VERIFIED);
             updateLeed(invoice.getLeedId(), invoice.getLeedStatusMap1());
-        }else if (status.equalsIgnoreCase(STATUS_REJECTED)) {
+        } else if (status.equalsIgnoreCase(STATUS_REJECTED)) {
             invoice.setStatus(STATUS_REJECTED);
             updateLeed(invoice.getLeedId(), invoice.getLeedStatusMap1());
         }
@@ -265,9 +271,9 @@ public class Add_Updatelead_C_Details_Activity extends AppCompatActivity impleme
         invoice.setExpectedLoanAmount(cExloanamount);
         invoice.setNote(cNote);
         invoice.setEmail(cEmail);
+        invoice.setNotes(NotesList);
         updateLeed(invoice.getLeedId(), invoice.getLeedStatusMap());
     }
-
 
 
     private void updateLeed(String leedId, Map leedsMap) {
@@ -275,7 +281,7 @@ public class Add_Updatelead_C_Details_Activity extends AppCompatActivity impleme
         invoiceRepository.updateLeed(leedId, leedsMap, new CallBack() {
             @Override
             public void onSuccess(Object object) {
-               Toast.makeText(Add_Updatelead_C_Details_Activity.this, "Lead Verify Successfully", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Add_Updatelead_C_Details_Activity.this, "Lead Verify Successfully", Toast.LENGTH_SHORT).show();
                 progressDialogClass.dismissDialog();
 
                 Intent i = new Intent(Add_Updatelead_C_Details_Activity.this, MainActivity.class);

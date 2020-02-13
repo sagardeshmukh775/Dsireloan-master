@@ -291,7 +291,6 @@
                             android:padding="10dp"
                             android:text=""
                             android:inputType="text"
-                            android:maxLength="10"
                             android:textColor="@color/mainTextColor"
                             android:textSize="14dp" />
 

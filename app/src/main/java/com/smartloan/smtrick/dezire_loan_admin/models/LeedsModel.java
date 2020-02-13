@@ -59,6 +59,7 @@ public class LeedsModel implements Serializable {
     private String note;
     private String paymentDate;
     private String commission;
+    ArrayList<String> notes;
 
 
     private View.OnClickListener requestBtnClickListener;
@@ -111,6 +112,8 @@ public class LeedsModel implements Serializable {
         this.note = "na";
         this.commission = "123456";
         this.paymentDate = "321654684";
+
+        this.notes = new ArrayList<String>();
     }
 
     @Exclude
@@ -515,6 +518,14 @@ public class LeedsModel implements Serializable {
         this.commission = commission;
     }
 
+    public ArrayList<String> getNotes() {
+        return notes;
+    }
+
+    public void setNotes(ArrayList<String> notes) {
+        this.notes = notes;
+    }
+
     public static ArrayList<LeedsModel> getLeeds() {
         ArrayList<LeedsModel> leedsModelArrayList = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
@@ -561,6 +572,9 @@ public class LeedsModel implements Serializable {
         leedMap.put("commission", getCommission());
         leedMap.put("approvedLoan", getApprovedLoan());
         leedMap.put("dissbussloan", getDissbussloan());
+        leedMap.put("email", getEmail());
+        leedMap.put("notes", getNotes());
+
         return leedMap;
     }
 

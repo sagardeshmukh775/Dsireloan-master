@@ -44,9 +44,11 @@ public class Add_Updatelead__submittobank_Activity extends AppCompatActivity imp
     AppSharedPreference appSharedPreference;
     InvoiceRepository invoiceRepository;
     ArrayList<LeedsModel> leedsModelArrayList;
-    EditText etbankname, etdate, etexloanamount, etcname, etaddress, etloantype, etagentname, etoffaddress, etcontatct, etalternatecontact, etbirthdate, etpanno, etadharno, etoccupation, etincome, etexammount, etgenerated, etdescription;
+    EditText etbankname, etdate, etexloanamount,etNote, etcname, etaddress, etloantype, etagentname, etoffaddress, etcontatct, etalternatecontact, etbirthdate, etpanno, etadharno, etoccupation, etincome, etexammount, etgenerated, etdescription;
     String cExloanamount, cDate, cBankname, cNmae, cAdress, cLoantype, cAgentname, cOffaddress, cContatct, cAltcontatct, cBdate, cPanno, cAdharno, cIncome, cExamount, lGenby, cDescreption, sploantype, spoccupation;
     TextView txtldate, txtleadid;
+
+    ArrayList<String> NotesList;
 
     @Override
     public boolean onSupportNavigateUp() {
@@ -73,6 +75,8 @@ public class Add_Updatelead__submittobank_Activity extends AppCompatActivity imp
         String[] loanType = new String[]{"HL", "LAP"};
         String[] empType = new String[]{"Salaried", "Businessman"};
 
+        NotesList = new ArrayList<>();
+
         btnnext = (Button) findViewById(R.id.buttonupdatenext);
         btverify = (Button) findViewById(R.id.buttonverify);
         btReject = (Button) findViewById(R.id.buttonReject);
@@ -87,6 +91,7 @@ public class Add_Updatelead__submittobank_Activity extends AppCompatActivity imp
         etexloanamount = (EditText) findViewById(R.id.txtexloanamountvalue);
         etdate = (EditText) findViewById(R.id.txtdatevalue);
         etbankname = (EditText) findViewById(R.id.txtbankvalue);
+        etNote = (EditText) findViewById(R.id.txtnotevalue);
 
         btnnext.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -99,6 +104,7 @@ public class Add_Updatelead__submittobank_Activity extends AppCompatActivity imp
                 cExloanamount = etexloanamount.getText().toString();
                 cDate = etdate.getText().toString();
                 cBankname = etbankname.getText().toString();
+                NotesList.add(etNote.getText().toString());
 
                 if (TextUtils.isEmpty(cBankname)) {
                     etbankname.setError("Required");
@@ -201,6 +207,10 @@ public class Add_Updatelead__submittobank_Activity extends AppCompatActivity imp
             String strdate = Long.toString(ldatetime);
             String sbank = invoice.getBankName();
 
+            if (invoice.getNotes() != null){
+                NotesList = invoice.getNotes();
+            }
+
             if (leednumber != null) {
                 txtleadid.setText(leednumber);
 
@@ -266,6 +276,7 @@ public class Add_Updatelead__submittobank_Activity extends AppCompatActivity imp
         invoice.setAgentName(cAgentname);
         invoice.setExpectedLoanAmount(cExloanamount);
         invoice.setBankName(cBankname);
+        invoice.setNotes(NotesList);
         updateLeed(invoice.getLeedId(), invoice.getLeedStatusMap());
     }
 
