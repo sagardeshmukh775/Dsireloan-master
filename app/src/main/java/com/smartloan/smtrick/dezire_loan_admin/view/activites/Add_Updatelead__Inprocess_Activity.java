@@ -41,7 +41,7 @@ public class Add_Updatelead__Inprocess_Activity extends AppCompatActivity implem
     InvoiceRepository invoiceRepository;
     ArrayList<LeedsModel> leedsModelArrayList;
     EditText etbankname, etdate, etexloanamount, etcname, etaddress, etloantype, etagentname,
-            etdissbuss, etcontatct, etalternatecontact, etapproveddate, etpanno, etadharno,
+            etApproved, etcontatct, etalternatecontact, etapproveddate, etpanno, etadharno,
             etoccupation, etincome, etexammount, etgenerated, etdescription;
     String cExloanamount, cApproved, cDissbus, cDate, cBankname, cNmae, cAdress, cLoantype,
             cAgentname, cOffaddress, cContatct, cAltcontatct, cApproveddate, cPanno, cAdharno,
@@ -75,9 +75,22 @@ public class Add_Updatelead__Inprocess_Activity extends AppCompatActivity implem
 
         btnnext = (Button) findViewById(R.id.buttonupdatenext);
         btverify = (Button) findViewById(R.id.buttonverify);
-        btverify.setText("Login");
+        btverify.setText("DOCK PICKUP");
         btnfail = (Button) findViewById(R.id.buttonfail);
 
+        txtleadid = (TextView) findViewById(R.id.textheader);
+        etcname = (EditText) findViewById(R.id.txtcamevalue);
+        etaddress = (EditText) findViewById(R.id.txtcurrentaddressvalue);
+        etcontatct = (EditText) findViewById(R.id.txtcontatctvalue);
+        etalternatecontact = (EditText) findViewById(R.id.txtaltcontatctvalue);
+        etloantype = (EditText) findViewById(R.id.txtloantypevalue);
+        etagentname = (EditText) findViewById(R.id.txtgenbyvalue);
+        etexloanamount = (EditText) findViewById(R.id.txtexloanamountvalue);
+        etdate = (EditText) findViewById(R.id.txtdatevalue);
+        etbankname = (EditText) findViewById(R.id.txtbankvalue);
+        etApproved = (EditText) findViewById(R.id.txtapprovedamountvalue);
+        etdissbussAmt = (EditText) findViewById(R.id.txtdissamountvalue1);
+        etapproveddate = (EditText) findViewById(R.id.txtapproveddate1);
 
         btnnext.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -90,7 +103,7 @@ public class Add_Updatelead__Inprocess_Activity extends AppCompatActivity implem
                 cExloanamount = etexloanamount.getText().toString();
                 cDate = etdate.getText().toString();
                 cBankname = etbankname.getText().toString();
-                cApproved = etdissbuss.getText().toString();
+                cApproved = etApproved.getText().toString();
                 cDissbus = etdissbussAmt.getText().toString();
                 cApproveddate = etapproveddate.getText().toString();
                 updateLeadDetails(invoice);
@@ -105,19 +118,6 @@ public class Add_Updatelead__Inprocess_Activity extends AppCompatActivity implem
         });
 
 
-        txtleadid = (TextView) findViewById(R.id.textheader);
-        etcname = (EditText) findViewById(R.id.txtcamevalue);
-        etaddress = (EditText) findViewById(R.id.txtcurrentaddressvalue);
-        etcontatct = (EditText) findViewById(R.id.txtcontatctvalue);
-        etalternatecontact = (EditText) findViewById(R.id.txtaltcontatctvalue);
-        etloantype = (EditText) findViewById(R.id.txtloantypevalue);
-        etagentname = (EditText) findViewById(R.id.txtgenbyvalue);
-        etexloanamount = (EditText) findViewById(R.id.txtexloanamountvalue);
-        etdate = (EditText) findViewById(R.id.txtdatevalue);
-        etbankname = (EditText) findViewById(R.id.txtbankvalue);
-        etdissbuss = (EditText) findViewById(R.id.txtdissamountvalue);
-        etdissbussAmt = (EditText) findViewById(R.id.txtdissamountvalue1);
-        etapproveddate = (EditText) findViewById(R.id.txtapproveddate1);
         getdata();
 
 
@@ -197,7 +197,7 @@ public class Add_Updatelead__Inprocess_Activity extends AppCompatActivity implem
             }
 
             if (Approved != null) {
-                etdissbuss.setText(Approved);
+                etApproved.setText(Approved);
             }
 
             if (dissbuss != null) {

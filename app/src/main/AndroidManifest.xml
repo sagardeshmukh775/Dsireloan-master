@@ -137,6 +137,9 @@
         <activity
             android:name="com.smartloan.smtrick.dezire_loan_admin.view.activites.Add_Updatelead__Full_disbuss_Activity"
             android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.smartloan.smtrick.dezire_loan_admin.view.activites.Add_Updatelead__DockPickup_Activity"
+            android:windowSoftInputMode="stateHidden" />
 
     </application>
 

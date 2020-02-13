@@ -74,7 +74,7 @@ public class Add_Updatelead__DockPickup_Activity extends AppCompatActivity imple
         btnnext = (Button) findViewById(R.id.buttonupdatenext);
         btverify = (Button) findViewById(R.id.buttonverify);
         btverify.setText("Login");
-        btnfail = (Button) findViewById(R.id.buttonfail);
+        btnfail = (Button) findViewById(R.id.buttonReject);
 
 
         btnnext.setOnClickListener(new View.OnClickListener() {

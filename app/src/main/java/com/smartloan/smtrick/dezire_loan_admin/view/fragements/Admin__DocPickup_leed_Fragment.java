@@ -34,6 +34,7 @@ import com.smartloan.smtrick.dezire_loan_admin.repository.impl.InvoiceRepository
 import com.smartloan.smtrick.dezire_loan_admin.repository.impl.LeedRepositoryImpl;
 import com.smartloan.smtrick.dezire_loan_admin.singleton.AppSingleton;
 import com.smartloan.smtrick.dezire_loan_admin.utilities.Utility;
+import com.smartloan.smtrick.dezire_loan_admin.view.activites.Add_Updatelead__DockPickup_Activity;
 import com.smartloan.smtrick.dezire_loan_admin.view.activites.Add_Updatelead__Inprocess_Activity;
 import com.smartloan.smtrick.dezire_loan_admin.view.adapters.InvoiceAdapter;
 import com.smartloan.smtrick.dezire_loan_admin.view.dialog.ProgressDialogClass;
@@ -167,7 +168,7 @@ public class Admin__DocPickup_leed_Fragment extends Fragment {
             @Override
             public void onClick(View view, int position) {
                 LeedsModel invoice = getModel(position);
-                Intent intent = new Intent(getActivity(), Add_Updatelead__Inprocess_Activity.class);
+                Intent intent = new Intent(getActivity(), Add_Updatelead__DockPickup_Activity.class);
                 intent.putExtra(INVICES_LEEDS, invoice);
                 startActivity(intent);
             }

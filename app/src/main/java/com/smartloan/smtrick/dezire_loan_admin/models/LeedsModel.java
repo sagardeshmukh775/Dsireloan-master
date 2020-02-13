@@ -541,7 +541,7 @@ public class LeedsModel implements Serializable {
         leedMap.put("description", getdescription());
         leedMap.put("altmobile", getaltmobile());
         leedMap.put("adharNo", getadharNo());
-        leedMap.put("ExpectedLoanAmount", getExpectedLoanAmount());
+        leedMap.put("expectedLoanAmount", getExpectedLoanAmount());
         leedMap.put("parents", getParents());
         leedMap.put("recidential", getRecidential());
         leedMap.put("peraddress", getPeraddress());
@@ -559,6 +559,8 @@ public class LeedsModel implements Serializable {
         leedMap.put("note", getNote());
         leedMap.put("paymentDate", getPaymentDate());
         leedMap.put("commission", getCommission());
+        leedMap.put("approvedLoan", getApprovedLoan());
+        leedMap.put("dissbussloan", getDissbussloan());
         return leedMap;
     }
 

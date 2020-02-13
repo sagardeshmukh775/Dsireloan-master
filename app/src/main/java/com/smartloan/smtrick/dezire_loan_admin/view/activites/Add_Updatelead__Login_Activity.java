@@ -40,7 +40,7 @@ public class Add_Updatelead__Login_Activity extends AppCompatActivity implements
     InvoiceRepository invoiceRepository;
     ArrayList<LeedsModel> leedsModelArrayList;
     EditText etbankname, etdate, etexloanamount, etcname, etaddress, etloantype, etagentname,
-            etdissbuss, etcontatct, etalternatecontact, etapproveddate, etpanno, etadharno,
+            etApprovedamt, etcontatct, etalternatecontact, etapproveddate, etpanno, etadharno,
             etoccupation, etincome, etexammount, etgenerated, etdescription;
     String cExloanamount, cApproved, cDissbus, cDate, cBankname, cNmae, cAdress, cLoantype,
             cAgentname, cOffaddress, cContatct, cAltcontatct, cApproveddate, cPanno, cAdharno,
@@ -59,7 +59,7 @@ public class Add_Updatelead__Login_Activity extends AppCompatActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.admin_bankresult_activity);
+        setContentView(R.layout.admin_update_login_activity);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_c_details);
 
         setSupportActionBar(toolbar);
@@ -80,6 +80,20 @@ public class Add_Updatelead__Login_Activity extends AppCompatActivity implements
         btnfail = (Button) findViewById(R.id.buttonfail);
 
 
+        txtleadid = (TextView) findViewById(R.id.textheader);
+        etcname = (EditText) findViewById(R.id.txtcamevalue);
+        etaddress = (EditText) findViewById(R.id.txtcurrentaddressvalue);
+        etcontatct = (EditText) findViewById(R.id.txtcontatctvalue);
+        etalternatecontact = (EditText) findViewById(R.id.txtaltcontatctvalue);
+        etloantype = (EditText) findViewById(R.id.txtloantypevalue);
+        etagentname = (EditText) findViewById(R.id.txtgenbyvalue);
+        etexloanamount = (EditText) findViewById(R.id.txtexloanamountvalue);
+        etdate = (EditText) findViewById(R.id.txtdatevalue);
+        etbankname = (EditText) findViewById(R.id.txtbankvalue);
+        etApprovedamt = (EditText) findViewById(R.id.txtapprovedamountvalue);
+        etdissbussAmt = (EditText) findViewById(R.id.txtdissamountvalue1);
+        etapproveddate = (EditText) findViewById(R.id.txtapproveddate1);
+
         btnnext.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 cNmae = etcname.getText().toString();
@@ -91,7 +105,7 @@ public class Add_Updatelead__Login_Activity extends AppCompatActivity implements
                 cExloanamount = etexloanamount.getText().toString();
                 cDate = etdate.getText().toString();
                 cBankname = etbankname.getText().toString();
-                cApproved = etdissbuss.getText().toString();
+                cApproved = etApprovedamt.getText().toString();
                 cDissbus = etdissbussAmt.getText().toString();
                 cApproveddate = etapproveddate.getText().toString();
                 updateLeadDetails(invoice);
@@ -106,19 +120,6 @@ public class Add_Updatelead__Login_Activity extends AppCompatActivity implements
         });
 
 
-        txtleadid = (TextView) findViewById(R.id.textheader);
-        etcname = (EditText) findViewById(R.id.txtcamevalue);
-        etaddress = (EditText) findViewById(R.id.txtcurrentaddressvalue);
-        etcontatct = (EditText) findViewById(R.id.txtcontatctvalue);
-        etalternatecontact = (EditText) findViewById(R.id.txtaltcontatctvalue);
-        etloantype = (EditText) findViewById(R.id.txtloantypevalue);
-        etagentname = (EditText) findViewById(R.id.txtgenbyvalue);
-        etexloanamount = (EditText) findViewById(R.id.txtexloanamountvalue);
-        etdate = (EditText) findViewById(R.id.txtdatevalue);
-        etbankname = (EditText) findViewById(R.id.txtbankvalue);
-        etdissbuss = (EditText) findViewById(R.id.txtdissamountvalue);
-        etdissbussAmt = (EditText) findViewById(R.id.txtdissamountvalue1);
-        etapproveddate = (EditText) findViewById(R.id.txtapproveddate1);
         getdata();
 
 
@@ -198,7 +199,7 @@ public class Add_Updatelead__Login_Activity extends AppCompatActivity implements
             }
 
             if (Approved != null) {
-                etdissbuss.setText(Approved);
+                etApprovedamt.setText(Approved);
             }
 
             if (dissbuss != null) {

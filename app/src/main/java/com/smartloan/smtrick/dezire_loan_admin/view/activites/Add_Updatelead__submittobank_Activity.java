@@ -75,6 +75,17 @@ public class Add_Updatelead__submittobank_Activity extends AppCompatActivity imp
         btverify = (Button) findViewById(R.id.buttonverify);
         btReject = (Button) findViewById(R.id.buttonReject);
 
+        txtleadid = (TextView) findViewById(R.id.textheader);
+        etcname = (EditText) findViewById(R.id.txtcamevalue);
+        etaddress = (EditText) findViewById(R.id.txtcurrentaddressvalue);
+        etcontatct = (EditText) findViewById(R.id.txtcontatctvalue);
+        etalternatecontact = (EditText) findViewById(R.id.txtaltcontatctvalue);
+        etloantype = (EditText) findViewById(R.id.txtloantypevalue);
+        etagentname = (EditText) findViewById(R.id.txtgenbyvalue);
+        etexloanamount = (EditText) findViewById(R.id.txtexloanamountvalue);
+        etdate = (EditText) findViewById(R.id.txtdatevalue);
+        etbankname = (EditText) findViewById(R.id.txtbankvalue);
+
         btnnext.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 cNmae = etcname.getText().toString();
@@ -105,24 +116,15 @@ public class Add_Updatelead__submittobank_Activity extends AppCompatActivity imp
         });
 
 
-        txtleadid = (TextView) findViewById(R.id.textheader);
-        etcname = (EditText) findViewById(R.id.txtcamevalue);
-        etaddress = (EditText) findViewById(R.id.txtcurrentaddressvalue);
-        etcontatct = (EditText) findViewById(R.id.txtcontatctvalue);
-        etalternatecontact = (EditText) findViewById(R.id.txtaltcontatctvalue);
-        etloantype = (EditText) findViewById(R.id.txtloantypevalue);
-        etagentname = (EditText) findViewById(R.id.txtgenbyvalue);
-        etexloanamount = (EditText) findViewById(R.id.txtexloanamountvalue);
-        etdate = (EditText) findViewById(R.id.txtdatevalue);
-        etbankname = (EditText) findViewById(R.id.txtbankvalue);
+
         getdata();
 
 
         btverify.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 String number = etbankname.getText().toString().trim();
-                if (number.isEmpty() || number.length() < 10) {
-                    etbankname.setError("Valid number is required");
+                if (number.isEmpty()) {
+                    etbankname.setError("Bank Name is required");
                     etbankname.requestFocus();
                     return;
                 }else {

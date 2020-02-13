@@ -517,7 +517,7 @@
 
                         <Button
                             android:id="@+id/buttonupdatenext"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@color/buttoncolour"
                             android:text="UPDATE"
@@ -528,23 +528,37 @@
                             android:textStyle="normal|bold"/>
 
                         <Button
-                            android:id="@+id/buttonverify"
-                            android:layout_width="wrap_content"
+                            android:id="@+id/buttonfulldisbuss"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@color/buttoncolour"
-                            android:layout_toRightOf="@+id/buttonupdatenext"
-                            android:text="APPROVED"
+                            android:layout_below="@+id/buttonupdatenext"
+                            android:text="FULL DISBUSS"
                             android:padding="10dp"
                             android:layout_margin="5dp"
                             android:textColor="#ffffff"
                             android:textSize="16sp"
                             android:textStyle="normal|bold"/>
+
                         <Button
-                            android:id="@+id/buttonfail"
-                            android:layout_width="wrap_content"
+                            android:id="@+id/buttonpartdisbuss"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@color/buttoncolour"
-                            android:layout_toRightOf="@+id/buttonverify"
+                            android:layout_below="@+id/buttonfulldisbuss"
+                            android:text="PART DISBUSS"
+                            android:padding="10dp"
+                            android:layout_margin="5dp"
+                            android:textColor="#ffffff"
+                            android:textSize="16sp"
+                            android:textStyle="normal|bold"/>
+
+                        <Button
+                            android:id="@+id/buttonfail"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/buttoncolour"
+                            android:layout_below="@+id/buttonpartdisbuss"
                             android:text="REJECT"
                             android:padding="10dp"
                             android:layout_margin="5dp"
