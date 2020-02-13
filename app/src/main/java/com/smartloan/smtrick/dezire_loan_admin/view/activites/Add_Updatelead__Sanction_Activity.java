@@ -1,5 +1,6 @@
 package com.smartloan.smtrick.dezire_loan_admin.view.activites;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -124,13 +125,53 @@ public class Add_Updatelead__Sanction_Activity extends AppCompatActivity impleme
 
         btFullDisbuss.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                setLeedStatus(invoice);
+
+                final Dialog dialog = new Dialog(Add_Updatelead__Sanction_Activity.this);
+                dialog.setContentView(R.layout.confermationdialog);
+                Button Yes = (Button) dialog.findViewById(R.id.dialogButtonYes);
+                Button No = (Button) dialog.findViewById(R.id.dialogButtonNo);
+
+                Yes.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        setLeedStatus(invoice);
+                    }
+                });
+                No.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+
+                dialog.show();
+
             }
         });
 
         btFullDisbuss.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                setLeedStatus3(invoice);
+
+                final Dialog dialog = new Dialog(Add_Updatelead__Sanction_Activity.this);
+                dialog.setContentView(R.layout.confermationdialog);
+                Button Yes = (Button) dialog.findViewById(R.id.dialogButtonYes);
+                Button No = (Button) dialog.findViewById(R.id.dialogButtonNo);
+
+                Yes.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        setLeedStatus3(invoice);
+                    }
+                });
+                No.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+
+                dialog.show();
+
             }
         });
 
@@ -138,7 +179,26 @@ public class Add_Updatelead__Sanction_Activity extends AppCompatActivity impleme
         btnfail.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                setLeedStatus2(invoice);
+                final Dialog dialog = new Dialog(Add_Updatelead__Sanction_Activity.this);
+                dialog.setContentView(R.layout.confermationdialog);
+                Button Yes = (Button) dialog.findViewById(R.id.dialogButtonYes);
+                Button No = (Button) dialog.findViewById(R.id.dialogButtonNo);
+
+                Yes.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        setLeedStatus2(invoice);
+                    }
+                });
+                No.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+
+                dialog.show();
+
 
             }
         });
