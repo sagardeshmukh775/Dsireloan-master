@@ -41,9 +41,12 @@ public class Add_Updatelead_C_Details_Activity extends AppCompatActivity impleme
     AppSharedPreference appSharedPreference;
     InvoiceRepository invoiceRepository;
     ArrayList<LeedsModel> leedsModelArrayList;
-    EditText eparents,etdate,etexloanamount,etcname, etaddress, etloantype,etagentname, etoffaddress, etcontatct, etalternatecontact, etbirthdate, etpanno, etadharno, etoccupation, etincome, etexammount, etgenerated, etdescription;
-    String cExloanamount,cDate,cparents,cNmae, cAdress, cLoantype,cAgentname,cOffaddress, cContatct, cAltcontatct, cBdate, cPanno, cAdharno, cIncome, cExamount, lGenby, cDescreption, sploantype, spoccupation;
-   String cNote;
+    EditText eparents,etdate,etexloanamount,etcname, etaddress, etloantype,etagentname, etoffaddress, etcontatct,
+            etalternatecontact, etbirthdate, etpanno, etadharno, etoccupation, etincome, etexammount, etgenerated,
+            etemail,etdescription;
+    String cExloanamount,cDate,cparents,cNmae, cAdress, cLoantype,cAgentname,cOffaddress, cContatct,
+            cAltcontatct, cBdate, cPanno, cAdharno, cIncome, cExamount, lGenby, cDescreption, sploantype, spoccupation;
+   String cNote,cEmail;
     TextView txtldate, txtleadid;
 
     @Override
@@ -86,6 +89,7 @@ public class Add_Updatelead_C_Details_Activity extends AppCompatActivity impleme
                 cExloanamount=etexloanamount.getText().toString();
                 cDate=etdate.getText().toString();
                 cNote = etdescription.getText().toString();
+                cEmail = etemail.getText().toString();
 
 
                 updateLeadDetails(invoice);
@@ -110,6 +114,7 @@ public class Add_Updatelead_C_Details_Activity extends AppCompatActivity impleme
         etexloanamount = (EditText) findViewById(R.id.txtexloanamountvalue);
         etdate = (EditText) findViewById(R.id.txtdatevalue);
         etdescription = (EditText) findViewById(R.id.txtnotevalue);
+        etemail = (EditText) findViewById(R.id.txtaltemailvalue);
         getdata();
         getSupportActionBar().setTitle("");
 
@@ -259,6 +264,7 @@ public class Add_Updatelead_C_Details_Activity extends AppCompatActivity impleme
         invoice.setAgentName(cAgentname);
         invoice.setExpectedLoanAmount(cExloanamount);
         invoice.setNote(cNote);
+        invoice.setEmail(cEmail);
         updateLeed(invoice.getLeedId(), invoice.getLeedStatusMap());
     }
 

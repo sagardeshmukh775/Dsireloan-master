@@ -261,9 +261,46 @@
                     </RelativeLayout>
 
                     <RelativeLayout
-                        android:id="@+id/layoutloantype"
+                        android:id="@+id/layoutaltemail"
                         android:layout_width="match_parent"
                         android:layout_below="@+id/layoutaltcontact"
+                        android:layout_height="fill_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center_vertical">
+
+
+                        <TextView
+                            android:id="@+id/txtaltemail"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginTop="5dp"
+                            android:padding="10dp"
+                            android:text="Email:"
+                            android:textColor="@color/darkgraycolor"
+                            android:textSize="14dp" />
+
+                        <EditText
+                            android:id="@+id/txtaltemailvalue"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_toRightOf="@+id/txtaltemail"
+                            android:background="@drawable/edittextanimation"
+                            android:padding="10dp"
+                            android:text=""
+                            android:inputType="text"
+                            android:maxLength="10"
+                            android:textColor="@color/mainTextColor"
+                            android:textSize="14dp" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/layoutloantype"
+                        android:layout_width="match_parent"
+                        android:layout_below="@+id/layoutaltemail"
                         android:layout_height="fill_parent"
                         android:layout_gravity="center_horizontal"
                         android:gravity="center_vertical">
