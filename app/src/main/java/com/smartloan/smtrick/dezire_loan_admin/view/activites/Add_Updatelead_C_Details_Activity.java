@@ -1,9 +1,12 @@
 package com.smartloan.smtrick.dezire_loan_admin.view.activites;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -114,13 +117,53 @@ public class Add_Updatelead_C_Details_Activity extends AppCompatActivity impleme
 
         btverify.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                setLeedStatus(invoice,STATUS_VERIFIED);
+                final Dialog dialog = new Dialog(Add_Updatelead_C_Details_Activity.this);
+                dialog.setContentView(R.layout.confermationdialog);
+                Button Yes = (Button) dialog.findViewById(R.id.dialogButtonYes);
+                Button No = (Button) dialog.findViewById(R.id.dialogButtonNo);
+
+                Yes.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        setLeedStatus(invoice,STATUS_VERIFIED);
+                    }
+                });
+                No.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+
+                dialog.show();
+
+
             }
         });
 
         btReject.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                setLeedStatus(invoice,STATUS_REJECTED);
+
+                final Dialog dialog = new Dialog(Add_Updatelead_C_Details_Activity.this);
+                dialog.setContentView(R.layout.confermationdialog);
+                Button Yes = (Button) dialog.findViewById(R.id.dialogButtonYes);
+                Button No = (Button) dialog.findViewById(R.id.dialogButtonNo);
+
+                Yes.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        setLeedStatus(invoice,STATUS_REJECTED);
+                    }
+                });
+                No.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+
+                dialog.show();
+
             }
         });
 

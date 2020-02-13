@@ -1,5 +1,6 @@
 package com.smartloan.smtrick.dezire_loan_admin.view.activites;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -33,6 +34,7 @@ import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.STATUS_
 import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.STATUS_IN_PROGRESS;
 import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.STATUS_REJECTED;
 import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.STATUS_SUBMITED;
+import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.STATUS_VERIFIED;
 
 public class Add_Updatelead__submittobank_Activity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     Spinner spinloantype, spinemptype, spinincome;
@@ -122,20 +124,60 @@ public class Add_Updatelead__submittobank_Activity extends AppCompatActivity imp
 
         btverify.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                String number = etbankname.getText().toString().trim();
-                if (number.isEmpty()) {
-                    etbankname.setError("Bank Name is required");
-                    etbankname.requestFocus();
-                    return;
-                }else {
-                    setLeedStatus(invoice,STATUS_INPROCESS);
-                }
+
+                final Dialog dialog = new Dialog(Add_Updatelead__submittobank_Activity.this);
+                dialog.setContentView(R.layout.confermationdialog);
+                Button Yes = (Button) dialog.findViewById(R.id.dialogButtonYes);
+                Button No = (Button) dialog.findViewById(R.id.dialogButtonNo);
+
+                Yes.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String number = etbankname.getText().toString().trim();
+                        if (number.isEmpty()) {
+                            etbankname.setError("Bank Name is required");
+                            etbankname.requestFocus();
+                            return;
+                        }else {
+                            setLeedStatus(invoice,STATUS_INPROCESS);
+                        }
+                    }
+                });
+                No.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+
+                dialog.show();
+
             }
         });
 
         btReject.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                setLeedStatus(invoice,STATUS_REJECTED);
+
+                final Dialog dialog = new Dialog(Add_Updatelead__submittobank_Activity.this);
+                dialog.setContentView(R.layout.confermationdialog);
+                Button Yes = (Button) dialog.findViewById(R.id.dialogButtonYes);
+                Button No = (Button) dialog.findViewById(R.id.dialogButtonNo);
+
+                Yes.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        setLeedStatus(invoice,STATUS_REJECTED);
+                    }
+                });
+                No.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+
+                dialog.show();
+
             }
         });
 

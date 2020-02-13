@@ -1,0 +1,90 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <RelativeLayout
+                android:id="@+id/layouttop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/hederbackground"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:id="@+id/txtleadidvalue"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="5sp"
+                    android:gravity="center_horizontal"
+                    android:paddingBottom="9dp"
+                    android:paddingTop="9dp"
+                    android:text=""
+                    android:textColor="#ffffff"
+                    android:textSize="18sp"
+                    android:textStyle="normal|bold"/>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/mainlayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/layouttop"
+                android:layout_gravity="left"
+                android:orientation="vertical"
+                android:padding="10dp"
+                android:weightSum="100">
+
+
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:gravity="center"
+               android:text="Are you Sure!"/>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutbuttons"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/mainlayout"
+                android:gravity="center_horizontal"
+                android:padding="5dp"
+                android:weightSum="100">
+
+                <Button
+                    android:id="@+id/dialogButtonNo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#808080"
+                    android:text="No"
+                    android:textColor="#ffffff"
+                    android:textSize="16sp"
+                    android:layout_weight="50"
+                    android:layout_margin="5dp"
+                    android:textStyle="normal|bold" />
+
+                <Button
+                    android:id="@+id/dialogButtonYes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#808080"
+                    android:text="Yes"
+                    android:textColor="#ffffff"
+                    android:textSize="16sp"
+                    android:layout_weight="50"
+                    android:layout_margin="5dp"
+                    android:textStyle="normal|bold" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+    </android.support.design.widget.CoordinatorLayout>
+</layout>
