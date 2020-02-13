@@ -42,13 +42,14 @@ public class Add_Updatelead__Inprocess_Activity extends AppCompatActivity implem
     InvoiceRepository invoiceRepository;
     ArrayList<LeedsModel> leedsModelArrayList;
     EditText etbankname, etdate, etexloanamount, etcname, etaddress, etloantype, etagentname,
-            etApproved, etcontatct, etalternatecontact, etapproveddate, etpanno, etadharno,
+            etApproved, etcontatct, etalternatecontact, etapproveddate, etpanno, etadharno,etNote,
             etoccupation, etincome, etexammount, etgenerated, etdescription;
     String cExloanamount, cApproved, cDissbus, cDate, cBankname, cNmae, cAdress, cLoantype,
             cAgentname, cOffaddress, cContatct, cAltcontatct, cApproveddate, cPanno, cAdharno,
             cIncome, cExamount, lGenby, cDescreption, sploantype, spoccupation;
     TextView txtldate, txtleadid;
     EditText etdissbussAmt;
+    ArrayList<String> NotesList;
 
     @Override
     public boolean onSupportNavigateUp() {
@@ -92,6 +93,7 @@ public class Add_Updatelead__Inprocess_Activity extends AppCompatActivity implem
         etApproved = (EditText) findViewById(R.id.txtapprovedamountvalue);
         etdissbussAmt = (EditText) findViewById(R.id.txtdissamountvalue1);
         etapproveddate = (EditText) findViewById(R.id.txtapproveddate1);
+        etNote = (EditText) findViewById(R.id.txtnotevalue);
 
         btnnext.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -107,6 +109,7 @@ public class Add_Updatelead__Inprocess_Activity extends AppCompatActivity implem
                 cApproved = etApproved.getText().toString();
                 cDissbus = etdissbussAmt.getText().toString();
                 cApproveddate = etapproveddate.getText().toString();
+                NotesList.add(etNote.getText().toString());
                 updateLeadDetails(invoice);
                 Toast.makeText(Add_Updatelead__Inprocess_Activity.this, "Lead Update Successfully", Toast.LENGTH_SHORT).show();
 
@@ -199,6 +202,10 @@ public class Add_Updatelead__Inprocess_Activity extends AppCompatActivity implem
             String dissbuss = invoice.getDissbussloan();
             String approveddate = invoice.getApprovedDate();
 
+            if (invoice.getNotes() != null){
+                NotesList = invoice.getNotes();
+            }
+
             if (leednumber != null) {
                 txtleadid.setText(leednumber);
 
@@ -277,6 +284,7 @@ public class Add_Updatelead__Inprocess_Activity extends AppCompatActivity implem
         invoice.setApprovedLoan(cApproved);
         invoice.setdissbussloan(cDissbus);
         invoice.setApprovedDate(cApproveddate);
+        invoice.setNotes(NotesList);
         updateLeed(invoice.getLeedId(), invoice.getLeedStatusMap());
     }
 
