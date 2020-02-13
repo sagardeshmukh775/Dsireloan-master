@@ -132,7 +132,7 @@ public class Add_Updatelead__Login_Activity extends AppCompatActivity implements
         btnfail.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-//                setLeedStatus2(invoice);
+                setLeedStatus2(invoice);
 
             }
         });
@@ -220,7 +220,7 @@ public class Add_Updatelead__Login_Activity extends AppCompatActivity implements
         updateLeed(invoice.getLeedId(), invoice.getLeedStatusMap1());
     }
 
-    private void setLeedStatus2(Invoice invoice) {
+    private void setLeedStatus2(LeedsModel invoice) {
         invoice.setStatus(STATUS_REJECTED);
         updateLeed(invoice.getLeedId(), invoice.getLeedStatusMap1());
     }

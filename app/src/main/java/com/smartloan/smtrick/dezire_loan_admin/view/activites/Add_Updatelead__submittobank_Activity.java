@@ -28,13 +28,15 @@ import java.util.Map;
 
 import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.GLOBAL_DATE_FORMATE;
 import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.INVICES_LEEDS;
+import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.STATUS_APPROVED;
 import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.STATUS_INPROCESS;
 import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.STATUS_IN_PROGRESS;
+import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.STATUS_REJECTED;
 import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.STATUS_SUBMITED;
 
 public class Add_Updatelead__submittobank_Activity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     Spinner spinloantype, spinemptype, spinincome;
-    Button btupdate, btverify, btcancel, btnnext;
+    Button btupdate, btverify, btReject, btnnext;
     LeedsModel invoice;
     ProgressDialogClass progressDialogClass;
     AppSharedPreference appSharedPreference;
@@ -71,6 +73,7 @@ public class Add_Updatelead__submittobank_Activity extends AppCompatActivity imp
 
         btnnext = (Button) findViewById(R.id.buttonupdatenext);
         btverify = (Button) findViewById(R.id.buttonverify);
+        btReject = (Button) findViewById(R.id.buttonReject);
 
         btnnext.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -123,22 +126,17 @@ public class Add_Updatelead__submittobank_Activity extends AppCompatActivity imp
                     etbankname.requestFocus();
                     return;
                 }else {
-                    setLeedStatus(invoice);
+                    setLeedStatus(invoice,STATUS_INPROCESS);
                 }
             }
         });
 
-/*
-        btcancel.setOnClickListener(new View.OnClickListener() {
+        btReject.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-
-                Intent i = new Intent(TL_Updatelead_C_Details_Activity.this, MainActivity_telecaller.class);
-                startActivity(i);
-                overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
-
+                setLeedStatus(invoice,STATUS_REJECTED);
             }
         });
-*/
+
 
     }//end of oncreate
 
@@ -202,9 +200,15 @@ public class Add_Updatelead__submittobank_Activity extends AppCompatActivity imp
     }
 
 
-    private void setLeedStatus(LeedsModel invoice) {
-        invoice.setStatus(STATUS_INPROCESS);
-        updateLeed(invoice.getLeedId(), invoice.getLeedStatusMap1());
+    private void setLeedStatus(LeedsModel invoice,String status) {
+        if (status.equalsIgnoreCase(STATUS_INPROCESS)) {
+            invoice.setStatus(STATUS_INPROCESS);
+            updateLeed(invoice.getLeedId(), invoice.getLeedStatusMap1());
+        }else if (status.equalsIgnoreCase(STATUS_REJECTED)) {
+            invoice.setStatus(STATUS_REJECTED);
+            updateLeed(invoice.getLeedId(), invoice.getLeedStatusMap1());
+        }
+
     }
 
 

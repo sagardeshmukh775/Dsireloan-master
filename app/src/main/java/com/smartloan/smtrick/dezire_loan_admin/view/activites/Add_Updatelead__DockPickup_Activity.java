@@ -14,7 +14,6 @@ import android.widget.Toast;
 
 import com.smartloan.smtrick.dezire_loan_admin.R;
 import com.smartloan.smtrick.dezire_loan_admin.callback.CallBack;
-import com.smartloan.smtrick.dezire_loan_admin.models.Invoice;
 import com.smartloan.smtrick.dezire_loan_admin.models.LeedsModel;
 import com.smartloan.smtrick.dezire_loan_admin.preferences.AppSharedPreference;
 import com.smartloan.smtrick.dezire_loan_admin.repository.InvoiceRepository;
@@ -27,21 +26,26 @@ import java.util.Map;
 
 import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.GLOBAL_DATE_FORMATE;
 import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.INVICES_LEEDS;
+import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.STATUS_DOCPICKUP;
+import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.STATUS_LOGIN;
 import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.STATUS_REJECTED;
-import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.STATUS_VERIFIED;
 
-public class Add_Updatelead_C_Details_Activity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class Add_Updatelead__DockPickup_Activity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     Spinner spinloantype, spinemptype, spinincome;
-    Button btupdate, btverify, btReject,btnnext;
+    Button btupdate, btverify, btnfail, btnnext;
     LeedsModel invoice;
     ProgressDialogClass progressDialogClass;
     AppSharedPreference appSharedPreference;
     InvoiceRepository invoiceRepository;
     ArrayList<LeedsModel> leedsModelArrayList;
-    EditText eparents,etdate,etexloanamount,etcname, etaddress, etloantype,etagentname, etoffaddress, etcontatct, etalternatecontact, etbirthdate, etpanno, etadharno, etoccupation, etincome, etexammount, etgenerated, etdescription;
-    String cExloanamount,cDate,cparents,cNmae, cAdress, cLoantype,cAgentname,cOffaddress, cContatct, cAltcontatct, cBdate, cPanno, cAdharno, cIncome, cExamount, lGenby, cDescreption, sploantype, spoccupation;
-   String cNote;
+    EditText etbankname, etdate, etexloanamount, etcname, etaddress, etloantype, etagentname,
+            etdissbuss, etcontatct, etalternatecontact, etapproveddate, etpanno, etadharno,
+            etoccupation, etincome, etexammount, etgenerated, etdescription;
+    String cExloanamount, cApproved, cDissbus, cDate, cBankname, cNmae, cAdress, cLoantype,
+            cAgentname, cOffaddress, cContatct, cAltcontatct, cApproveddate, cPanno, cAdharno,
+            cIncome, cExamount, lGenby, cDescreption, sploantype, spoccupation;
     TextView txtldate, txtleadid;
+    EditText etdissbussAmt;
 
     @Override
     public boolean onSupportNavigateUp() {
@@ -49,17 +53,16 @@ public class Add_Updatelead_C_Details_Activity extends AppCompatActivity impleme
         return true;
     }
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.tl_updatelead_cdetails_activity);
+        setContentView(R.layout.admin_update_dockpickup_activity);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_c_details);
 
         setSupportActionBar(toolbar);
-
         assert getSupportActionBar() != null;   //null check
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("");
 
         invoice = (LeedsModel) getIntent().getSerializableExtra(INVICES_LEEDS);
         progressDialogClass = new ProgressDialogClass(this);
@@ -70,23 +73,26 @@ public class Add_Updatelead_C_Details_Activity extends AppCompatActivity impleme
 
         btnnext = (Button) findViewById(R.id.buttonupdatenext);
         btverify = (Button) findViewById(R.id.buttonverify);
-        btReject = (Button) findViewById(R.id.buttonReject);
+        btverify.setText("Login");
+        btnfail = (Button) findViewById(R.id.buttonfail);
+
 
         btnnext.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                cNmae=etcname.getText().toString();
-                cAdress=etaddress.getText().toString();
-                cContatct=etcontatct.getText().toString();
-                cAltcontatct=etalternatecontact.getText().toString();
-                cLoantype=etloantype.getText().toString();
-                cAgentname=etagentname.getText().toString();
-                cExloanamount=etexloanamount.getText().toString();
-                cDate=etdate.getText().toString();
-                cNote = etdescription.getText().toString();
-
-
+                cNmae = etcname.getText().toString();
+                cAdress = etaddress.getText().toString();
+                cContatct = etcontatct.getText().toString();
+                cAltcontatct = etalternatecontact.getText().toString();
+                cLoantype = etloantype.getText().toString();
+                cAgentname = etagentname.getText().toString();
+                cExloanamount = etexloanamount.getText().toString();
+                cDate = etdate.getText().toString();
+                cBankname = etbankname.getText().toString();
+                cApproved = etdissbuss.getText().toString();
+                cDissbus = etdissbussAmt.getText().toString();
+                cApproveddate = etapproveddate.getText().toString();
                 updateLeadDetails(invoice);
-                Toast.makeText(Add_Updatelead_C_Details_Activity.this, "Lead Update Successfully", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Add_Updatelead__DockPickup_Activity.this, "Lead Update Successfully", Toast.LENGTH_SHORT).show();
 
              /*   Intent i = new Intent(Add_Updatelead_C_Details_Activity.this, MainActivity.class);
                 i.putExtra(INVICES_LEEDS, invoice);
@@ -106,26 +112,30 @@ public class Add_Updatelead_C_Details_Activity extends AppCompatActivity impleme
         etagentname = (EditText) findViewById(R.id.txtgenbyvalue);
         etexloanamount = (EditText) findViewById(R.id.txtexloanamountvalue);
         etdate = (EditText) findViewById(R.id.txtdatevalue);
-        etdescription = (EditText) findViewById(R.id.txtnotevalue);
+        etbankname = (EditText) findViewById(R.id.txtbankvalue);
+        etdissbuss = (EditText) findViewById(R.id.txtdissamountvalue);
+        etdissbussAmt = (EditText) findViewById(R.id.txtdissamountvalue1);
+        etapproveddate = (EditText) findViewById(R.id.txtapproveddate1);
         getdata();
-        getSupportActionBar().setTitle("");
-
 
 
         btverify.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                setLeedStatus(invoice,STATUS_VERIFIED);
+                setLeedStatus(invoice);
             }
         });
 
-        btReject.setOnClickListener(new View.OnClickListener() {
+
+        btnfail.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                setLeedStatus(invoice,STATUS_REJECTED);
+
+                setLeedStatus2(invoice);
+
             }
         });
 
-    }//end of oncreate
 
+    }
 
 
     private void getdata() {
@@ -142,69 +152,75 @@ public class Add_Updatelead_C_Details_Activity extends AppCompatActivity impleme
             String exloanamount = invoice.getExpectedLoanAmount();
             Long ldatetime = invoice.getCreatedDateTimeLong();
             String strdate = Long.toString(ldatetime);
-            String note = invoice.getNote();
+            String sbank = invoice.getBankName();
+            String Approved = invoice.getApprovedLoan();
+            String dissbuss = invoice.getDissbussloan();
+            String approveddate = invoice.getApprovedDate();
 
-            if (note != null){
-                etdescription.setText(note);
+            if (leednumber != null) {
+                txtleadid.setText(leednumber);
+
             }
-
-
-            if(leednumber != null)
-             {
-                 txtleadid.setText(leednumber);
-
-             }
-            if(strdate != null)
-            {
+            if (strdate != null) {
                 etdate.setText(Utility.convertMilliSecondsToFormatedDate(invoice.getCreatedDateTimeLong(), GLOBAL_DATE_FORMATE));
 
-            }if(cname != null)
-             {
-                 etcname.setText(cname);
+            }
+            if (cname != null) {
+                etcname.setText(cname);
 
-             } if(caddress != null)
-             {
-                 etaddress.setText(caddress);
+            }
+            if (caddress != null) {
+                etaddress.setText(caddress);
 
-             }
+            }
 
-            if(contact != null)
-             {
-                 etcontatct.setText(contact);
+            if (contact != null) {
+                etcontatct.setText(contact);
 
-             }
-             if(altcontact != null)
-             {
-                 etalternatecontact.setText(altcontact);
-             }
-            if(loantype != null)
-            {
+            }
+            if (altcontact != null) {
+                etalternatecontact.setText(altcontact);
+            }
+            if (loantype != null) {
                 etloantype.setText(loantype);
             }
-            if(agentname != null)
-            {
+            if (agentname != null) {
                 etagentname.setText(agentname);
             }
-            if(exloanamount != null)
-            {
+            if (exloanamount != null) {
                 etexloanamount.setText(exloanamount);
             }
+            if (sbank != null) {
+                etbankname.setText(sbank);
+            }
 
-        }catch (Exception e){}
+            if (Approved != null) {
+                etdissbuss.setText(Approved);
+            }
 
-    }
+            if (dissbuss != null) {
+                etdissbussAmt.setText(dissbuss);
+            }
 
+            if (approveddate != null) {
+                etapproveddate.setText(approveddate);
+            }
 
-    private void setLeedStatus(LeedsModel invoice,String status) {
-        if (status.equalsIgnoreCase(STATUS_VERIFIED)) {
-            invoice.setStatus(STATUS_VERIFIED);
-            updateLeed(invoice.getLeedId(), invoice.getLeedStatusMap1());
-        }else if (status.equalsIgnoreCase(STATUS_REJECTED)) {
-            invoice.setStatus(STATUS_REJECTED);
-            updateLeed(invoice.getLeedId(), invoice.getLeedStatusMap1());
+        } catch (Exception e) {
         }
+
     }
 
+
+    private void setLeedStatus(LeedsModel invoice) {
+        invoice.setStatus(STATUS_LOGIN);
+        updateLeed(invoice.getLeedId(), invoice.getLeedStatusMap1());
+    }
+
+    private void setLeedStatus2(LeedsModel invoice) {
+        invoice.setStatus(STATUS_REJECTED);
+        updateLeed(invoice.getLeedId(), invoice.getLeedStatusMap1());
+    }
 
     private void updateLeadDetails(LeedsModel invoice) {
 
@@ -215,10 +231,12 @@ public class Add_Updatelead_C_Details_Activity extends AppCompatActivity impleme
         invoice.setLoanType(cLoantype);
         invoice.setAgentName(cAgentname);
         invoice.setExpectedLoanAmount(cExloanamount);
-        invoice.setNote(cNote);
+        invoice.setBankName(cBankname);
+        invoice.setApprovedLoan(cApproved);
+        invoice.setdissbussloan(cDissbus);
+        invoice.setApprovedDate(cApproveddate);
         updateLeed(invoice.getLeedId(), invoice.getLeedStatusMap());
     }
-
 
 
     private void updateLeed(String leedId, Map leedsMap) {
@@ -226,10 +244,10 @@ public class Add_Updatelead_C_Details_Activity extends AppCompatActivity impleme
         invoiceRepository.updateLeed(leedId, leedsMap, new CallBack() {
             @Override
             public void onSuccess(Object object) {
-               Toast.makeText(Add_Updatelead_C_Details_Activity.this, "Lead Verify Successfully", Toast.LENGTH_SHORT).show();
+                //  Toast.makeText(Add_Updatelead__bankresult_Activity.this, "", Toast.LENGTH_SHORT).show();
                 progressDialogClass.dismissDialog();
 
-                Intent i = new Intent(Add_Updatelead_C_Details_Activity.this, MainActivity.class);
+                Intent i = new Intent(Add_Updatelead__DockPickup_Activity.this, MainActivity.class);
                 startActivity(i);
                 overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
             }
@@ -237,7 +255,7 @@ public class Add_Updatelead_C_Details_Activity extends AppCompatActivity impleme
             @Override
             public void onError(Object object) {
                 progressDialogClass.dismissDialog();
-                Utility.showLongMessage(Add_Updatelead_C_Details_Activity.this, getString(R.string.server_error));
+                Utility.showLongMessage(Add_Updatelead__DockPickup_Activity.this, getString(R.string.server_error));
             }
         });
     }

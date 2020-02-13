@@ -28,6 +28,7 @@ import java.util.Map;
 import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.GLOBAL_DATE_FORMATE;
 import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.INVICES_LEEDS;
 import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.STATUS_APPROVED;
+import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.STATUS_DOCPICKUP;
 import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.STATUS_LOGIN;
 import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.STATUS_REJECTED;
 
@@ -130,7 +131,7 @@ public class Add_Updatelead__Inprocess_Activity extends AppCompatActivity implem
         btnfail.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-//                setLeedStatus2(invoice);
+                setLeedStatus2(invoice);
 
             }
         });
@@ -214,11 +215,11 @@ public class Add_Updatelead__Inprocess_Activity extends AppCompatActivity implem
 
 
     private void setLeedStatus(LeedsModel invoice) {
-        invoice.setStatus(STATUS_LOGIN);
+        invoice.setStatus(STATUS_DOCPICKUP);
         updateLeed(invoice.getLeedId(), invoice.getLeedStatusMap1());
     }
 
-    private void setLeedStatus2(Invoice invoice) {
+    private void setLeedStatus2(LeedsModel invoice) {
         invoice.setStatus(STATUS_REJECTED);
         updateLeed(invoice.getLeedId(), invoice.getLeedStatusMap1());
     }

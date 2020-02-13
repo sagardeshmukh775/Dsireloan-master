@@ -432,6 +432,19 @@
                             android:textSize="16sp"
                             android:textStyle="normal|bold"/>
 
+                        <Button
+                            android:id="@+id/buttonReject"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@color/buttoncolour"
+                            android:layout_toRightOf="@+id/buttonverify"
+                            android:text="REJECT"
+                            android:padding="10dp"
+                            android:layout_margin="5dp"
+                            android:textColor="#ffffff"
+                            android:textSize="16sp"
+                            android:textStyle="normal|bold"/>
+
                     </RelativeLayout>
 
                 </RelativeLayout>
