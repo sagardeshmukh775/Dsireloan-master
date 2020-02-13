@@ -403,10 +403,44 @@
                     </RelativeLayout>
 
                     <RelativeLayout
+                        android:id="@+id/layoutnote"
+                        android:layout_width="match_parent"
+                        android:layout_below="@+id/layoutbank"
+                        android:layout_height="fill_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:id="@+id/txtnote"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginTop="5dp"
+                            android:padding="10dp"
+                            android:text="Note:"
+                            android:textColor="@color/darkgraycolor"
+                            android:textSize="14dp" />
+
+                        <EditText
+                            android:id="@+id/txtnotevalue"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_toRightOf="@+id/txtnote"
+                            android:background="@drawable/edittextanimation"
+                            android:padding="10dp"
+                            android:text=""
+                            android:textColor="@color/mainTextColor"
+                            android:textSize="14dp" />
+                    </RelativeLayout>
+
+
+                    <RelativeLayout
                         android:id="@+id/layoutbuttonnext"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/layoutbank"
+                        android:layout_below="@+id/layoutnote"
                         android:padding="20dp"
                         android:layout_gravity="center_horizontal"
                         android:gravity="center_horizontal">

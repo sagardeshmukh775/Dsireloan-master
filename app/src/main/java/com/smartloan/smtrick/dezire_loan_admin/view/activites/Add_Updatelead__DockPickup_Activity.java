@@ -46,7 +46,8 @@ public class Add_Updatelead__DockPickup_Activity extends AppCompatActivity imple
             cAgentname, cOffaddress, cContatct, cAltcontatct, cApproveddate, cPanno, cAdharno,
             cIncome, cExamount, lGenby, cDescreption, sploantype, spoccupation;
     TextView txtldate, txtleadid;
-    EditText etdissbussAmt;
+    EditText etdissbussAmt,etNote;
+    ArrayList<String> NotesList;
 
     @Override
     public boolean onSupportNavigateUp() {
@@ -72,6 +73,8 @@ public class Add_Updatelead__DockPickup_Activity extends AppCompatActivity imple
         String[] loanType = new String[]{"HL", "LAP"};
         String[] empType = new String[]{"Salaried", "Businessman"};
 
+        NotesList = new ArrayList<>();
+
         btnnext = (Button) findViewById(R.id.buttonupdatenext);
         btverify = (Button) findViewById(R.id.buttonverify);
         btverify.setText("Login");
@@ -92,6 +95,8 @@ public class Add_Updatelead__DockPickup_Activity extends AppCompatActivity imple
                 cApproved = etdissbuss.getText().toString();
                 cDissbus = etdissbussAmt.getText().toString();
                 cApproveddate = etapproveddate.getText().toString();
+                NotesList.add(etNote.getText().toString());
+
                 updateLeadDetails(invoice);
                 Toast.makeText(Add_Updatelead__DockPickup_Activity.this, "Lead Update Successfully", Toast.LENGTH_SHORT).show();
 
@@ -117,6 +122,7 @@ public class Add_Updatelead__DockPickup_Activity extends AppCompatActivity imple
         etdissbuss = (EditText) findViewById(R.id.txtdissamountvalue);
         etdissbussAmt = (EditText) findViewById(R.id.txtdissamountvalue1);
         etapproveddate = (EditText) findViewById(R.id.txtapproveddate1);
+        etNote = (EditText) findViewById(R.id.txtnotevalue);
         getdata();
 
 
@@ -196,6 +202,10 @@ public class Add_Updatelead__DockPickup_Activity extends AppCompatActivity imple
             String Approved = invoice.getApprovedLoan();
             String dissbuss = invoice.getDissbussloan();
             String approveddate = invoice.getApprovedDate();
+
+            if (invoice.getNotes() != null){
+                NotesList = invoice.getNotes();
+            }
 
             if (leednumber != null) {
                 txtleadid.setText(leednumber);
