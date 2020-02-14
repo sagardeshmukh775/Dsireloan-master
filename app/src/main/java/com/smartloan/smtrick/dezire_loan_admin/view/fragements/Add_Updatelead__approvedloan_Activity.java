@@ -190,7 +190,7 @@ public class Add_Updatelead__approvedloan_Activity extends AppCompatActivity imp
             if (invoice.getNotes() != null){
                 NotesList = invoice.getNotes();
             }
-            
+
             if (leednumber != null) {
                 txtleadid.setText(leednumber);
 
