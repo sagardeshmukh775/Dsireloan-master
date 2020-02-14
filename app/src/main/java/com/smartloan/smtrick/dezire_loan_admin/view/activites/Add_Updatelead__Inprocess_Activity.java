@@ -114,6 +114,7 @@ public class Add_Updatelead__Inprocess_Activity extends AppCompatActivity implem
                 cDissbus = etdissbussAmt.getText().toString();
                 cApproveddate = etapproveddate.getText().toString();
                 NotesList.add(etNote.getText().toString());
+
                 updateLeadDetails(invoice);
                 Toast.makeText(Add_Updatelead__Inprocess_Activity.this, "Lead Update Successfully", Toast.LENGTH_SHORT).show();
 
