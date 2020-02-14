@@ -59,7 +59,7 @@ public class Add_Updatelead__Full_disbuss_Activity extends AppCompatActivity imp
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.admin_bankresult_activity);
+        setContentView(R.layout.admin_update_fulldisbuss_activity);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_c_details);
 
         setSupportActionBar(toolbar);
