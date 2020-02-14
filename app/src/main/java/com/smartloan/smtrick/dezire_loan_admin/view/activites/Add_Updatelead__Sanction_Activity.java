@@ -49,7 +49,8 @@ public class Add_Updatelead__Sanction_Activity extends AppCompatActivity impleme
             cAgentname, cOffaddress, cContatct, cAltcontatct, cApproveddate, cPanno, cAdharno,
             cIncome, cExamount, lGenby, cDescreption, sploantype, spoccupation;
     TextView txtldate, txtleadid;
-    EditText etdissbussAmt;
+    EditText etdissbussAmt,etNote;
+    ArrayList<String> NotesList;
 
     @Override
     public boolean onSupportNavigateUp() {
@@ -81,6 +82,7 @@ public class Add_Updatelead__Sanction_Activity extends AppCompatActivity impleme
         btPartDisbuss = (Button) findViewById(R.id.buttonpartdisbuss);
 //        btFullDisbuss.setText("SUBMIT_FOR_DISBUSS");
         btnfail = (Button) findViewById(R.id.buttonfail);
+        etNote = (EditText) findViewById(R.id.txtnotevalue);
 
 
         btnnext.setOnClickListener(new View.OnClickListener() {
@@ -97,6 +99,8 @@ public class Add_Updatelead__Sanction_Activity extends AppCompatActivity impleme
                 cApproved = etdissbuss.getText().toString();
                 cDissbus = etdissbussAmt.getText().toString();
                 cApproveddate = etapproveddate.getText().toString();
+                NotesList.add(etNote.getText().toString());
+
                 updateLeadDetails(invoice);
                 Toast.makeText(Add_Updatelead__Sanction_Activity.this, "Lead Update Successfully", Toast.LENGTH_SHORT).show();
 
@@ -254,6 +258,10 @@ public class Add_Updatelead__Sanction_Activity extends AppCompatActivity impleme
             String dissbuss = invoice.getDissbussloan();
             String approveddate = invoice.getApprovedDate();
 
+            if (invoice.getNotes() != null){
+                NotesList = invoice.getNotes();
+            }
+            
             if (leednumber != null) {
                 txtleadid.setText(leednumber);
 
@@ -341,6 +349,7 @@ public class Add_Updatelead__Sanction_Activity extends AppCompatActivity impleme
         invoice.setApprovedLoan(cApproved);
         invoice.setdissbussloan(cDissbus);
         invoice.setApprovedDate(cApproveddate);
+        invoice.setNotes(NotesList);
         updateLeed(invoice.getLeedId(), invoice.getLeedStatusMap());
     }
 

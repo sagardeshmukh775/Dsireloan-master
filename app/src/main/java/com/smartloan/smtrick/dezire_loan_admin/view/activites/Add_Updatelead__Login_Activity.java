@@ -43,12 +43,14 @@ public class Add_Updatelead__Login_Activity extends AppCompatActivity implements
     ArrayList<LeedsModel> leedsModelArrayList;
     EditText etbankname, etdate, etexloanamount, etcname, etaddress, etloantype, etagentname,
             etApprovedamt, etcontatct, etalternatecontact, etapproveddate, etpanno, etadharno,
-            etoccupation, etincome, etexammount, etgenerated, etdescription;
+            etoccupation, etincome, etexammount, etgenerated, etdescription,etNote;
     String cExloanamount, cApproved, cDissbus, cDate, cBankname, cNmae, cAdress, cLoantype,
             cAgentname, cOffaddress, cContatct, cAltcontatct, cApproveddate, cPanno, cAdharno,
             cIncome, cExamount, lGenby, cDescreption, sploantype, spoccupation;
     TextView txtldate, txtleadid;
     EditText etdissbussAmt;
+
+    ArrayList<String> NotesList;
 
 
     @Override
@@ -76,6 +78,8 @@ public class Add_Updatelead__Login_Activity extends AppCompatActivity implements
         String[] loanType = new String[]{"HL", "LAP"};
         String[] empType = new String[]{"Salaried", "Businessman"};
 
+        NotesList = new ArrayList<>();
+
         btnnext = (Button) findViewById(R.id.buttonupdatenext);
         btClose = (Button) findViewById(R.id.buttonClose);
         btverify = (Button) findViewById(R.id.buttonverify);
@@ -96,6 +100,7 @@ public class Add_Updatelead__Login_Activity extends AppCompatActivity implements
         etApprovedamt = (EditText) findViewById(R.id.txtapprovedamountvalue);
         etdissbussAmt = (EditText) findViewById(R.id.txtdissamountvalue1);
         etapproveddate = (EditText) findViewById(R.id.txtapproveddate1);
+        etNote = (EditText) findViewById(R.id.txtnotevalue);
 
         btnnext.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -111,6 +116,7 @@ public class Add_Updatelead__Login_Activity extends AppCompatActivity implements
                 cApproved = etApprovedamt.getText().toString();
                 cDissbus = etdissbussAmt.getText().toString();
                 cApproveddate = etapproveddate.getText().toString();
+                NotesList.add(etNote.getText().toString());
                 updateLeadDetails(invoice);
                 Toast.makeText(Add_Updatelead__Login_Activity.this, "Lead Update Successfully", Toast.LENGTH_SHORT).show();
 
@@ -228,6 +234,10 @@ public class Add_Updatelead__Login_Activity extends AppCompatActivity implements
             String dissbuss = invoice.getDissbussloan();
             String approveddate = invoice.getApprovedDate();
 
+            if (invoice.getNotes() != null){
+                NotesList = invoice.getNotes();
+            }
+
             if (leednumber != null) {
                 txtleadid.setText(leednumber);
 
@@ -310,6 +320,7 @@ public class Add_Updatelead__Login_Activity extends AppCompatActivity implements
         invoice.setApprovedLoan(cApproved);
         invoice.setdissbussloan(cDissbus);
         invoice.setApprovedDate(cApproveddate);
+        invoice.setNotes(NotesList);
         updateLeed(invoice.getLeedId(), invoice.getLeedStatusMap());
     }
 

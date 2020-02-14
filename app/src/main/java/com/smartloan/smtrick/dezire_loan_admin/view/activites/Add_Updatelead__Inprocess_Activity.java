@@ -76,6 +76,8 @@ public class Add_Updatelead__Inprocess_Activity extends AppCompatActivity implem
         String[] loanType = new String[]{"HL", "LAP"};
         String[] empType = new String[]{"Salaried", "Businessman"};
 
+        NotesList = new ArrayList<>();
+
         btnnext = (Button) findViewById(R.id.buttonupdatenext);
         btClose =  (Button) findViewById(R.id.buttonClose);
         btverify = (Button) findViewById(R.id.buttonverify);
