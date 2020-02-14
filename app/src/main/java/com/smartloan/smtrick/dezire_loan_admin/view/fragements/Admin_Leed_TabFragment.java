@@ -30,8 +30,14 @@ public class Admin_Leed_TabFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         if (mListener != null) {
+
+
+
             mListener.onFragmentInteraction("Leeds");
+
+
         }
+
         View view = inflater.inflate(R.layout.view_pager_tab_layout, container, false);
         viewPager = (ViewPager) view.findViewById(R.id.viewPager);
         viewPagerAdapter = new ViewPagerAdapter(getChildFragmentManager());
