@@ -28,6 +28,7 @@ import java.util.Map;
 
 import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.GLOBAL_DATE_FORMATE;
 import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.INVICES_LEEDS;
+import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.STATUS_CLOSE;
 import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.STATUS_FULL_DISBUSS;
 import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.STATUS_LOGIN;
 import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.STATUS_REJECTED;
@@ -35,7 +36,7 @@ import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.STATUS_
 
 public class Add_Updatelead__Sanction_Activity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     Spinner spinloantype, spinemptype, spinincome;
-    Button btupdate, btFullDisbuss,btPartDisbuss, btnfail, btnnext;
+    Button btupdate, btFullDisbuss,btPartDisbuss, btnfail, btnnext,btClose;
     LeedsModel invoice;
     ProgressDialogClass progressDialogClass;
     AppSharedPreference appSharedPreference;
@@ -75,6 +76,7 @@ public class Add_Updatelead__Sanction_Activity extends AppCompatActivity impleme
         String[] empType = new String[]{"Salaried", "Businessman"};
 
         btnnext = (Button) findViewById(R.id.buttonupdatenext);
+        btClose = (Button) findViewById(R.id.buttonClose);
         btFullDisbuss = (Button) findViewById(R.id.buttonfulldisbuss);
         btPartDisbuss = (Button) findViewById(R.id.buttonpartdisbuss);
 //        btFullDisbuss.setText("SUBMIT_FOR_DISBUSS");
@@ -202,6 +204,32 @@ public class Add_Updatelead__Sanction_Activity extends AppCompatActivity impleme
 
             }
         });
+        btClose.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+                final Dialog dialog = new Dialog(Add_Updatelead__Sanction_Activity.this);
+                dialog.setContentView(R.layout.confermationdialog);
+                Button Yes = (Button) dialog.findViewById(R.id.dialogButtonYes);
+                Button No = (Button) dialog.findViewById(R.id.dialogButtonNo);
+
+                Yes.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        setLeedStatus1(invoice);
+                    }
+                });
+                No.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+
+                dialog.show();
+
+
+            }
+        });
 
 
     }
@@ -293,6 +321,10 @@ public class Add_Updatelead__Sanction_Activity extends AppCompatActivity impleme
 
     private void setLeedStatus2(LeedsModel invoice) {
         invoice.setStatus(STATUS_REJECTED);
+        updateLeed(invoice.getLeedId(), invoice.getLeedStatusMap1());
+    }
+    private void setLeedStatus1(LeedsModel invoice) {
+        invoice.setStatus(STATUS_CLOSE);
         updateLeed(invoice.getLeedId(), invoice.getLeedStatusMap1());
     }
 

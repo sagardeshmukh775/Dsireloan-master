@@ -506,14 +506,21 @@
 
 
 
-                    <RelativeLayout
+                    <LinearLayout
                         android:id="@+id/layoutbuttonnext"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/layoutapproveddate"
                         android:padding="20dp"
+                        android:orientation="vertical"
                         android:layout_gravity="center_horizontal"
                         android:gravity="center_horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="100">
 
                         <Button
                             android:id="@+id/buttonupdatenext"
@@ -525,6 +532,7 @@
                             android:textColor="#ffffff"
                             android:layout_margin="5dp"
                             android:textSize="16sp"
+                            android:layout_weight="50"
                             android:textStyle="normal|bold"/>
 
                         <Button
@@ -538,7 +546,16 @@
                             android:layout_margin="5dp"
                             android:textColor="#ffffff"
                             android:textSize="16sp"
+                            android:layout_weight="50"
                             android:textStyle="normal|bold"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="100">
 
                         <Button
                             android:id="@+id/buttonpartdisbuss"
@@ -551,6 +568,7 @@
                             android:layout_margin="5dp"
                             android:textColor="#ffffff"
                             android:textSize="16sp"
+                            android:layout_weight="50"
                             android:textStyle="normal|bold"/>
 
                         <Button
@@ -564,10 +582,36 @@
                             android:layout_margin="5dp"
                             android:textColor="#ffffff"
                             android:textSize="16sp"
+                            android:layout_weight="50"
                             android:textStyle="normal|bold"/>
 
+                    </LinearLayout>
 
-                    </RelativeLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="100">
+
+                        <Button
+                            android:id="@+id/buttonClose"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/buttonReject"
+                            android:layout_margin="5dp"
+                            android:background="@color/buttoncolour"
+                            android:gravity="center"
+                            android:padding="10dp"
+                            android:text="CLOSE"
+                            android:textColor="#ffffff"
+                            android:textSize="16sp"
+                            android:layout_weight="100"
+                            android:textStyle="normal|bold" />
+
+                    </LinearLayout>
+
+
+                    </LinearLayout>
 
                 </RelativeLayout>
 
