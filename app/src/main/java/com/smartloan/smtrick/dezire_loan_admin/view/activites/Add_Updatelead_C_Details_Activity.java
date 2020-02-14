@@ -30,12 +30,14 @@ import java.util.Map;
 
 import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.GLOBAL_DATE_FORMATE;
 import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.INVICES_LEEDS;
+import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.STATUS_CLOSE;
+import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.STATUS_FULL_DISBUSS;
 import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.STATUS_REJECTED;
 import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.STATUS_VERIFIED;
 
 public class Add_Updatelead_C_Details_Activity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     Spinner spinloantype, spinemptype, spinincome;
-    Button btupdate, btverify, btReject, btnnext;
+    Button btupdate, btverify, btReject, btnnext,btnClose;
     LeedsModel invoice;
     ProgressDialogClass progressDialogClass;
     AppSharedPreference appSharedPreference;
@@ -80,6 +82,7 @@ public class Add_Updatelead_C_Details_Activity extends AppCompatActivity impleme
         btnnext = (Button) findViewById(R.id.buttonupdatenext);
         btverify = (Button) findViewById(R.id.buttonverify);
         btReject = (Button) findViewById(R.id.buttonReject);
+        btnClose = (Button) findViewById(R.id.buttonClose);
 
         btnnext.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -162,6 +165,31 @@ public class Add_Updatelead_C_Details_Activity extends AppCompatActivity impleme
                     @Override
                     public void onClick(View v) {
                         setLeedStatus(invoice, STATUS_REJECTED);
+                    }
+                });
+                No.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+
+                dialog.show();
+
+            }
+        });
+        btnClose.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+                final Dialog dialog = new Dialog(Add_Updatelead_C_Details_Activity.this);
+                dialog.setContentView(R.layout.confermationdialog);
+                Button Yes = (Button) dialog.findViewById(R.id.dialogButtonYes);
+                Button No = (Button) dialog.findViewById(R.id.dialogButtonNo);
+
+                Yes.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        setLeedStatus(invoice, STATUS_CLOSE);
                     }
                 });
                 No.setOnClickListener(new View.OnClickListener() {

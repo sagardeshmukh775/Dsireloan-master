@@ -30,6 +30,7 @@ import java.util.Map;
 import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.GLOBAL_DATE_FORMATE;
 import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.INVICES_LEEDS;
 import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.STATUS_APPROVED;
+import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.STATUS_CLOSE;
 import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.STATUS_INPROCESS;
 import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.STATUS_IN_PROGRESS;
 import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.STATUS_REJECTED;
@@ -38,7 +39,7 @@ import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.STATUS_
 
 public class Add_Updatelead__submittobank_Activity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     Spinner spinloantype, spinemptype, spinincome;
-    Button btupdate, btverify, btReject, btnnext;
+    Button btupdate, btverify, btReject, btnnext,btClose;
     LeedsModel invoice;
     ProgressDialogClass progressDialogClass;
     AppSharedPreference appSharedPreference;
@@ -78,6 +79,7 @@ public class Add_Updatelead__submittobank_Activity extends AppCompatActivity imp
         NotesList = new ArrayList<>();
 
         btnnext = (Button) findViewById(R.id.buttonupdatenext);
+        btClose = (Button) findViewById(R.id.buttonClose);
         btverify = (Button) findViewById(R.id.buttonverify);
         btReject = (Button) findViewById(R.id.buttonReject);
 
@@ -173,6 +175,31 @@ public class Add_Updatelead__submittobank_Activity extends AppCompatActivity imp
                     @Override
                     public void onClick(View v) {
                         setLeedStatus(invoice,STATUS_REJECTED);
+                    }
+                });
+                No.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+
+                dialog.show();
+
+            }
+        });
+        btClose.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+                final Dialog dialog = new Dialog(Add_Updatelead__submittobank_Activity.this);
+                dialog.setContentView(R.layout.confermationdialog);
+                Button Yes = (Button) dialog.findViewById(R.id.dialogButtonYes);
+                Button No = (Button) dialog.findViewById(R.id.dialogButtonNo);
+
+                Yes.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        setLeedStatus(invoice,STATUS_CLOSE);
                     }
                 });
                 No.setOnClickListener(new View.OnClickListener() {
