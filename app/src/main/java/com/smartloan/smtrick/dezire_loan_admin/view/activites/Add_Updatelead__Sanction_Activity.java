@@ -76,6 +76,8 @@ public class Add_Updatelead__Sanction_Activity extends AppCompatActivity impleme
         String[] loanType = new String[]{"HL", "LAP"};
         String[] empType = new String[]{"Salaried", "Businessman"};
 
+        NotesList = new ArrayList<>();
+
         btnnext = (Button) findViewById(R.id.buttonupdatenext);
         btClose = (Button) findViewById(R.id.buttonClose);
         btFullDisbuss = (Button) findViewById(R.id.buttonfulldisbuss);
@@ -83,6 +85,20 @@ public class Add_Updatelead__Sanction_Activity extends AppCompatActivity impleme
 //        btFullDisbuss.setText("SUBMIT_FOR_DISBUSS");
         btnfail = (Button) findViewById(R.id.buttonfail);
         etNote = (EditText) findViewById(R.id.txtnotevalue);
+
+        txtleadid = (TextView) findViewById(R.id.textheader);
+        etcname = (EditText) findViewById(R.id.txtcamevalue);
+        etaddress = (EditText) findViewById(R.id.txtcurrentaddressvalue);
+        etcontatct = (EditText) findViewById(R.id.txtcontatctvalue);
+        etalternatecontact = (EditText) findViewById(R.id.txtaltcontatctvalue);
+        etloantype = (EditText) findViewById(R.id.txtloantypevalue);
+        etagentname = (EditText) findViewById(R.id.txtgenbyvalue);
+        etexloanamount = (EditText) findViewById(R.id.txtexloanamountvalue);
+        etdate = (EditText) findViewById(R.id.txtdatevalue);
+        etbankname = (EditText) findViewById(R.id.txtbankvalue);
+        etdissbuss = (EditText) findViewById(R.id.txtdissamountvalue);
+        etdissbussAmt = (EditText) findViewById(R.id.txtdissamountvalue1);
+        etapproveddate = (EditText) findViewById(R.id.txtapproveddate1);
 
 
         btnnext.setOnClickListener(new View.OnClickListener() {
@@ -113,19 +129,7 @@ public class Add_Updatelead__Sanction_Activity extends AppCompatActivity impleme
         });
 
 
-        txtleadid = (TextView) findViewById(R.id.textheader);
-        etcname = (EditText) findViewById(R.id.txtcamevalue);
-        etaddress = (EditText) findViewById(R.id.txtcurrentaddressvalue);
-        etcontatct = (EditText) findViewById(R.id.txtcontatctvalue);
-        etalternatecontact = (EditText) findViewById(R.id.txtaltcontatctvalue);
-        etloantype = (EditText) findViewById(R.id.txtloantypevalue);
-        etagentname = (EditText) findViewById(R.id.txtgenbyvalue);
-        etexloanamount = (EditText) findViewById(R.id.txtexloanamountvalue);
-        etdate = (EditText) findViewById(R.id.txtdatevalue);
-        etbankname = (EditText) findViewById(R.id.txtbankvalue);
-        etdissbuss = (EditText) findViewById(R.id.txtdissamountvalue);
-        etdissbussAmt = (EditText) findViewById(R.id.txtdissamountvalue1);
-        etapproveddate = (EditText) findViewById(R.id.txtapproveddate1);
+
         getdata();
 
 

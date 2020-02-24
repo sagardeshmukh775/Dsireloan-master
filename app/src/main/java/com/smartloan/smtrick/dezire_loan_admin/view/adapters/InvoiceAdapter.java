@@ -41,11 +41,27 @@ public class InvoiceAdapter extends RecyclerView.Adapter<InvoiceViewHolder> {
     public void onBindViewHolder(final InvoiceViewHolder holder, final int listPosition) {
         try {
             LeedsModel invoice = getModel(listPosition);
-            holder.invoiceAdapterLayoutBinding.txtidvalue.setText(invoice.getLeedNumber());
-            holder.invoiceAdapterLayoutBinding.txtcnamevalue.setText(invoice.getCustomerName());
-            holder.invoiceAdapterLayoutBinding.txtbankvalue.setText(invoice.getExpectedLoanAmount());
+            if (invoice.getLeedNumber() != null) {
+                holder.invoiceAdapterLayoutBinding.txtidvalue.setText(invoice.getLeedNumber());
+            }else {
+                holder.invoiceAdapterLayoutBinding.txtidvalue.setText("NA");
+            }
+            if (invoice.getCustomerName() != null) {
+                holder.invoiceAdapterLayoutBinding.txtcnamevalue.setText(invoice.getCustomerName());
+            }else {
+                holder.invoiceAdapterLayoutBinding.txtcnamevalue.setText("NA");
+            }
+            if (invoice.getExpectedLoanAmount() != null) {
+                holder.invoiceAdapterLayoutBinding.txtbankvalue.setText(invoice.getExpectedLoanAmount());
+            }else {
+                holder.invoiceAdapterLayoutBinding.txtbankvalue.setText("NA");
+            }
          //   holder.invoiceAdapterLayoutBinding.txtStatusValue.setText(invoice.getApprovedDate());
-            holder.invoiceAdapterLayoutBinding.txtcommisionvalue.setText(invoice.getStatus());
+            if (invoice.getStatus() != null) {
+                holder.invoiceAdapterLayoutBinding.txtcommisionvalue.setText(invoice.getStatus());
+            }else {
+                holder.invoiceAdapterLayoutBinding.txtcommisionvalue.setText("NA");
+            }
 
             String loanType = invoice.getLoanType().toString();
 
