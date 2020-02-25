@@ -6,6 +6,7 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -96,7 +97,11 @@ public class Add_Updatelead_C_Details_Activity extends AppCompatActivity impleme
                 cDate = etdate.getText().toString();
                 cNote = etdescription.getText().toString();
                 cEmail = etemail.getText().toString();
-                NotesList.add(etNote.getText().toString());
+                cNote = etNote.getText().toString();
+
+                if (!TextUtils.isEmpty(cNote)) {
+                    NotesList.add(cNote);
+                }
 
 
                 updateLeadDetails(invoice);
@@ -299,7 +304,9 @@ public class Add_Updatelead_C_Details_Activity extends AppCompatActivity impleme
         invoice.setExpectedLoanAmount(cExloanamount);
         invoice.setNote(cNote);
         invoice.setEmail(cEmail);
-        invoice.setNotes(NotesList);
+        if(NotesList != null) {
+            invoice.setNotes(NotesList);
+        }
         updateLeed(invoice.getLeedId(), invoice.getLeedStatusMap());
     }
 

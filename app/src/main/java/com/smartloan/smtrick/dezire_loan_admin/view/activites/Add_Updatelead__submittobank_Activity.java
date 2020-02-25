@@ -45,8 +45,11 @@ public class Add_Updatelead__submittobank_Activity extends AppCompatActivity imp
     AppSharedPreference appSharedPreference;
     InvoiceRepository invoiceRepository;
     ArrayList<LeedsModel> leedsModelArrayList;
-    EditText etbankname, etdate, etexloanamount,etNote, etcname, etaddress, etloantype, etagentname, etoffaddress, etcontatct, etalternatecontact, etbirthdate, etpanno, etadharno, etoccupation, etincome, etexammount, etgenerated, etdescription;
-    String cExloanamount, cDate, cBankname, cNmae, cAdress, cLoantype, cAgentname, cOffaddress, cContatct, cAltcontatct, cBdate, cPanno, cAdharno, cIncome, cExamount, lGenby, cDescreption, sploantype, spoccupation;
+    EditText etbankname, etdate, etexloanamount,etNote, etcname, etaddress, etloantype, etagentname, etoffaddress,
+            etcontatct, etalternatecontact, etbirthdate, etpanno, etadharno, etoccupation, etincome, etexammount,
+            etgenerated, etdescription;
+    String cExloanamount, cDate, cBankname, cNmae, cAdress, cLoantype, cAgentname, cOffaddress, cContatct, cAltcontatct,
+            cBdate, cPanno, cAdharno, cIncome, cExamount, lGenby, cDescreption, sploantype, spoccupation,cNote;
     TextView txtldate, txtleadid;
 
     ArrayList<String> NotesList;
@@ -106,8 +109,11 @@ public class Add_Updatelead__submittobank_Activity extends AppCompatActivity imp
                 cExloanamount = etexloanamount.getText().toString();
                 cDate = etdate.getText().toString();
                 cBankname = etbankname.getText().toString();
-                NotesList.add(etNote.getText().toString());
+                cNote = etNote.getText().toString();
 
+                if (!TextUtils.isEmpty(cNote)) {
+                    NotesList.add(cNote);
+                }
                 if (TextUtils.isEmpty(cBankname)) {
                     etbankname.setError("Required");
                     Toast.makeText(getApplicationContext(), "Enter Bank Name!", Toast.LENGTH_SHORT).show();
@@ -303,7 +309,9 @@ public class Add_Updatelead__submittobank_Activity extends AppCompatActivity imp
         invoice.setAgentName(cAgentname);
         invoice.setExpectedLoanAmount(cExloanamount);
         invoice.setBankName(cBankname);
-        invoice.setNotes(NotesList);
+        if(NotesList != null) {
+            invoice.setNotes(NotesList);
+        }
         updateLeed(invoice.getLeedId(), invoice.getLeedStatusMap());
     }
 

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -46,7 +47,7 @@ public class Add_Updatelead__Login_Activity extends AppCompatActivity implements
             etoccupation, etincome, etexammount, etgenerated, etdescription,etNote;
     String cExloanamount, cApproved, cDissbus, cDate, cBankname, cNmae, cAdress, cLoantype,
             cAgentname, cOffaddress, cContatct, cAltcontatct, cApproveddate, cPanno, cAdharno,
-            cIncome, cExamount, lGenby, cDescreption, sploantype, spoccupation;
+            cIncome, cExamount, lGenby, cDescreption, sploantype, spoccupation,cNote;
     TextView txtldate, txtleadid;
     EditText etdissbussAmt;
 
@@ -116,7 +117,12 @@ public class Add_Updatelead__Login_Activity extends AppCompatActivity implements
                 cApproved = etApprovedamt.getText().toString();
                 cDissbus = etdissbussAmt.getText().toString();
                 cApproveddate = etapproveddate.getText().toString();
-                NotesList.add(etNote.getText().toString());
+                cNote = etNote.getText().toString();
+
+                if (!TextUtils.isEmpty(cNote)) {
+                    NotesList.add(cNote);
+                }
+
                 updateLeadDetails(invoice);
                 Toast.makeText(Add_Updatelead__Login_Activity.this, "Lead Update Successfully", Toast.LENGTH_SHORT).show();
 
@@ -320,7 +326,9 @@ public class Add_Updatelead__Login_Activity extends AppCompatActivity implements
         invoice.setApprovedLoan(cApproved);
         invoice.setdissbussloan(cDissbus);
         invoice.setApprovedDate(cApproveddate);
-        invoice.setNotes(NotesList);
+        if(NotesList != null) {
+            invoice.setNotes(NotesList);
+        }
         updateLeed(invoice.getLeedId(), invoice.getLeedStatusMap());
     }
 
