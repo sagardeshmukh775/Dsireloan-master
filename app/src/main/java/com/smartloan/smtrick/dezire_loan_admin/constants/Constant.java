@@ -60,7 +60,7 @@ public class Constant {
     public static final String STATUS_PARTIAL_DISBUSS = "PARTIAL_DISBUSS";
     public static final String STATUS_FULL_DISBUSS = "FULLDISBUSS";
     public static final String STATUS_CLOSE = "CLOSED";
-    
+
     public static final String STATUS_IN_PROGRESS = "IN-PROGRESS";
     public static final String STATUS_SENT = "SENT";
     public static final String STATUS_PAID = "PAID";

@@ -31,7 +31,9 @@ import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.INVICES
 import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.STATUS_CLOSE;
 import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.STATUS_FULL_DISBUSS;
 import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.STATUS_LOGIN;
+import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.STATUS_PARTIAL_DISBUSS;
 import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.STATUS_REJECTED;
+import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.STATUS_SANCTION;
 import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.STATUS_SUBMITEFORDISBUSS;
 
 public class Add_Updatelead__Sanction_Activity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
@@ -159,7 +161,7 @@ public class Add_Updatelead__Sanction_Activity extends AppCompatActivity impleme
             }
         });
 
-        btFullDisbuss.setOnClickListener(new View.OnClickListener() {
+        btPartDisbuss.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
                 final Dialog dialog = new Dialog(Add_Updatelead__Sanction_Activity.this);
@@ -327,7 +329,7 @@ public class Add_Updatelead__Sanction_Activity extends AppCompatActivity impleme
     }
 
     private void setLeedStatus3(LeedsModel invoice) {
-        invoice.setStatus(STATUS_FULL_DISBUSS);
+        invoice.setStatus(STATUS_PARTIAL_DISBUSS);
         updateLeed(invoice.getLeedId(), invoice.getLeedStatusMap1());
     }
 

@@ -1,5 +1,6 @@
 package com.smartloan.smtrick.dezire_loan_admin.view.activites;
 
+import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -23,9 +25,13 @@ import com.smartloan.smtrick.dezire_loan_admin.repository.impl.InvoiceRepository
 import com.smartloan.smtrick.dezire_loan_admin.utilities.Utility;
 import com.smartloan.smtrick.dezire_loan_admin.view.dialog.ProgressDialogClass;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Locale;
 import java.util.Map;
 
+import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.CALANDER_DATE_FORMATE;
 import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.GLOBAL_DATE_FORMATE;
 import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.INVICES_LEEDS;
 import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.STATUS_LOGIN;
@@ -41,7 +47,7 @@ public class Add_Updatelead__Full_disbuss_Activity extends AppCompatActivity imp
     InvoiceRepository invoiceRepository;
     ArrayList<LeedsModel> leedsModelArrayList;
     EditText etbankname, etdate, etexloanamount, etcname, etaddress, etloantype, etagentname,
-            etdissbuss, etcontatct, etalternatecontact, etapproveddate, etpanno, etadharno,
+            etaprovedloanamt, etcontatct, etalternatecontact, etapproveddate, etpanno, etadharno,
             etoccupation, etincome, etexammount, etgenerated, etdescription;
     String cExloanamount, cApproved, cDissbus, cDate, cBankname, cNmae, cAdress, cLoantype,
             cAgentname, cOffaddress, cContatct, cAltcontatct, cApproveddate, cPanno, cAdharno,
@@ -49,6 +55,9 @@ public class Add_Updatelead__Full_disbuss_Activity extends AppCompatActivity imp
     TextView txtldate, txtleadid;
     EditText etdissbussAmt,etNote;
     ArrayList<String> NotesList;
+    int fromYear, fromMonth, fromDay;
+    int toYear, toMonth, toDay;
+    long fromDate, toDate;
 
     @Override
     public boolean onSupportNavigateUp() {
@@ -91,7 +100,7 @@ public class Add_Updatelead__Full_disbuss_Activity extends AppCompatActivity imp
         etexloanamount = (EditText) findViewById(R.id.txtexloanamountvalue);
         etdate = (EditText) findViewById(R.id.txtdatevalue);
         etbankname = (EditText) findViewById(R.id.txtbankvalue);
-        etdissbuss = (EditText) findViewById(R.id.txtdissamountvalue);
+        etaprovedloanamt = (EditText) findViewById(R.id.txtapprovedamountvalue);
         etdissbussAmt = (EditText) findViewById(R.id.txtdissamountvalue1);
         etapproveddate = (EditText) findViewById(R.id.txtapproveddate1);
         etNote = (EditText) findViewById(R.id.txtnotevalue);
@@ -107,7 +116,7 @@ public class Add_Updatelead__Full_disbuss_Activity extends AppCompatActivity imp
                 cExloanamount = etexloanamount.getText().toString();
                 cDate = etdate.getText().toString();
                 cBankname = etbankname.getText().toString();
-                cApproved = etdissbuss.getText().toString();
+                cApproved = etaprovedloanamt.getText().toString();
                 cDissbus = etdissbussAmt.getText().toString();
                 cApproveddate = etapproveddate.getText().toString();
                 NotesList.add(etNote.getText().toString());
@@ -123,6 +132,29 @@ public class Add_Updatelead__Full_disbuss_Activity extends AppCompatActivity imp
             }
         });
 
+//        setFromCurrentDate();
+//        etapproveddate.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                DatePickerDialog mDatePicker = new DatePickerDialog(Add_Updatelead__Full_disbuss_Activity.this, new DatePickerDialog.OnDateSetListener() {
+//                    public void onDateSet(DatePicker datepicker, int selectedyear, int selectedmonth, int selectedday) {
+//                        Calendar myCalendar = Calendar.getInstance();
+//                        myCalendar.set(Calendar.YEAR, selectedyear);
+//                        myCalendar.set(Calendar.MONTH, selectedmonth);
+//                        myCalendar.set(Calendar.DAY_OF_MONTH, selectedday);
+//                        SimpleDateFormat sdf = new SimpleDateFormat(CALANDER_DATE_FORMATE, Locale.FRANCE);
+//                        String formatedDate = sdf.format(myCalendar.getTime());
+//                        etapproveddate.setText(formatedDate);
+//                        fromDay = selectedday;
+//                        fromMonth = selectedmonth;
+//                        fromYear = selectedyear;
+//                        fromDate = Utility.convertFormatedDateToMilliSeconds(formatedDate, CALANDER_DATE_FORMATE);
+//
+//                    }
+//                }, fromYear, fromMonth, fromDay);
+//                mDatePicker.show();
+//            }
+//        });
 
         getdata();
 
@@ -162,6 +194,13 @@ public class Add_Updatelead__Full_disbuss_Activity extends AppCompatActivity imp
         });
 
 
+    }
+
+    private void setFromCurrentDate() {
+        Calendar mcurrentDate = Calendar.getInstance();
+        fromYear = mcurrentDate.get(Calendar.YEAR);
+        fromMonth = mcurrentDate.get(Calendar.MONTH);
+        fromDay = mcurrentDate.get(Calendar.DAY_OF_MONTH);
     }
 
 
@@ -226,7 +265,7 @@ public class Add_Updatelead__Full_disbuss_Activity extends AppCompatActivity imp
             }
 
             if (Approved != null) {
-                etdissbuss.setText(Approved);
+                etaprovedloanamt.setText(Approved);
             }
 
             if (dissbuss != null) {

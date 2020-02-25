@@ -499,6 +499,7 @@
                                 android:background="@drawable/edittextanimation"
                                 android:inputType="date"
                                 android:padding="10dp"
+                                android:focusable="false"
                                 android:text=""
                                 android:textColor="@color/mainTextColor"
                                 android:textSize="14dp" />
