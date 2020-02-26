@@ -35,7 +35,7 @@ import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.STATUS_
 
 public class Add_Updatelead__Partiali_disbuss_Activity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     Spinner spinloantype, spinemptype, spinincome;
-    Button btupdate, btverify, btnfail, btnnext;
+    Button btupdate, btverify,  btnnext;
     LeedsModel invoice;
     ProgressDialogClass progressDialogClass;
     AppSharedPreference appSharedPreference;
@@ -81,7 +81,7 @@ public class Add_Updatelead__Partiali_disbuss_Activity extends AppCompatActivity
         btnnext = (Button) findViewById(R.id.buttonupdatenext);
         btverify = (Button) findViewById(R.id.buttonverify);
         btverify.setText("FULL_DISBUSS");
-        btnfail = (Button) findViewById(R.id.buttonfail);
+//        btnfail = (Button) findViewById(R.id.buttonfail);
 
         txtleadid = (TextView) findViewById(R.id.textheader);
         etcname = (EditText) findViewById(R.id.txtcamevalue);
@@ -157,16 +157,6 @@ public class Add_Updatelead__Partiali_disbuss_Activity extends AppCompatActivity
 
             }
         });
-
-
-        btnfail.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-
-//                setLeedStatus2(invoice);
-
-            }
-        });
-
 
     }
 

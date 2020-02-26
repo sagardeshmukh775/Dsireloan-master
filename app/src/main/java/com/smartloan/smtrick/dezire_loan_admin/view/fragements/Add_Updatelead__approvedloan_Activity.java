@@ -37,8 +37,7 @@ import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.STATUS_
 import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.STATUS_REJECTED;
 
 public class Add_Updatelead__approvedloan_Activity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
-    Spinner spinloantype, spinemptype, spinincome;
-    Button btupdate, btverify, btnsendinvoice, btnnext;
+    Button   btnsendinvoice, btnnext;
     LeedsModel invoice;
     ProgressDialogClass progressDialogClass;
     AppSharedPreference appSharedPreference;
@@ -78,8 +77,6 @@ public class Add_Updatelead__approvedloan_Activity extends AppCompatActivity imp
         progressDialogClass = new ProgressDialogClass(this);
         invoiceRepository = new InvoiceRepositoryImpl();
         appSharedPreference = new AppSharedPreference(this);
-        String[] loanType = new String[]{"HL", "LAP"};
-        String[] empType = new String[]{"Salaried", "Businessman"};
 
         NotesList = new ArrayList<>();
 

@@ -164,9 +164,9 @@ public class Admin__Rejected_leed_Fragment extends Fragment {
             @Override
             public void onClick(View view, int position) {
                 LeedsModel invoice = getModel(position);
-                Intent intent = new Intent(getActivity(), Add_Updatelead_C_Details_Activity.class);
-                intent.putExtra(INVICES_LEEDS, invoice);
-                startActivity(intent);
+//                Intent intent = new Intent(getActivity(), Add_Updatelead_C_Details_Activity.class);
+//                intent.putExtra(INVICES_LEEDS, invoice);
+//                startActivity(intent);
             }
 
             @Override

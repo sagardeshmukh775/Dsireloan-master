@@ -590,19 +590,19 @@
                             android:orientation="horizontal"
                             android:weightSum="100">
 
-                            <Button
-                                android:id="@+id/buttonfail"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="5dp"
-                                android:layout_toRightOf="@+id/buttonverify"
-                                android:background="@color/buttoncolour"
-                                android:padding="10dp"
-                                android:text="REJECT"
-                                android:textColor="#ffffff"
-                                android:textSize="16sp"
-                                android:layout_weight="50"
-                                android:textStyle="normal|bold" />
+<!--                            <Button-->
+<!--                                android:id="@+id/buttonfail"-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_margin="5dp"-->
+<!--                                android:layout_toRightOf="@+id/buttonverify"-->
+<!--                                android:background="@color/buttoncolour"-->
+<!--                                android:padding="10dp"-->
+<!--                                android:text="REJECT"-->
+<!--                                android:textColor="#ffffff"-->
+<!--                                android:textSize="16sp"-->
+<!--                                android:layout_weight="50"-->
+<!--                                android:textStyle="normal|bold" />-->
                             <Button
                                 android:id="@+id/buttonClose"
                                 android:layout_width="match_parent"
@@ -615,7 +615,7 @@
                                 android:text="CLOSE"
                                 android:textColor="#ffffff"
                                 android:textSize="16sp"
-                                android:layout_weight="50"
+                                android:layout_weight="100"
                                 android:textStyle="normal|bold" />
 
                         </LinearLayout>

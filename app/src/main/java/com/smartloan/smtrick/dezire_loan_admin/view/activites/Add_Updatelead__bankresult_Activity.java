@@ -33,8 +33,7 @@ import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.STATUS_
 import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.STATUS_REJECTED;
 
 public class Add_Updatelead__bankresult_Activity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
-    Spinner spinloantype, spinemptype, spinincome;
-    Button btupdate, btverify, btnfail, btnnext;
+    Button btupdate, btverify,  btnnext;
     LeedsModel invoice;
     ProgressDialogClass progressDialogClass;
     AppSharedPreference appSharedPreference;
@@ -71,14 +70,11 @@ public class Add_Updatelead__bankresult_Activity extends AppCompatActivity imple
         progressDialogClass = new ProgressDialogClass(this);
         invoiceRepository = new InvoiceRepositoryImpl();
         appSharedPreference = new AppSharedPreference(this);
-        String[] loanType = new String[]{"HL", "LAP"};
-        String[] empType = new String[]{"Salaried", "Businessman"};
 
         NotesList = new ArrayList<>();
 
         btnnext = (Button) findViewById(R.id.buttonupdatenext);
         btverify = (Button) findViewById(R.id.buttonverify);
-        btnfail = (Button) findViewById(R.id.buttonfail);
 
         txtleadid = (TextView) findViewById(R.id.textheader);
         etcname = (EditText) findViewById(R.id.txtcamevalue);
@@ -128,7 +124,6 @@ public class Add_Updatelead__bankresult_Activity extends AppCompatActivity imple
             }
         });
 
-
         getdata();
 
 
@@ -137,35 +132,6 @@ public class Add_Updatelead__bankresult_Activity extends AppCompatActivity imple
                 setLeedStatus(invoice);
             }
         });
-
-
-        btnfail.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-
-                final Dialog dialog = new Dialog(Add_Updatelead__bankresult_Activity.this);
-                dialog.setContentView(R.layout.confermationdialog);
-                Button Yes = (Button) dialog.findViewById(R.id.dialogButtonYes);
-                Button No = (Button) dialog.findViewById(R.id.dialogButtonNo);
-
-                Yes.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        setLeedStatus2(invoice);
-                    }
-                });
-                No.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        dialog.dismiss();
-                    }
-                });
-
-                dialog.show();
-
-
-            }
-        });
-
 
     }
 
@@ -250,11 +216,6 @@ public class Add_Updatelead__bankresult_Activity extends AppCompatActivity imple
 
     private void setLeedStatus(LeedsModel invoice) {
         invoice.setStatus(STATUS_APPROVED);
-        updateLeed(invoice.getLeedId(), invoice.getLeedStatusMap1());
-    }
-
-    private void setLeedStatus2(LeedsModel invoice) {
-        invoice.setStatus(STATUS_REJECTED);
         updateLeed(invoice.getLeedId(), invoice.getLeedStatusMap1());
     }
 
