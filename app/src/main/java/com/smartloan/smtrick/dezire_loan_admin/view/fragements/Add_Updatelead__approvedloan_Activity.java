@@ -53,11 +53,11 @@ public class Add_Updatelead__approvedloan_Activity extends AppCompatActivity imp
 
     EditText etbankname, etdate, etexloanamount, etcname, etaddress, etloantype, etagentname,
             etdissbuss, etcontatct, etalternatecontact, etbirthdate, etpanno, etadharno,
-            etoccupation, etincome, etexammount, etgenerated, etdisburseamt, etpaymentdate, etcommition,etNote;
+            etoccupation, etincome, etexammount, etgenerated, etdisburseamt, etpaymentdate, etcommition;
 
     String cExloanamount, cApproved, cDisbuss, cLeedNumber, cBankname, cNmae, cAdress, cLoantype,
             cAgentname, cAgentid, cContatct, cAltcontatct, cBdate, cPanno, cAdharno,
-            cIncome, cExamount, cLeedid, cApproveddate, cPayment, cCommission,cNote;
+            cIncome, cExamount, cLeedid, cApproveddate, cPaymentDate, cCommissionamt,cNote;
 
     TextView txtldate, txtleadid;
     ArrayList<String> NotesList;
@@ -109,7 +109,6 @@ public class Add_Updatelead__approvedloan_Activity extends AppCompatActivity imp
         etdisburseamt = (EditText) findViewById(R.id.txtdissamountvalue1);
         etpaymentdate = (EditText) findViewById(R.id.txtpaymentdate1);
         etcommition = (EditText) findViewById(R.id.txtcommition1);
-        etNote = (EditText) findViewById(R.id.txtnotevalue);
 
         setFromCurrentDate();
         etpaymentdate.setOnClickListener(new View.OnClickListener() {
@@ -147,22 +146,17 @@ public class Add_Updatelead__approvedloan_Activity extends AppCompatActivity imp
                 cAgentname = etagentname.getText().toString();
                 cBankname = etbankname.getText().toString();
                 cApproved = etdissbuss.getText().toString();
-                cPayment = etpaymentdate.getText().toString();
-                cCommission = etcommition.getText().toString();
+                cPaymentDate = etpaymentdate.getText().toString();
+                cCommissionamt = etcommition.getText().toString();
                 cDisbuss = etdisburseamt.getText().toString();
-                cNote = etNote.getText().toString();
 
-                if (!TextUtils.isEmpty(cNote)) {
-                    NotesList.add(cNote);
-                }
+                updateLeadDetails(invoice);
+                Toast.makeText(Add_Updatelead__approvedloan_Activity.this, "Lead Update Successfully", Toast.LENGTH_SHORT).show();
 
-//                updateLeadDetails(invoice);
-//                Toast.makeText(Add_Updatelead__approvedloan_Activity.this, "Lead Update Successfully", Toast.LENGTH_SHORT).show();
-//
-//                Intent i = new Intent(Add_Updatelead__approvedloan_Activity.this, MainActivity.class);
-//                i.putExtra(INVICES_LEEDS, invoice);
-//                startActivity(i);
-//                overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+                Intent i = new Intent(Add_Updatelead__approvedloan_Activity.this, MainActivity.class);
+                i.putExtra(INVICES_LEEDS, invoice);
+                startActivity(i);
+                overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
 
             }
         });
@@ -185,8 +179,8 @@ public class Add_Updatelead__approvedloan_Activity extends AppCompatActivity imp
                         cExloanamount = etexloanamount.getText().toString();
                         cAgentname = etagentname.getText().toString();
                         cApproved = etdissbuss.getText().toString();
-                        cPayment = etpaymentdate.getText().toString();
-                        cCommission = etcommition.getText().toString();
+                        cPaymentDate = etpaymentdate.getText().toString();
+                        cCommissionamt = etcommition.getText().toString();
                         cDisbuss = etdisburseamt.getText().toString();
                         cApproveddate = invoice.getApprovedDate();
 
@@ -331,11 +325,9 @@ public class Add_Updatelead__approvedloan_Activity extends AppCompatActivity imp
         invoice.setBankName(cBankname);
         invoice.setApprovedLoan(cApproved);
         invoice.setdissbussloan(cDisbuss);
-        invoice.setPaymentDate(cPayment);
-        invoice.setCommission(cCommission);
-        if(NotesList != null) {
-            invoice.setNotes(NotesList);
-        }
+        invoice.setPaymentDate(cPaymentDate);
+        invoice.setCommission(cCommissionamt);
+
         updateLeed(invoice.getLeedId(), invoice.getLeedStatusMap());
     }
 
@@ -350,8 +342,8 @@ public class Add_Updatelead__approvedloan_Activity extends AppCompatActivity imp
         invoice.setApprovedDate(cApproveddate);
         invoice.setApprovedLoan(cApproved);
         invoice.setDissbussLoan(cDisbuss);
-        invoice.setPaymentDate(cPayment);
-        invoice.setCommission(cCommission);
+        invoice.setPaymentDate(cPaymentDate);
+        invoice.setCommission(cCommissionamt);
         invoice.setExpectedLoanAmount(cExloanamount);
         invoice.setStatus("PENDING");
 
