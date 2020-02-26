@@ -494,7 +494,7 @@
                             android:layout_height="wrap_content"
                             android:background="@color/buttoncolour"
                             android:layout_toRightOf="@+id/buttonverify"
-                            android:text="SUBMITED"
+                            android:text="REJECT"
                             android:padding="10dp"
                             android:layout_margin="5dp"
                             android:textColor="#ffffff"
