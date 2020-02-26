@@ -191,7 +191,7 @@ public class Invoice_Details_Activity extends AppCompatActivity implements Adapt
         invoiceRepository.updateInvoice(leedId, leedsMap, new CallBack() {
             @Override
             public void onSuccess(Object object) {
-               Toast.makeText(Invoice_Details_Activity.this, "Lead Verify Successfully", Toast.LENGTH_SHORT).show();
+               Toast.makeText(Invoice_Details_Activity.this, "Paid", Toast.LENGTH_SHORT).show();
                 progressDialogClass.dismissDialog();
 
                 Intent i = new Intent(Invoice_Details_Activity.this, MainActivity.class);

@@ -346,6 +346,8 @@ public class Add_Updatelead__approvedloan_Activity extends AppCompatActivity imp
         invoice.setCommission(cCommissionamt);
         invoice.setExpectedLoanAmount(cExloanamount);
         invoice.setStatus("PENDING");
+        String uploadId = mDatabase.push().getKey();
+        invoice.setLeedId(uploadId);
 
         return invoice;
     }
@@ -390,8 +392,8 @@ public class Add_Updatelead__approvedloan_Activity extends AppCompatActivity imp
 //                }
 //            });
 
-        String uploadId = mDatabase.push().getKey();
-        mDatabase.child(uploadId).setValue(invoice1);
+
+        mDatabase.child(invoice1.getLeedId()).setValue(invoice1);
 
     }
 
