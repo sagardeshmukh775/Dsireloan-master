@@ -197,6 +197,7 @@ public class Invoice_Details_Activity extends AppCompatActivity implements Adapt
                 Intent i = new Intent(Invoice_Details_Activity.this, MainActivity.class);
                 startActivity(i);
                 overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+
             }
 
             @Override
