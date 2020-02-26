@@ -1,5 +1,6 @@
 package com.smartloan.smtrick.dezire_loan_admin.view.fragements;
 
+import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -28,9 +30,13 @@ import com.smartloan.smtrick.dezire_loan_admin.view.activites.Add_Updatelead__In
 import com.smartloan.smtrick.dezire_loan_admin.view.activites.MainActivity;
 import com.smartloan.smtrick.dezire_loan_admin.view.dialog.ProgressDialogClass;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Locale;
 import java.util.Map;
 
+import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.CALANDER_DATE_FORMATE;
 import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.GLOBAL_DATE_FORMATE;
 import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.INVICES_LEEDS;
 import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.STATUS_APPROVED;
@@ -55,6 +61,10 @@ public class Add_Updatelead__approvedloan_Activity extends AppCompatActivity imp
 
     TextView txtldate, txtleadid;
     ArrayList<String> NotesList;
+
+    int fromYear, fromMonth, fromDay;
+    int toYear, toMonth, toDay;
+    long fromDate, toDate;
 
     @Override
     public boolean onSupportNavigateUp() {
@@ -101,6 +111,29 @@ public class Add_Updatelead__approvedloan_Activity extends AppCompatActivity imp
         etcommition = (EditText) findViewById(R.id.txtcommition1);
         etNote = (EditText) findViewById(R.id.txtnotevalue);
 
+        setFromCurrentDate();
+        etpaymentdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatePickerDialog mDatePicker = new DatePickerDialog(Add_Updatelead__approvedloan_Activity.this, new DatePickerDialog.OnDateSetListener() {
+                    public void onDateSet(DatePicker datepicker, int selectedyear, int selectedmonth, int selectedday) {
+                        Calendar myCalendar = Calendar.getInstance();
+                        myCalendar.set(Calendar.YEAR, selectedyear);
+                        myCalendar.set(Calendar.MONTH, selectedmonth);
+                        myCalendar.set(Calendar.DAY_OF_MONTH, selectedday);
+                        SimpleDateFormat sdf = new SimpleDateFormat(CALANDER_DATE_FORMATE, Locale.FRANCE);
+                        String formatedDate = sdf.format(myCalendar.getTime());
+                        etpaymentdate.setText(formatedDate);
+                        fromDay = selectedday;
+                        fromMonth = selectedmonth;
+                        fromYear = selectedyear;
+                        fromDate = Utility.convertFormatedDateToMilliSeconds(formatedDate, CALANDER_DATE_FORMATE);
+
+                    }
+                }, fromYear, fromMonth, fromDay);
+                mDatePicker.show();
+            }
+        });
 
         btnnext.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -184,6 +217,13 @@ public class Add_Updatelead__approvedloan_Activity extends AppCompatActivity imp
         getdata();
 
 
+    }
+
+    private void setFromCurrentDate() {
+        Calendar mcurrentDate = Calendar.getInstance();
+        fromYear = mcurrentDate.get(Calendar.YEAR);
+        fromMonth = mcurrentDate.get(Calendar.MONTH);
+        fromDay = mcurrentDate.get(Calendar.DAY_OF_MONTH);
     }
 
     private void getdata() {

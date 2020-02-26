@@ -33,6 +33,7 @@ import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.STATUS_
 import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.STATUS_REJECTED;
 
 public class Add_Updatelead__bankresult_Activity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+
     Button btupdate, btverify,  btnnext;
     LeedsModel invoice;
     ProgressDialogClass progressDialogClass;
@@ -40,7 +41,7 @@ public class Add_Updatelead__bankresult_Activity extends AppCompatActivity imple
     InvoiceRepository invoiceRepository;
     ArrayList<LeedsModel> leedsModelArrayList;
     EditText etbankname, etdate, etexloanamount, etcname, etaddress, etloantype, etagentname,
-            etdissbuss, etcontatct, etalternatecontact, etapproveddate, etpanno, etadharno,
+            etapprovedamt,etapproveddate, etcontatct, etalternatecontact,  etpanno, etadharno,
             etoccupation, etincome, etexammount, etgenerated, etdescription;
     String cExloanamount, cApproved, cDissbus, cDate, cBankname, cNmae, cAdress, cLoantype,
             cAgentname, cOffaddress, cContatct, cAltcontatct, cApproveddate, cPanno, cAdharno,
@@ -86,9 +87,9 @@ public class Add_Updatelead__bankresult_Activity extends AppCompatActivity imple
         etexloanamount = (EditText) findViewById(R.id.txtexloanamountvalue);
         etdate = (EditText) findViewById(R.id.txtdatevalue);
         etbankname = (EditText) findViewById(R.id.txtbankvalue);
-        etdissbuss = (EditText) findViewById(R.id.txtdissamountvalue);
+        etapprovedamt = (EditText) findViewById(R.id.txtapprovedamountvalue);
         etdissbussAmt = (EditText) findViewById(R.id.txtdissamountvalue1);
-        etapproveddate = (EditText) findViewById(R.id.txtapproveddate1);
+        etapproveddate = (EditText) findViewById(R.id.txtapproveddatevalue);
         etNote = (EditText) findViewById(R.id.txtnotevalue);
 
         btnnext.setOnClickListener(new View.OnClickListener() {
@@ -102,7 +103,7 @@ public class Add_Updatelead__bankresult_Activity extends AppCompatActivity imple
                 cExloanamount = etexloanamount.getText().toString();
                 cDate = etdate.getText().toString();
                 cBankname = etbankname.getText().toString();
-                cApproved = etdissbuss.getText().toString();
+                cApproved = etapprovedamt.getText().toString();
                 cDissbus = etdissbussAmt.getText().toString();
                 cApproveddate = etapproveddate.getText().toString();
                 cNote = etNote.getText().toString();
@@ -129,7 +130,27 @@ public class Add_Updatelead__bankresult_Activity extends AppCompatActivity imple
 
         btverify.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                setLeedStatus(invoice);
+
+                final Dialog dialog = new Dialog(Add_Updatelead__bankresult_Activity.this);
+                dialog.setContentView(R.layout.confermationdialog);
+                Button Yes = (Button) dialog.findViewById(R.id.dialogButtonYes);
+                Button No = (Button) dialog.findViewById(R.id.dialogButtonNo);
+
+                Yes.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        setLeedStatus(invoice);
+                    }
+                });
+                No.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+
+                dialog.show();
+
             }
         });
 
@@ -197,7 +218,7 @@ public class Add_Updatelead__bankresult_Activity extends AppCompatActivity imple
             }
 
             if (Approved != null) {
-                etdissbuss.setText(Approved);
+                etapprovedamt.setText(Approved);
             }
 
             if (dissbuss != null) {

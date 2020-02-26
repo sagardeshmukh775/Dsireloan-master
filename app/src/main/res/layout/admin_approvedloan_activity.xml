@@ -496,6 +496,7 @@
                             android:layout_toRightOf="@+id/txtpaymentdate"
                             android:background="@drawable/edittextanimation"
                             android:padding="10dp"
+                            android:focusable="false"
                             android:text=""
                             android:inputType="date"
                             android:textColor="@color/mainTextColor"
@@ -531,6 +532,7 @@
                             android:background="@drawable/edittextanimation"
                             android:padding="10dp"
                             android:text=""
+                            android:inputType="number"
                             android:textColor="@color/mainTextColor"
                             android:textSize="14dp" />
                     </RelativeLayout>
