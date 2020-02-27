@@ -402,113 +402,113 @@
                             android:textSize="14dp" />
                     </RelativeLayout>
 
-                    <RelativeLayout
-                        android:id="@+id/layoutdesbussamount"
-                        android:layout_width="match_parent"
-                        android:layout_below="@+id/layoutbank"
-                        android:layout_height="fill_parent"
-                        android:layout_gravity="center_horizontal"
-                        android:gravity="center_vertical">
+<!--                    <RelativeLayout-->
+<!--                        android:id="@+id/layoutdesbussamount"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_below="@+id/layoutbank"-->
+<!--                        android:layout_height="fill_parent"-->
+<!--                        android:layout_gravity="center_horizontal"-->
+<!--                        android:gravity="center_vertical">-->
 
-                        <TextView
-                            android:id="@+id/txtapprovedamount"
-                            android:layout_width="150dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="5dp"
-                            android:layout_marginTop="5dp"
-                            android:padding="10dp"
-                            android:text="Approved Ammount"
-                            android:textColor="@color/darkgraycolor"
-                            android:textSize="14dp" />
+<!--                        <TextView-->
+<!--                            android:id="@+id/txtapprovedamount"-->
+<!--                            android:layout_width="150dp"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginBottom="5dp"-->
+<!--                            android:layout_marginTop="5dp"-->
+<!--                            android:padding="10dp"-->
+<!--                            android:text="Approved Ammount"-->
+<!--                            android:textColor="@color/darkgraycolor"-->
+<!--                            android:textSize="14dp" />-->
 
-                        <EditText
-                            android:id="@+id/txtapprovedamountvalue"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="5dp"
-                            android:layout_marginTop="5dp"
-                            android:layout_toRightOf="@+id/txtapprovedamount"
-                            android:background="@drawable/edittextanimation"
-                            android:padding="10dp"
-                            android:text=""
-                            android:inputType="number"
-                            android:textColor="@color/mainTextColor"
-                            android:textSize="14dp" />
-                    </RelativeLayout>
+<!--                        <EditText-->
+<!--                            android:id="@+id/txtapprovedamountvalue"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginBottom="5dp"-->
+<!--                            android:layout_marginTop="5dp"-->
+<!--                            android:layout_toRightOf="@+id/txtapprovedamount"-->
+<!--                            android:background="@drawable/edittextanimation"-->
+<!--                            android:padding="10dp"-->
+<!--                            android:text=""-->
+<!--                            android:inputType="number"-->
+<!--                            android:textColor="@color/mainTextColor"-->
+<!--                            android:textSize="14dp" />-->
+<!--                    </RelativeLayout>-->
 
-                    <RelativeLayout
-                        android:id="@+id/layoutdesbussamount1"
-                        android:layout_width="match_parent"
-                        android:layout_below="@+id/layoutdesbussamount"
-                        android:layout_height="fill_parent"
-                        android:layout_gravity="center_horizontal"
-                        android:gravity="center_vertical">
+<!--                    <RelativeLayout-->
+<!--                        android:id="@+id/layoutdesbussamount1"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_below="@+id/layoutdesbussamount"-->
+<!--                        android:layout_height="fill_parent"-->
+<!--                        android:layout_gravity="center_horizontal"-->
+<!--                        android:gravity="center_vertical">-->
 
-                        <TextView
-                            android:id="@+id/txtdissamount1"
-                            android:layout_width="150dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="5dp"
-                            android:layout_marginTop="5dp"
-                            android:padding="10dp"
-                            android:text="Disbuss Ammount"
-                            android:textColor="@color/darkgraycolor"
-                            android:textSize="14dp" />
+<!--                        <TextView-->
+<!--                            android:id="@+id/txtdissamount1"-->
+<!--                            android:layout_width="150dp"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginBottom="5dp"-->
+<!--                            android:layout_marginTop="5dp"-->
+<!--                            android:padding="10dp"-->
+<!--                            android:text="Disbuss Ammount"-->
+<!--                            android:textColor="@color/darkgraycolor"-->
+<!--                            android:textSize="14dp" />-->
 
-                        <EditText
-                            android:id="@+id/txtdissamountvalue1"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="5dp"
-                            android:layout_marginTop="5dp"
-                            android:layout_toRightOf="@+id/txtdissamount1"
-                            android:background="@drawable/edittextanimation"
-                            android:padding="10dp"
-                            android:text=""
-                            android:inputType="number"
-                            android:textColor="@color/mainTextColor"
-                            android:textSize="14dp" />
-                    </RelativeLayout>
+<!--                        <EditText-->
+<!--                            android:id="@+id/txtdissamountvalue1"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginBottom="5dp"-->
+<!--                            android:layout_marginTop="5dp"-->
+<!--                            android:layout_toRightOf="@+id/txtdissamount1"-->
+<!--                            android:background="@drawable/edittextanimation"-->
+<!--                            android:padding="10dp"-->
+<!--                            android:text=""-->
+<!--                            android:inputType="number"-->
+<!--                            android:textColor="@color/mainTextColor"-->
+<!--                            android:textSize="14dp" />-->
+<!--                    </RelativeLayout>-->
 
-                    <RelativeLayout
-                        android:id="@+id/layoutapproveddate"
-                        android:layout_width="match_parent"
-                        android:layout_below="@+id/layoutdesbussamount1"
-                        android:layout_height="fill_parent"
-                        android:layout_gravity="center_horizontal"
-                        android:gravity="center_vertical">
+<!--                    <RelativeLayout-->
+<!--                        android:id="@+id/layoutapproveddate"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_below="@+id/layoutdesbussamount1"-->
+<!--                        android:layout_height="fill_parent"-->
+<!--                        android:layout_gravity="center_horizontal"-->
+<!--                        android:gravity="center_vertical">-->
 
-                        <TextView
-                            android:id="@+id/txtapproveddate"
-                            android:layout_width="150dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="5dp"
-                            android:layout_marginTop="5dp"
-                            android:padding="10dp"
-                            android:text="Approved Date"
-                            android:textColor="@color/darkgraycolor"
-                            android:textSize="14dp" />
+<!--                        <TextView-->
+<!--                            android:id="@+id/txtapproveddate"-->
+<!--                            android:layout_width="150dp"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginBottom="5dp"-->
+<!--                            android:layout_marginTop="5dp"-->
+<!--                            android:padding="10dp"-->
+<!--                            android:text="Approved Date"-->
+<!--                            android:textColor="@color/darkgraycolor"-->
+<!--                            android:textSize="14dp" />-->
 
-                        <EditText
-                            android:id="@+id/txtapproveddate1"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="5dp"
-                            android:layout_marginTop="5dp"
-                            android:layout_toRightOf="@+id/txtapproveddate"
-                            android:background="@drawable/edittextanimation"
-                            android:padding="10dp"
-                            android:text=""
-                            android:focusable="false"
-                            android:inputType="date"
-                            android:textColor="@color/mainTextColor"
-                            android:textSize="14dp" />
-                    </RelativeLayout>
+<!--                        <EditText-->
+<!--                            android:id="@+id/txtapproveddate1"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginBottom="5dp"-->
+<!--                            android:layout_marginTop="5dp"-->
+<!--                            android:layout_toRightOf="@+id/txtapproveddate"-->
+<!--                            android:background="@drawable/edittextanimation"-->
+<!--                            android:padding="10dp"-->
+<!--                            android:text=""-->
+<!--                            android:focusable="false"-->
+<!--                            android:inputType="date"-->
+<!--                            android:textColor="@color/mainTextColor"-->
+<!--                            android:textSize="14dp" />-->
+<!--                    </RelativeLayout>-->
 
                     <RelativeLayout
                         android:id="@+id/layoutnote"
                         android:layout_width="match_parent"
-                        android:layout_below="@+id/layoutapproveddate"
+                        android:layout_below="@+id/layoutbank"
                         android:layout_height="fill_parent"
                         android:layout_gravity="center_horizontal"
                         android:gravity="center_vertical">

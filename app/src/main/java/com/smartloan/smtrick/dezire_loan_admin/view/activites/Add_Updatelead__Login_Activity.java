@@ -108,9 +108,9 @@ public class Add_Updatelead__Login_Activity extends AppCompatActivity implements
         etexloanamount = (EditText) findViewById(R.id.txtexloanamountvalue);
         etdate = (EditText) findViewById(R.id.txtdatevalue);
         etbankname = (EditText) findViewById(R.id.txtbankvalue);
-        etApprovedamt = (EditText) findViewById(R.id.txtapprovedamountvalue);
-        etdissbussAmt = (EditText) findViewById(R.id.txtdissamountvalue1);
-        etapproveddate = (EditText) findViewById(R.id.txtapproveddate1);
+//        etApprovedamt = (EditText) findViewById(R.id.txtapprovedamountvalue);
+//        etdissbussAmt = (EditText) findViewById(R.id.txtdissamountvalue1);
+//        etapproveddate = (EditText) findViewById(R.id.txtapproveddate1);
         etNote = (EditText) findViewById(R.id.txtnotevalue);
 
         btnnext.setOnClickListener(new View.OnClickListener() {
@@ -124,9 +124,9 @@ public class Add_Updatelead__Login_Activity extends AppCompatActivity implements
                 cExloanamount = etexloanamount.getText().toString();
                 cDate = etdate.getText().toString();
                 cBankname = etbankname.getText().toString();
-                cApproved = etApprovedamt.getText().toString();
-                cDissbus = etdissbussAmt.getText().toString();
-                cApproveddate = etapproveddate.getText().toString();
+//                cApproved = etApprovedamt.getText().toString();
+//                cDissbus = etdissbussAmt.getText().toString();
+//                cApproveddate = etapproveddate.getText().toString();
                 cNote = etNote.getText().toString();
 
                 if (!TextUtils.isEmpty(cNote)) {
@@ -147,29 +147,29 @@ public class Add_Updatelead__Login_Activity extends AppCompatActivity implements
 
         getdata();
 
-        setFromCurrentDate();
-        etapproveddate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DatePickerDialog mDatePicker = new DatePickerDialog(Add_Updatelead__Login_Activity.this, new DatePickerDialog.OnDateSetListener() {
-                    public void onDateSet(DatePicker datepicker, int selectedyear, int selectedmonth, int selectedday) {
-                        Calendar myCalendar = Calendar.getInstance();
-                        myCalendar.set(Calendar.YEAR, selectedyear);
-                        myCalendar.set(Calendar.MONTH, selectedmonth);
-                        myCalendar.set(Calendar.DAY_OF_MONTH, selectedday);
-                        SimpleDateFormat sdf = new SimpleDateFormat(CALANDER_DATE_FORMATE, Locale.FRANCE);
-                        String formatedDate = sdf.format(myCalendar.getTime());
-                        etapproveddate.setText(formatedDate);
-                        fromDay = selectedday;
-                        fromMonth = selectedmonth;
-                        fromYear = selectedyear;
-                        fromDate = Utility.convertFormatedDateToMilliSeconds(formatedDate, CALANDER_DATE_FORMATE);
-
-                    }
-                }, fromYear, fromMonth, fromDay);
-                mDatePicker.show();
-            }
-        });
+//        setFromCurrentDate();
+//        etapproveddate.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                DatePickerDialog mDatePicker = new DatePickerDialog(Add_Updatelead__Login_Activity.this, new DatePickerDialog.OnDateSetListener() {
+//                    public void onDateSet(DatePicker datepicker, int selectedyear, int selectedmonth, int selectedday) {
+//                        Calendar myCalendar = Calendar.getInstance();
+//                        myCalendar.set(Calendar.YEAR, selectedyear);
+//                        myCalendar.set(Calendar.MONTH, selectedmonth);
+//                        myCalendar.set(Calendar.DAY_OF_MONTH, selectedday);
+//                        SimpleDateFormat sdf = new SimpleDateFormat(CALANDER_DATE_FORMATE, Locale.FRANCE);
+//                        String formatedDate = sdf.format(myCalendar.getTime());
+//                        etapproveddate.setText(formatedDate);
+//                        fromDay = selectedday;
+//                        fromMonth = selectedmonth;
+//                        fromYear = selectedyear;
+//                        fromDate = Utility.convertFormatedDateToMilliSeconds(formatedDate, CALANDER_DATE_FORMATE);
+//
+//                    }
+//                }, fromYear, fromMonth, fromDay);
+//                mDatePicker.show();
+//            }
+//        });
 
         btverify.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -275,9 +275,9 @@ public class Add_Updatelead__Login_Activity extends AppCompatActivity implements
             Long ldatetime = invoice.getCreatedDateTimeLong();
             String strdate = Long.toString(ldatetime);
             String sbank = invoice.getBankName();
-            String Approved = invoice.getApprovedLoan();
-            String dissbuss = invoice.getDissbussloan();
-            String approveddate = invoice.getApprovedDate();
+//            String Approved = invoice.getApprovedLoan();
+//            String dissbuss = invoice.getDissbussloan();
+//            String approveddate = invoice.getApprovedDate();
 
             if (invoice.getNotes() != null){
                 NotesList = invoice.getNotes();
@@ -320,17 +320,17 @@ public class Add_Updatelead__Login_Activity extends AppCompatActivity implements
                 etbankname.setText(sbank);
             }
 
-            if (Approved != null) {
-                etApprovedamt.setText(Approved);
-            }
-
-            if (dissbuss != null) {
-                etdissbussAmt.setText(dissbuss);
-            }
-
-            if (approveddate != null) {
-                etapproveddate.setText(approveddate);
-            }
+//            if (Approved != null) {
+//                etApprovedamt.setText(Approved);
+//            }
+//
+//            if (dissbuss != null) {
+//                etdissbussAmt.setText(dissbuss);
+//            }
+//
+//            if (approveddate != null) {
+//                etapproveddate.setText(approveddate);
+//            }
 
         } catch (Exception e) {
         }
@@ -362,9 +362,9 @@ public class Add_Updatelead__Login_Activity extends AppCompatActivity implements
         invoice.setAgentName(cAgentname);
         invoice.setExpectedLoanAmount(cExloanamount);
         invoice.setBankName(cBankname);
-        invoice.setApprovedLoan(cApproved);
-        invoice.setdissbussloan(cDissbus);
-        invoice.setApprovedDate(cApproveddate);
+//        invoice.setApprovedLoan(cApproved);
+//        invoice.setdissbussloan(cDissbus);
+//        invoice.setApprovedDate(cApproveddate);
         if(NotesList != null) {
             invoice.setNotes(NotesList);
         }

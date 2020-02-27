@@ -95,9 +95,9 @@ public class Add_Updatelead__DockPickup_Activity extends AppCompatActivity imple
                 cExloanamount = etexloanamount.getText().toString();
                 cDate = etdate.getText().toString();
                 cBankname = etbankname.getText().toString();
-                cApproved = etdissbuss.getText().toString();
-                cDissbus = etdissbussAmt.getText().toString();
-                cApproveddate = etapproveddate.getText().toString();
+//                cApproved = etdissbuss.getText().toString();
+//                cDissbus = etdissbussAmt.getText().toString();
+//                cApproveddate = etapproveddate.getText().toString();
                 cNote = etNote.getText().toString();
 
                 if (!TextUtils.isEmpty(cNote)) {
@@ -126,9 +126,9 @@ public class Add_Updatelead__DockPickup_Activity extends AppCompatActivity imple
         etexloanamount = (EditText) findViewById(R.id.txtexloanamountvalue);
         etdate = (EditText) findViewById(R.id.txtdatevalue);
         etbankname = (EditText) findViewById(R.id.txtbankvalue);
-        etdissbuss = (EditText) findViewById(R.id.txtdissamountvalue);
-        etdissbussAmt = (EditText) findViewById(R.id.txtdissamountvalue1);
-        etapproveddate = (EditText) findViewById(R.id.txtapproveddate1);
+//        etdissbuss = (EditText) findViewById(R.id.txtdissamountvalue);
+//        etdissbussAmt = (EditText) findViewById(R.id.txtdissamountvalue1);
+//        etapproveddate = (EditText) findViewById(R.id.txtapproveddate1);
         etNote = (EditText) findViewById(R.id.txtnotevalue);
         getdata();
 
@@ -232,9 +232,9 @@ public class Add_Updatelead__DockPickup_Activity extends AppCompatActivity imple
             Long ldatetime = invoice.getCreatedDateTimeLong();
             String strdate = Long.toString(ldatetime);
             String sbank = invoice.getBankName();
-            String Approved = invoice.getApprovedLoan();
-            String dissbuss = invoice.getDissbussloan();
-            String approveddate = invoice.getApprovedDate();
+//            String Approved = invoice.getApprovedLoan();
+//            String dissbuss = invoice.getDissbussloan();
+//            String approveddate = invoice.getApprovedDate();
 
             if (invoice.getNotes() != null){
                 NotesList = invoice.getNotes();
@@ -276,18 +276,18 @@ public class Add_Updatelead__DockPickup_Activity extends AppCompatActivity imple
             if (sbank != null) {
                 etbankname.setText(sbank);
             }
-
-            if (Approved != null) {
-                etdissbuss.setText(Approved);
-            }
-
-            if (dissbuss != null) {
-                etdissbussAmt.setText(dissbuss);
-            }
-
-            if (approveddate != null) {
-                etapproveddate.setText(approveddate);
-            }
+//
+//            if (Approved != null) {
+//                etdissbuss.setText(Approved);
+//            }
+//
+//            if (dissbuss != null) {
+//                etdissbussAmt.setText(dissbuss);
+//            }
+//
+//            if (approveddate != null) {
+//                etapproveddate.setText(approveddate);
+//            }
 
         } catch (Exception e) {
         }
@@ -319,9 +319,9 @@ public class Add_Updatelead__DockPickup_Activity extends AppCompatActivity imple
         invoice.setAgentName(cAgentname);
         invoice.setExpectedLoanAmount(cExloanamount);
         invoice.setBankName(cBankname);
-        invoice.setApprovedLoan(cApproved);
-        invoice.setdissbussloan(cDissbus);
-        invoice.setApprovedDate(cApproveddate);
+//        invoice.setApprovedLoan(cApproved);
+//        invoice.setdissbussloan(cDissbus);
+//        invoice.setApprovedDate(cApproveddate);
         if(NotesList != null) {
             invoice.setNotes(NotesList);
         }
