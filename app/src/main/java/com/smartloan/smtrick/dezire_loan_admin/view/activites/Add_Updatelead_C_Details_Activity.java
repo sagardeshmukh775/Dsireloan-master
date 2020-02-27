@@ -85,6 +85,19 @@ public class Add_Updatelead_C_Details_Activity extends AppCompatActivity impleme
         btReject = (Button) findViewById(R.id.buttonReject);
         btnClose = (Button) findViewById(R.id.buttonClose);
 
+        txtleadid = (TextView) findViewById(R.id.textheader);
+        etcname = (EditText) findViewById(R.id.txtcamevalue);
+        etaddress = (EditText) findViewById(R.id.txtcurrentaddressvalue);
+        etcontatct = (EditText) findViewById(R.id.txtcontatctvalue);
+        etalternatecontact = (EditText) findViewById(R.id.txtaltcontatctvalue);
+        etloantype = (EditText) findViewById(R.id.txtloantypevalue);
+        etagentname = (EditText) findViewById(R.id.txtgenbyvalue);
+        etexloanamount = (EditText) findViewById(R.id.txtexloanamountvalue);
+        etdate = (EditText) findViewById(R.id.txtdatevalue);
+        etdescription = (EditText) findViewById(R.id.txtnotevalue);
+        etemail = (EditText) findViewById(R.id.txtaltemailvalue);
+        etNote = (EditText) findViewById(R.id.txtnotevalue);
+
         btnnext.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 cNmae = etcname.getText().toString();
@@ -99,6 +112,18 @@ public class Add_Updatelead_C_Details_Activity extends AppCompatActivity impleme
                 cEmail = etemail.getText().toString();
                 cNote = etNote.getText().toString();
 
+                if (TextUtils.isEmpty(cEmail)) {
+                    etemail.setError("Email Required");
+                    return;
+                }
+                if (TextUtils.isEmpty(cContatct)) {
+                    etcontatct.setError("Contact Required");
+                    return;
+                }
+                if (TextUtils.isEmpty(cExloanamount)) {
+                    etexloanamount.setError("Loan Amount Required");
+                    return;
+                }
                 if (!TextUtils.isEmpty(cNote)) {
                     NotesList.add(cNote);
                 }
@@ -116,18 +141,7 @@ public class Add_Updatelead_C_Details_Activity extends AppCompatActivity impleme
         });
 
 
-        txtleadid = (TextView) findViewById(R.id.textheader);
-        etcname = (EditText) findViewById(R.id.txtcamevalue);
-        etaddress = (EditText) findViewById(R.id.txtcurrentaddressvalue);
-        etcontatct = (EditText) findViewById(R.id.txtcontatctvalue);
-        etalternatecontact = (EditText) findViewById(R.id.txtaltcontatctvalue);
-        etloantype = (EditText) findViewById(R.id.txtloantypevalue);
-        etagentname = (EditText) findViewById(R.id.txtgenbyvalue);
-        etexloanamount = (EditText) findViewById(R.id.txtexloanamountvalue);
-        etdate = (EditText) findViewById(R.id.txtdatevalue);
-        etdescription = (EditText) findViewById(R.id.txtnotevalue);
-        etemail = (EditText) findViewById(R.id.txtaltemailvalue);
-        etNote = (EditText) findViewById(R.id.txtnotevalue);
+
         getdata();
         getSupportActionBar().setTitle("");
 
