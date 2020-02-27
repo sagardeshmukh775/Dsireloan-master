@@ -70,6 +70,14 @@
                     android:textSize="14dp" />
 
                 <TextView
+                    android:id="@+id/txt_approved_ammount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Approved:"
+                    android:textColor="@color/darkgraycolor"
+                    android:textSize="14dp" />
+
+                <TextView
                     android:id="@+id/txt_agent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -116,7 +124,6 @@
                     android:layout_height="wrap_content"
                     android:text="C Name:"
                     android:singleLine="true"
-
                     android:textColor="@color/whitetextcolor"
                     android:textSize="14dp" />
 
@@ -126,7 +133,6 @@
                     android:layout_height="wrap_content"
                     android:text="Bank:"
                     android:singleLine="true"
-
                     android:textColor="@color/whitetextcolor"
                     android:textSize="14dp" />
 
@@ -136,7 +142,6 @@
                     android:layout_height="wrap_content"
                     android:text="LAP"
                     android:singleLine="true"
-
                     android:textColor="@color/whitetextcolor"
                     android:textSize="14dp" />
 
@@ -146,7 +151,15 @@
                     android:layout_height="wrap_content"
                     android:text="2000000"
                     android:singleLine="true"
+                    android:textColor="@color/whitetextcolor"
+                    android:textSize="14dp" />
 
+                <TextView
+                    android:id="@+id/txt_approved_amount_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2000000"
+                    android:singleLine="true"
                     android:textColor="@color/whitetextcolor"
                     android:textSize="14dp" />
 
@@ -156,7 +169,6 @@
                     android:layout_height="wrap_content"
                     android:text="AJ2211"
                     android:singleLine="true"
-
                     android:textColor="@color/whitetextcolor"
                     android:textSize="14dp" />
 
@@ -166,7 +178,6 @@
                     android:layout_height="wrap_content"
                     android:text="23/08/2018"
                     android:singleLine="true"
-
                     android:textColor="@color/whitetextcolor"
                     android:textSize="14dp" />
 

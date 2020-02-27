@@ -57,6 +57,10 @@ public class ReportLeedsAdapter extends RecyclerView.Adapter<LeedsViewHolder> {
                 holder.txtTotalAmount.setText(leedModel.getExpectedLoanAmount());
             else
                 holder.txtTotalAmount.setText(getString(R.string.na));
+            if (!Utility.isEmptyOrNull(leedModel.getApprovedLoan()))
+                holder.txtTotalApprovedAmount.setText(leedModel.getApprovedLoan());
+            else
+                holder.txtTotalApprovedAmount.setText(getString(R.string.na));
             if (!Utility.isEmptyOrNull(leedModel.getAgentId()))
                 holder.txtAgentID.setText(leedModel.getAgentId());
             else

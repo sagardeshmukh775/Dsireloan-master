@@ -143,13 +143,17 @@ public class MainActivity extends AppCompatActivity
         Fragment fragment = null;
         if (id == R.id.generateleads) {
             fragment = new Fragment5();
-        } else if (id == R.id.Leads) {
+        }
+        else if (id == R.id.Leads) {
             fragment = new InvoicesTabFragment();
-        } else if (id == R.id.Reports) {
+        }
+        else if (id == R.id.Reports) {
             fragment = new Fragment_Reports();
-        } else if (id == R.id.Calulator) {
+        }
+        else if (id == R.id.Calulator) {
             fragment = new Fragment_Calculator();
-        } else if (id == R.id.item_logout) {
+        }
+        else if (id == R.id.item_logout) {
             FirebaseAuth.getInstance().signOut();
             finish();
             appSharedPreference.clear();

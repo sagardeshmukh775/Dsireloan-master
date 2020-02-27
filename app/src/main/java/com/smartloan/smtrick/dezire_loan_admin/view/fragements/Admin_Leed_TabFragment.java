@@ -47,7 +47,6 @@ public class Admin_Leed_TabFragment extends Fragment {
         viewPagerAdapter.addFragement(new Admin__DocPickup_leed_Fragment(), "Dock_Pickup");
         viewPagerAdapter.addFragement(new Admin__Login_leed_Fragment(), "Login");
         viewPagerAdapter.addFragement(new Admin__Sanction_leed_Fragment(), "Sanction");
-//        viewPagerAdapter.addFragement(new Admin__Submitted_for_Disbuss_leed_Fragment(), "Full_Disbuss");
         viewPagerAdapter.addFragement(new Admin__Partialy_disbuss_leed_Fragment(), "Partialy_Disbuss");
         viewPagerAdapter.addFragement(new Admin__Full_disbuss_leed_Fragment(), "Full_Disbuss");
         viewPagerAdapter.addFragement(new Admin__submited_leed_Fragment(), "Submited");
