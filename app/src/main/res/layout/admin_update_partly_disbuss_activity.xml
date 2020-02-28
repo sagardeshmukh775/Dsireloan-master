@@ -478,6 +478,7 @@
                             android:scrollbars="vertical"
                             android:layout_marginTop="3dp"
                             android:layout_marginBottom="3dp"
+                            android:padding="10dp"
                             android:layout_below="@+id/layoutdesbussamount1"
                             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
@@ -491,22 +492,21 @@
 
                             <TextView
                                 android:id="@+id/txttotalamount"
-                                android:layout_width="150dp"
+                                android:layout_width="140dp"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:layout_marginBottom="5dp"
-                                android:padding="10dp"
+                                android:layout_marginTop="1dp"
+                                android:layout_marginBottom="1dp"
+                                android:layout_marginLeft="10dp"
                                 android:text="Total Disbussment"
                                 android:textColor="@color/darkgraycolor"
                                 android:textSize="14dp" />
 
                             <TextView
                                 android:id="@+id/txttotalamountvalue"
-                                android:layout_width="150dp"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:layout_marginBottom="5dp"
-                                android:padding="10dp"
+                                android:layout_marginTop="1dp"
+                                android:layout_marginBottom="1dp"
                                 android:text="100000"
                                 android:layout_toRightOf="@+id/txttotalamount"
                                 android:textColor="@color/darkgraycolor"

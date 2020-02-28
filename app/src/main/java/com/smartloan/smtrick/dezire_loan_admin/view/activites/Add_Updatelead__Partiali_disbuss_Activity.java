@@ -252,9 +252,9 @@ public class Add_Updatelead__Partiali_disbuss_Activity extends AppCompatActivity
                 etapprovedamt.setText(Approved);
             }
 
-            if (dissbuss != null) {
-                etdissbussAmt.setText(dissbuss);
-            }
+//            if (dissbuss != null) {
+//                etdissbussAmt.setText(dissbuss);
+//            }
 
             if (approveddate != null) {
                 etapproveddate.setText(approveddate);
