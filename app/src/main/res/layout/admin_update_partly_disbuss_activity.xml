@@ -497,7 +497,7 @@
                                 android:layout_marginTop="1dp"
                                 android:layout_marginBottom="1dp"
                                 android:layout_marginLeft="10dp"
-                                android:text="Total Disbussment"
+                                android:text="Total Paid Amount"
                                 android:textColor="@color/darkgraycolor"
                                 android:textSize="14dp" />
 

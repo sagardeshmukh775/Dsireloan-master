@@ -43,6 +43,7 @@ public class DisbussAmounts_Adapter extends RecyclerView.Adapter<DisbussAmounts_
 
         if (plots != null) {
             holder.txtAmount.setText(searchArrayList.get(position));
+            holder.txtInstallment.setText("Installment - "+String.valueOf(position+1));
         } else {
             holder.txtAmount.setText("Null");
         }
@@ -57,13 +58,14 @@ public class DisbussAmounts_Adapter extends RecyclerView.Adapter<DisbussAmounts_
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView  txtAmount;
+        TextView  txtAmount,txtInstallment;
 
 
         public ViewHolder(View itemView) {
             super(itemView);
 
             txtAmount = (TextView) itemView.findViewById(R.id.disbussamt);
+            txtInstallment = (TextView) itemView.findViewById(R.id.installment);
 
         }
     }

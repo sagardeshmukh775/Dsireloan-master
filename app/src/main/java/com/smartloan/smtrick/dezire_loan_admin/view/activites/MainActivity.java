@@ -264,14 +264,14 @@ public class MainActivity extends AppCompatActivity
                 textViewMobileNumber.setText(user.getPhoneNumber());
             }
 
-            textViewMobileNumber.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(MainActivity.this, UpdateProfileActivity.class);
-                    intent.putExtra("agentid",appSharedPreference.getAgeniId());
-                    startActivityForResult(intent, REQUEST_CODE);
-                }
-            });
+//            textViewMobileNumber.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    Intent intent = new Intent(MainActivity.this, UpdateProfileActivity.class);
+//                    intent.putExtra("agentid",appSharedPreference.getAgeniId());
+//                    startActivityForResult(intent, REQUEST_CODE);
+//                }
+//            });
 
             if (!Utility.isEmptyOrNull(appSharedPreference.getProfileLargeImage())) {
                 Picasso.with(this).load(appSharedPreference.getProfileLargeImage()).resize(200, 200).centerCrop().placeholder(R.drawable.imagelogo).into(imageViewProfile);
