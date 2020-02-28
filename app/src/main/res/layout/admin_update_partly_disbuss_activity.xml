@@ -509,7 +509,7 @@
                                 android:layout_marginBottom="1dp"
                                 android:text="100000"
                                 android:layout_toRightOf="@+id/txttotalamount"
-                                android:textColor="@color/darkgraycolor"
+                                android:textColor="@color/mainTextColor"
                                 android:textSize="14dp" />
 
                         </RelativeLayout>
