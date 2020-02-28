@@ -50,7 +50,7 @@ public class Add_Updatelead__Partiali_disbuss_Activity extends AppCompatActivity
     String cExloanamount, cApproved, cDissbus, cDate, cBankname, cNmae, cAdress, cLoantype,
             cAgentname, cOffaddress, cContatct, cAltcontatct, cApproveddate, cPanno, cAdharno,
             cIncome, cExamount, lGenby, cDescreption, sploantype, spoccupation,cNote;
-    TextView txtldate, txtleadid;
+    TextView txtldate, txtleadid,txtTotalDisbussAmount;
     EditText etdissbussAmt,etNote;
     ArrayList<String> NotesList;
     ArrayList<String> DisbussAmounts;
@@ -91,6 +91,7 @@ public class Add_Updatelead__Partiali_disbuss_Activity extends AppCompatActivity
         btverify = (Button) findViewById(R.id.buttonverify);
         btverify.setText("FULL_DISBUSS");
 //        btnfail = (Button) findViewById(R.id.buttonfail);
+        txtTotalDisbussAmount = (TextView) findViewById(R.id.txttotalamountvalue);
 
         txtleadid = (TextView) findViewById(R.id.textheader);
         etcname = (EditText) findViewById(R.id.txtcamevalue);
@@ -198,6 +199,13 @@ public class Add_Updatelead__Partiali_disbuss_Activity extends AppCompatActivity
             recycleDisbussamounts.setAdapter(adapter);
             recycleDisbussamounts.setHasFixedSize(true);
             recycleDisbussamounts.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+
+            double totalamt = 0;
+            for (int i = 0; i<DisbussAmounts.size(); i++){
+                totalamt = totalamt + Double.parseDouble(DisbussAmounts.get(i));
+            }
+
+            txtTotalDisbussAmount.setText(String.valueOf(totalamt));
 
             if (invoice.getNotes() != null){
                 NotesList = invoice.getNotes();

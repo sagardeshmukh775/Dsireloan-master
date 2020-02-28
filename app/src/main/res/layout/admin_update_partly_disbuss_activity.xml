@@ -475,19 +475,51 @@
                             android:id="@+id/recycler_view"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@color/whiteheadercolor"
                             android:scrollbars="vertical"
                             android:layout_marginTop="3dp"
                             android:layout_marginBottom="3dp"
                             android:layout_below="@+id/layoutdesbussamount1"
                             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
+                        <RelativeLayout
+                            android:id="@+id/layouttoaldisbussamount"
+                            android:layout_width="match_parent"
+                            android:layout_height="fill_parent"
+                            android:layout_below="@+id/recycler_view"
+                            android:layout_gravity="center_horizontal"
+                            android:gravity="center_vertical">
+
+                            <TextView
+                                android:id="@+id/txttotalamount"
+                                android:layout_width="150dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp"
+                                android:padding="10dp"
+                                android:text="Total Disbussment"
+                                android:textColor="@color/darkgraycolor"
+                                android:textSize="14dp" />
+
+                            <TextView
+                                android:id="@+id/txttotalamountvalue"
+                                android:layout_width="150dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginBottom="5dp"
+                                android:padding="10dp"
+                                android:text="100000"
+                                android:layout_toRightOf="@+id/txttotalamount"
+                                android:textColor="@color/darkgraycolor"
+                                android:textSize="14dp" />
+
+                        </RelativeLayout>
+
 
                         <RelativeLayout
                             android:id="@+id/layoutapproveddate"
                             android:layout_width="match_parent"
                             android:layout_height="fill_parent"
-                            android:layout_below="@+id/recycler_view"
+                            android:layout_below="@+id/layouttoaldisbussamount"
                             android:layout_gravity="center_horizontal"
                             android:gravity="center_vertical">
 
