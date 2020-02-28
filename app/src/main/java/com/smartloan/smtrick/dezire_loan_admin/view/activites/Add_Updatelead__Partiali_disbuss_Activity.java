@@ -49,7 +49,7 @@ public class Add_Updatelead__Partiali_disbuss_Activity extends AppCompatActivity
             etoccupation, etincome, etexammount, etgenerated, etdescription;
     String cExloanamount, cApproved, cDissbus, cDate, cBankname, cNmae, cAdress, cLoantype,
             cAgentname, cOffaddress, cContatct, cAltcontatct, cApproveddate, cPanno, cAdharno,
-            cIncome, cExamount, lGenby, cDescreption, sploantype, spoccupation, cNote,cTotaidisbussment;
+            cIncome, cExamount, lGenby, cDescreption, sploantype, spoccupation, cNote, cTotaidisbussment;
     TextView txtldate, txtleadid, txtTotalDisbussAmount;
     EditText etdissbussAmt, etNote;
     ArrayList<String> NotesList;
@@ -136,12 +136,14 @@ public class Add_Updatelead__Partiali_disbuss_Activity extends AppCompatActivity
                     if (!TextUtils.isEmpty(cDissbus)) {
                         double approvedamt = Double.parseDouble(invoice.getApprovedLoan());
                         double installment = Double.parseDouble(txtTotalDisbussAmount.getText().toString()) + Double.parseDouble(cDissbus);
-                      cTotaidisbussment = String.valueOf(installment);
+
                         if (approvedamt < installment) {
                             Toast.makeText(Add_Updatelead__Partiali_disbuss_Activity.this, "Approved Amount is Less", Toast.LENGTH_SHORT).show();
                             return;
                         }
+
                     }
+                    cTotaidisbussment = String.valueOf(Double.parseDouble(txtTotalDisbussAmount.getText().toString()) + Double.parseDouble(cDissbus));
                 } catch (Exception e) {
 
                 }
@@ -301,7 +303,8 @@ public class Add_Updatelead__Partiali_disbuss_Activity extends AppCompatActivity
         invoice.setExpectedLoanAmount(cExloanamount);
         invoice.setBankName(cBankname);
         invoice.setApprovedLoan(cApproved);
-        if (!TextUtils.isEmpty(cDissbus)) {
+
+        if (!TextUtils.isEmpty(cTotaidisbussment)) {
             invoice.setdissbussloan(cTotaidisbussment);
         }
         invoice.setApprovedDate(cApproveddate);
