@@ -4,6 +4,8 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
@@ -22,6 +24,7 @@ import com.smartloan.smtrick.dezire_loan_admin.preferences.AppSharedPreference;
 import com.smartloan.smtrick.dezire_loan_admin.repository.InvoiceRepository;
 import com.smartloan.smtrick.dezire_loan_admin.repository.impl.InvoiceRepositoryImpl;
 import com.smartloan.smtrick.dezire_loan_admin.utilities.Utility;
+import com.smartloan.smtrick.dezire_loan_admin.view.adapters.DisbussAmounts_Adapter;
 import com.smartloan.smtrick.dezire_loan_admin.view.dialog.ProgressDialogClass;
 
 import java.util.ArrayList;
@@ -42,7 +45,7 @@ public class Add_Updatelead__Partiali_disbuss_Activity extends AppCompatActivity
     InvoiceRepository invoiceRepository;
     ArrayList<LeedsModel> leedsModelArrayList;
     EditText etbankname, etdate, etexloanamount, etcname, etaddress, etloantype, etagentname,
-            etdissbuss, etcontatct, etalternatecontact, etapproveddate, etpanno, etadharno,
+            etapprovedamt, etcontatct, etalternatecontact, etapproveddate, etpanno, etadharno,
             etoccupation, etincome, etexammount, etgenerated, etdescription;
     String cExloanamount, cApproved, cDissbus, cDate, cBankname, cNmae, cAdress, cLoantype,
             cAgentname, cOffaddress, cContatct, cAltcontatct, cApproveddate, cPanno, cAdharno,
@@ -50,6 +53,9 @@ public class Add_Updatelead__Partiali_disbuss_Activity extends AppCompatActivity
     TextView txtldate, txtleadid;
     EditText etdissbussAmt,etNote;
     ArrayList<String> NotesList;
+    ArrayList<String> DisbussAmounts;
+    RecyclerView recycleDisbussamounts;
+    DisbussAmounts_Adapter adapter;
 
 
     @Override
@@ -77,6 +83,9 @@ public class Add_Updatelead__Partiali_disbuss_Activity extends AppCompatActivity
         String[] empType = new String[]{"Salaried", "Businessman"};
 
         NotesList = new ArrayList<>();
+        DisbussAmounts = new ArrayList<>();
+
+        recycleDisbussamounts = (RecyclerView) findViewById(R.id.recycler_view);
 
         btnnext = (Button) findViewById(R.id.buttonupdatenext);
         btverify = (Button) findViewById(R.id.buttonverify);
@@ -93,7 +102,7 @@ public class Add_Updatelead__Partiali_disbuss_Activity extends AppCompatActivity
         etexloanamount = (EditText) findViewById(R.id.txtexloanamountvalue);
         etdate = (EditText) findViewById(R.id.txtdatevalue);
         etbankname = (EditText) findViewById(R.id.txtbankvalue);
-        etdissbuss = (EditText) findViewById(R.id.txtdissamountvalue);
+        etapprovedamt = (EditText) findViewById(R.id.txtapprovedamountvalue);
         etdissbussAmt = (EditText) findViewById(R.id.txtdissamountvalue1);
         etapproveddate = (EditText) findViewById(R.id.txtapproveddate1);
         etNote = (EditText) findViewById(R.id.txtnotevalue);
@@ -110,11 +119,14 @@ public class Add_Updatelead__Partiali_disbuss_Activity extends AppCompatActivity
                 cExloanamount = etexloanamount.getText().toString();
                 cDate = etdate.getText().toString();
                 cBankname = etbankname.getText().toString();
-                cApproved = etdissbuss.getText().toString();
+                cApproved = etapprovedamt.getText().toString();
                 cDissbus = etdissbussAmt.getText().toString();
                 cApproveddate = etapproveddate.getText().toString();
                 cNote = etNote.getText().toString();
 
+                if (!TextUtils.isEmpty(cDissbus)) {
+                    DisbussAmounts.add(cDissbus);
+                }
                 if (!TextUtils.isEmpty(cNote)) {
                     NotesList.add(cNote);
                 }
@@ -179,6 +191,13 @@ public class Add_Updatelead__Partiali_disbuss_Activity extends AppCompatActivity
             String Approved = invoice.getApprovedLoan();
             String dissbuss = invoice.getDissbussloan();
             String approveddate = invoice.getApprovedDate();
+            DisbussAmounts = invoice.getDisbussAmounts();
+
+            adapter = new DisbussAmounts_Adapter(getApplicationContext(), DisbussAmounts);
+            //adding adapter to recyclerview
+            recycleDisbussamounts.setAdapter(adapter);
+            recycleDisbussamounts.setHasFixedSize(true);
+            recycleDisbussamounts.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
             if (invoice.getNotes() != null){
                 NotesList = invoice.getNotes();
@@ -222,7 +241,7 @@ public class Add_Updatelead__Partiali_disbuss_Activity extends AppCompatActivity
             }
 
             if (Approved != null) {
-                etdissbuss.setText(Approved);
+                etapprovedamt.setText(Approved);
             }
 
             if (dissbuss != null) {
@@ -262,6 +281,10 @@ public class Add_Updatelead__Partiali_disbuss_Activity extends AppCompatActivity
         invoice.setApprovedLoan(cApproved);
         invoice.setdissbussloan(cDissbus);
         invoice.setApprovedDate(cApproveddate);
+
+        if(DisbussAmounts != null) {
+            invoice.setDisbussAmounts(DisbussAmounts);
+        }
         if(NotesList != null) {
             invoice.setNotes(NotesList);
         }

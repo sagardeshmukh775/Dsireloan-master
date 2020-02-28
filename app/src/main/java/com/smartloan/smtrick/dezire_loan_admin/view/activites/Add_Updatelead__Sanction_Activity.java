@@ -1,5 +1,6 @@
 package com.smartloan.smtrick.dezire_loan_admin.view.activites;
 
+import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -24,9 +26,13 @@ import com.smartloan.smtrick.dezire_loan_admin.repository.impl.InvoiceRepository
 import com.smartloan.smtrick.dezire_loan_admin.utilities.Utility;
 import com.smartloan.smtrick.dezire_loan_admin.view.dialog.ProgressDialogClass;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Locale;
 import java.util.Map;
 
+import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.CALANDER_DATE_FORMATE;
 import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.GLOBAL_DATE_FORMATE;
 import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.INVICES_LEEDS;
 import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.STATUS_CLOSE;
@@ -54,6 +60,11 @@ public class Add_Updatelead__Sanction_Activity extends AppCompatActivity impleme
     TextView txtldate, txtleadid;
     EditText etdissbussAmt,etNote;
     ArrayList<String> NotesList;
+    ArrayList<String> DisbussAmounts;
+
+    int fromYear, fromMonth, fromDay;
+    int toYear, toMonth, toDay;
+    long fromDate, toDate;
 
     @Override
     public boolean onSupportNavigateUp() {
@@ -80,6 +91,7 @@ public class Add_Updatelead__Sanction_Activity extends AppCompatActivity impleme
         String[] empType = new String[]{"Salaried", "Businessman"};
 
         NotesList = new ArrayList<>();
+        DisbussAmounts = new ArrayList<>();
 
         btnnext = (Button) findViewById(R.id.buttonupdatenext);
         btClose = (Button) findViewById(R.id.buttonClose);
@@ -120,6 +132,9 @@ public class Add_Updatelead__Sanction_Activity extends AppCompatActivity impleme
                 cApproveddate = etapproveddate.getText().toString();
                 cNote = etNote.getText().toString();
 
+                if (!TextUtils.isEmpty(cDissbus)) {
+                    DisbussAmounts.add(cDissbus);
+                }
                 if (!TextUtils.isEmpty(cNote)) {
                     NotesList.add(cNote);
                 }
@@ -139,6 +154,29 @@ public class Add_Updatelead__Sanction_Activity extends AppCompatActivity impleme
 
         getdata();
 
+        setFromCurrentDate();
+        etapproveddate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatePickerDialog mDatePicker = new DatePickerDialog(Add_Updatelead__Sanction_Activity.this, new DatePickerDialog.OnDateSetListener() {
+                    public void onDateSet(DatePicker datepicker, int selectedyear, int selectedmonth, int selectedday) {
+                        Calendar myCalendar = Calendar.getInstance();
+                        myCalendar.set(Calendar.YEAR, selectedyear);
+                        myCalendar.set(Calendar.MONTH, selectedmonth);
+                        myCalendar.set(Calendar.DAY_OF_MONTH, selectedday);
+                        SimpleDateFormat sdf = new SimpleDateFormat(CALANDER_DATE_FORMATE, Locale.FRANCE);
+                        String formatedDate = sdf.format(myCalendar.getTime());
+                        etapproveddate.setText(formatedDate);
+                        fromDay = selectedday;
+                        fromMonth = selectedmonth;
+                        fromYear = selectedyear;
+                        fromDate = Utility.convertFormatedDateToMilliSeconds(formatedDate, CALANDER_DATE_FORMATE);
+
+                    }
+                }, fromYear, fromMonth, fromDay);
+                mDatePicker.show();
+            }
+        });
 
         btFullDisbuss.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -249,6 +287,12 @@ public class Add_Updatelead__Sanction_Activity extends AppCompatActivity impleme
 
     }
 
+    private void setFromCurrentDate() {
+        Calendar mcurrentDate = Calendar.getInstance();
+        fromYear = mcurrentDate.get(Calendar.YEAR);
+        fromMonth = mcurrentDate.get(Calendar.MONTH);
+        fromDay = mcurrentDate.get(Calendar.DAY_OF_MONTH);
+    }
 
     private void getdata() {
 
@@ -360,6 +404,10 @@ public class Add_Updatelead__Sanction_Activity extends AppCompatActivity impleme
         invoice.setApprovedLoan(cApproved);
         invoice.setdissbussloan(cDissbus);
         invoice.setApprovedDate(cApproveddate);
+
+        if(DisbussAmounts != null) {
+            invoice.setDisbussAmounts(DisbussAmounts);
+        }
         if(NotesList != null) {
             invoice.setNotes(NotesList);
         }

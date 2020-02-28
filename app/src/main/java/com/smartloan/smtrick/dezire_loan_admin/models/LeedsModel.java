@@ -60,6 +60,7 @@ public class LeedsModel implements Serializable {
     private String paymentDate;
     private String commission;
     ArrayList<String> notes;
+    ArrayList<String> disbussAmounts;
 
 
     private View.OnClickListener requestBtnClickListener;
@@ -114,6 +115,7 @@ public class LeedsModel implements Serializable {
         this.paymentDate = "321654684";
 
         this.notes = new ArrayList<String>();
+        this.disbussAmounts = new ArrayList<String>();
     }
 
     @Exclude
@@ -526,6 +528,14 @@ public class LeedsModel implements Serializable {
         this.notes = notes;
     }
 
+    public ArrayList<String> getDisbussAmounts() {
+        return disbussAmounts;
+    }
+
+    public void setDisbussAmounts(ArrayList<String> disbussAmounts) {
+        this.disbussAmounts = disbussAmounts;
+    }
+
     public static ArrayList<LeedsModel> getLeeds() {
         ArrayList<LeedsModel> leedsModelArrayList = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
@@ -574,6 +584,7 @@ public class LeedsModel implements Serializable {
         leedMap.put("dissbussloan", getDissbussloan());
         leedMap.put("email", getEmail());
         leedMap.put("notes", getNotes());
+        leedMap.put("disbussAmounts", getDisbussAmounts());
 
         return leedMap;
     }

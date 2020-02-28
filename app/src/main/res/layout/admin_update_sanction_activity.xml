@@ -498,6 +498,7 @@
                             android:layout_toRightOf="@+id/txtapproveddate"
                             android:background="@drawable/edittextanimation"
                             android:padding="10dp"
+                            android:focusable="false"
                             android:text=""
                             android:inputType="date"
                             android:textColor="@color/mainTextColor"

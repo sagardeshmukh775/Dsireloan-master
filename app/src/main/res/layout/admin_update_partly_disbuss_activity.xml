@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_height="fill_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <RelativeLayout
         android:id="@+id/layouttop"
@@ -470,11 +471,23 @@
                                 android:textSize="14dp" />
                         </RelativeLayout>
 
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/recycler_view"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@color/whiteheadercolor"
+                            android:scrollbars="vertical"
+                            android:layout_marginTop="3dp"
+                            android:layout_marginBottom="3dp"
+                            android:layout_below="@+id/layoutdesbussamount1"
+                            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+
                         <RelativeLayout
                             android:id="@+id/layoutapproveddate"
                             android:layout_width="match_parent"
                             android:layout_height="fill_parent"
-                            android:layout_below="@+id/layoutdesbussamount1"
+                            android:layout_below="@+id/recycler_view"
                             android:layout_gravity="center_horizontal"
                             android:gravity="center_vertical">
 
