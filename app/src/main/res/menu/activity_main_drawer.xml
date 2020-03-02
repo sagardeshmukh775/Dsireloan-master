@@ -38,7 +38,7 @@
 
         <item
             android:id="@+id/deleteoffers"
-            android:icon="@drawable/offer"
+            android:icon="@drawable/trash"
             android:title="Delete Offers"
             android:textSize="22sp"
             android:textColor="@color/textcolor"
