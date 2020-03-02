@@ -62,7 +62,8 @@
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:background="@color/hederbackground"
-            android:text="Choose Image" />
+            android:text="Choose Image"
+            android:textColor="@color/white"/>
 
         <ImageView
             android:id="@+id/imageView"
@@ -81,7 +82,8 @@
             android:layout_marginTop="10dp"
             android:text="Upload Offer"
             android:layout_marginBottom="20dp"
-            android:background="@color/hederbackground"/>
+            android:background="@color/hederbackground"
+            android:textColor="@color/white"/>
 
     </LinearLayout>
 </ScrollView>
