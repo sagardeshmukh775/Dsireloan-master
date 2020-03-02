@@ -40,4 +40,6 @@
     <color name="page_indicator_selected_color">#ff8c00</color>
 
     <color name="btn_logut_bg">#ff6861</color>
+    <color name="card_color">#f6f6f6</color>
+
 </resources>

@@ -37,6 +37,14 @@
             android:textStyle="normal|bold"/>
 
         <item
+            android:id="@+id/deleteoffers"
+            android:icon="@drawable/offer"
+            android:title="Delete Offers"
+            android:textSize="22sp"
+            android:textColor="@color/textcolor"
+            android:textStyle="normal|bold"/>
+
+        <item
             android:id="@+id/admininvoice"
             android:icon="@drawable/usersimage2"
             android:title="Invoices"
