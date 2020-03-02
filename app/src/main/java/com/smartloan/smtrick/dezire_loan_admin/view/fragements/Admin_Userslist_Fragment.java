@@ -218,11 +218,11 @@ public class Admin_Userslist_Fragment extends Fragment {
         userdialogBinding = DataBindingUtil.inflate(LayoutInflater.from(getActivity()), R.layout.userdialog, null, false);
         dialog.setContentView(userdialogBinding.getRoot());
         dialog.setTitle("Title...");
-        userdialogBinding.txtagentid.setText(invoice.getAgentId());
-        userdialogBinding.txtcnamevalue.setText(invoice.getAgentId());
-        userdialogBinding.txtccontactvalue.setText(invoice.getMobilenumber());
-        userdialogBinding.txtcaddressvalue.setText(invoice.getName());
-//        userdialogBinding.txtemailidvalue.setText(invoice.getEmail());
+        userdialogBinding.txtjoiningdatevalue.setText(invoice.getAgentId());
+        userdialogBinding.txtcnamevalue.setText(invoice.getName());
+        userdialogBinding.txtcontactvalue.setText(invoice.getMobilenumber());
+        userdialogBinding.txtemailidvalue.setText(invoice.getEmail());
+        userdialogBinding.txtcaddressvalue.setText(invoice.getAddress());
 
 //        userdialogBinding.txtdatevalue.setText(Utility.convertMilliSecondsToFormatedDate(invoice.getCreatedDateTimeLong(), GLOBAL_DATE_FORMATE));
         userdialogBinding.dialogButtonaccept.setOnClickListener(new View.OnClickListener() {
