@@ -6,7 +6,7 @@
     android:gravity="center">
 
     <ImageView
-        android:id="@+id/image"
+        android:id="@+id/spalshimage"
         android:layout_width="350sp"
         android:layout_height="250sp"
         android:layout_centerHorizontal="true"

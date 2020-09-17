@@ -165,9 +165,10 @@ public class MainActivity extends AppCompatActivity
             fragment = new Fragment_Upload_Offers();
         } else if (id == R.id.deleteoffers) {
             fragment = new Fragment_Advertise();
-        } else if (id == R.id.admininvoice) {
-            fragment = new Admin1_Invoices_TabFragment();
         }
+//        else if (id == R.id.admininvoice) {
+//            fragment = new Admin1_Invoices_TabFragment();
+//        }
         //NOTE: Fragment changing code
         selectedFragement = fragment;
         if (fragment != null) {

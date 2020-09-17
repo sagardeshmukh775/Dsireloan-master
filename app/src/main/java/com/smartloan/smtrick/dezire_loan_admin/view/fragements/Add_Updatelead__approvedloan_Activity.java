@@ -43,7 +43,7 @@ import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.STATUS_
 import static com.smartloan.smtrick.dezire_loan_admin.constants.Constant.STATUS_REJECTED;
 
 public class Add_Updatelead__approvedloan_Activity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
-    Button   btnsendinvoice, btnnext;
+    Button    btnnext;
     LeedsModel invoice;
     ProgressDialogClass progressDialogClass;
     AppSharedPreference appSharedPreference;
@@ -91,7 +91,7 @@ public class Add_Updatelead__approvedloan_Activity extends AppCompatActivity imp
         NotesList = new ArrayList<>();
 
         btnnext = (Button) findViewById(R.id.buttonupdatenext);
-        btnsendinvoice = (Button) findViewById(R.id.buttonsendinvoice);
+//        btnsendinvoice = (Button) findViewById(R.id.buttonsendinvoice);
 
         mDatabase = FirebaseDatabase.getInstance().getReference("invoice");
 
@@ -161,51 +161,51 @@ public class Add_Updatelead__approvedloan_Activity extends AppCompatActivity imp
             }
         });
 
-        btnsendinvoice.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-
-                final Dialog dialog = new Dialog(Add_Updatelead__approvedloan_Activity.this);
-                dialog.setContentView(R.layout.confermationdialog);
-                Button Yes = (Button) dialog.findViewById(R.id.dialogButtonYes);
-                Button No = (Button) dialog.findViewById(R.id.dialogButtonNo);
-
-                Yes.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        cNmae = etcname.getText().toString();
-                        cLeedid = invoice.getLeedId();
-                        cLeedNumber = invoice.getLeedNumber();
-                        cAgentid = appSharedPreference.getAgeniId();
-                        cExloanamount = etexloanamount.getText().toString();
-                        cAgentname = etagentname.getText().toString();
-                        cApproved = etdissbuss.getText().toString();
-                        cPaymentDate = etpaymentdate.getText().toString();
-                        cCommissionamt = etcommition.getText().toString();
-                        cDisbuss = etdisburseamt.getText().toString();
-                        cApproveddate = invoice.getApprovedDate();
-
-                        generateinvoice(cLeedid);
-                        Toast.makeText(Add_Updatelead__approvedloan_Activity.this, "Lead Update Successfully", Toast.LENGTH_SHORT).show();
-
-                        Intent i = new Intent(Add_Updatelead__approvedloan_Activity.this, MainActivity.class);
-                        i.putExtra(INVICES_LEEDS, invoice);
-                        startActivity(i);
-                        overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
-                    }
-                });
-                No.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        dialog.dismiss();
-                    }
-                });
-
-                dialog.show();
-
-
-
-            }
-        });
+//        btnsendinvoice.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View v) {
+//
+//                final Dialog dialog = new Dialog(Add_Updatelead__approvedloan_Activity.this);
+//                dialog.setContentView(R.layout.confermationdialog);
+//                Button Yes = (Button) dialog.findViewById(R.id.dialogButtonYes);
+//                Button No = (Button) dialog.findViewById(R.id.dialogButtonNo);
+//
+//                Yes.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        cNmae = etcname.getText().toString();
+//                        cLeedid = invoice.getLeedId();
+//                        cLeedNumber = invoice.getLeedNumber();
+//                        cAgentid = appSharedPreference.getAgeniId();
+//                        cExloanamount = etexloanamount.getText().toString();
+//                        cAgentname = etagentname.getText().toString();
+//                        cApproved = etdissbuss.getText().toString();
+//                        cPaymentDate = etpaymentdate.getText().toString();
+//                        cCommissionamt = etcommition.getText().toString();
+//                        cDisbuss = etdisburseamt.getText().toString();
+//                        cApproveddate = invoice.getApprovedDate();
+//
+//                        generateinvoice(cLeedid);
+//                        Toast.makeText(Add_Updatelead__approvedloan_Activity.this, "Lead Update Successfully", Toast.LENGTH_SHORT).show();
+//
+//                        Intent i = new Intent(Add_Updatelead__approvedloan_Activity.this, MainActivity.class);
+//                        i.putExtra(INVICES_LEEDS, invoice);
+//                        startActivity(i);
+//                        overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
+//                    }
+//                });
+//                No.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        dialog.dismiss();
+//                    }
+//                });
+//
+//                dialog.show();
+//
+//
+//
+//            }
+//        });
 
 
         getdata();

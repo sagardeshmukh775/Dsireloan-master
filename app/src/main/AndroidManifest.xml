@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name="com.smartloan.smtrick.dezire_loan_admin.view.activites.SplashScreen">
+        <activity android:name=".view.activites.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,7 +23,7 @@
         </activity>
 
         <activity
-            android:name="com.smartloan.smtrick.dezire_loan_admin.view.activites.LoginScreen"
+            android:name=".view.activites.LoginScreen"
             android:windowSoftInputMode="stateHidden" />
 
         <activity

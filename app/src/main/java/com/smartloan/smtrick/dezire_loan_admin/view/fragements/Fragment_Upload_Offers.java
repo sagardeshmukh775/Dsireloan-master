@@ -18,6 +18,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.MimeTypeMap;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -90,6 +91,8 @@ public class Fragment_Upload_Offers extends Fragment implements View.OnClickList
         Idescription = (EditText) view.findViewById(R.id.description);
         storageReference = FirebaseStorage.getInstance().getReference();
         mDatabase = FirebaseDatabase.getInstance().getReference(Constants.DATABASE_PATH_UPLOADS);
+
+
         
 //          Boolean per = isStoragePermissionGranted();
 //        spinnervalue();

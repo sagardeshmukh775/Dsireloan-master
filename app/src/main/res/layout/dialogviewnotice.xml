@@ -44,7 +44,8 @@
             android:id="@+id/textdate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/textdescription"
+            android:layout_below="@+id/imagedate"
+
             android:layout_marginTop="5sp"
             android:layout_toRightOf="@+id/imagedate"
             android:paddingLeft="5sp"
