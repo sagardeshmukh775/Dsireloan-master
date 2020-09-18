@@ -2,9 +2,9 @@ package com.smartloan.smtrick.dezire_loan_admin.view.activites;
 
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -25,7 +25,7 @@ import com.smartloan.smtrick.dezire_loan_admin.exception.ExceptionUtil;
 import com.smartloan.smtrick.dezire_loan_admin.models.Users;
 import com.smartloan.smtrick.dezire_loan_admin.preferences.AppSharedPreference;
 
-public class Phone_Verification_Activity extends AppCompatActivity {
+public class Activity_Phone_Verification extends AppCompatActivity {
 
     private Spinner spinner;
     private EditText editText;
@@ -39,7 +39,7 @@ public class Phone_Verification_Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_phone__verification_);
+        setContentView(R.layout.activity__phone__verification);
 
         FirebaseApp.initializeApp(this);
         appSharedPreference = new AppSharedPreference(this);
@@ -53,7 +53,7 @@ public class Phone_Verification_Activity extends AppCompatActivity {
 
         editText = findViewById(R.id.editTextPhone);
         edtname = findViewById(R.id.editTextName);
-        
+
         btnlogin = findViewById(R.id.buttonLogin);
         btnlogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,8 +90,8 @@ public class Phone_Verification_Activity extends AppCompatActivity {
 
                                 progressBar.setVisibility(View.INVISIBLE);
 
-                                Toast.makeText(Phone_Verification_Activity.this, "Login Successfull", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(Phone_Verification_Activity.this, MainActivity.class);
+                                Toast.makeText(Activity_Phone_Verification.this, "Login Successfull", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(Activity_Phone_Verification.this, MainActivity.class);
                                 appSharedPreference.addUserDetails(upload);
                                 appSharedPreference.createUserLoginSession();
                                 intent.putExtra("mobile",upload.getMobilenumber());
@@ -104,7 +104,7 @@ public class Phone_Verification_Activity extends AppCompatActivity {
 
                         }else {
                             progressBar.setVisibility(View.INVISIBLE);
-                            Toast.makeText(Phone_Verification_Activity.this, "Login failed Please Register", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Activity_Phone_Verification.this, "Login failed Please Register", Toast.LENGTH_SHORT).show();
 
                         }
                     }
@@ -114,11 +114,11 @@ public class Phone_Verification_Activity extends AppCompatActivity {
 
                     }
                 });
-                
-                
+
+
             }
         });
-        
+
 
         findViewById(R.id.buttonContinue).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -151,12 +151,12 @@ public class Phone_Verification_Activity extends AppCompatActivity {
                         if (dataSnapshot.getValue() != null) {
                             progressBar.setVisibility(View.INVISIBLE);
 
-                                Toast.makeText(Phone_Verification_Activity.this, "User Already Exists Please Login", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Activity_Phone_Verification.this, "User Already Exists Please Login", Toast.LENGTH_SHORT).show();
 
                         }else {
                             progressBar.setVisibility(View.INVISIBLE);
 
-                            Intent intent = new Intent(Phone_Verification_Activity.this, VerifyPhoneActivity.class);
+                            Intent intent = new Intent(Activity_Phone_Verification.this, VerifyPhoneActivity.class);
                             intent.putExtra("phonenumber", phoneNumber);
                             intent.putExtra("name", username);
                             startActivity(intent);
@@ -171,6 +171,7 @@ public class Phone_Verification_Activity extends AppCompatActivity {
                 });
             }
         });
+
     }
 
     public void checkLoginState() {
@@ -211,4 +212,5 @@ public class Phone_Verification_Activity extends AppCompatActivity {
             finish();
         }
     }
+
 }

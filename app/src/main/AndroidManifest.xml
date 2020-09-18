@@ -13,26 +13,20 @@
         android:roundIcon="@drawable/dloan"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".view.activites.MainActivity"></activity>
+        <activity android:name=".view.activites.Activity_Phone_Verification" />
         <activity android:name=".view.activites.SplashScreen_Activity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
-        </activity>
-        <activity android:name=".view.activites.SplashScreen">
-
         </activity>
         <activity
             android:name=".view.activites.LoginScreen"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".view.activites.Registeractivity"
-            android:windowSoftInputMode="stateHidden" />
-        <activity
-            android:name=".view.activites.MainActivity"
-            android:theme="@style/AppTheme"
             android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".view.activites.NewLeadActivity"
@@ -105,7 +99,6 @@
         <activity
             android:name=".view.activites.User_Invoice_Details_Activity"
             android:windowSoftInputMode="stateHidden" />
-        <activity android:name=".view.activites.Phone_Verification_Activity" />
         <activity android:name=".view.activites.VerifyPhoneActivity" />
         <activity
             android:name=".view.activites.Add_Updatelead__Inprocess_Activity"

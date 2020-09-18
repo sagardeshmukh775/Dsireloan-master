@@ -44,7 +44,7 @@ public class SplashScreen_Activity extends AppCompatActivity implements Animatio
                 finish();
 
                 // Start MainActivity.class
-                Intent myIntent = new Intent(SplashScreen_Activity.this, Phone_Verification_Activity.class);
+                Intent myIntent = new Intent(SplashScreen_Activity.this, Activity_Phone_Verification.class);
                 startActivity(myIntent);
                 overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
 

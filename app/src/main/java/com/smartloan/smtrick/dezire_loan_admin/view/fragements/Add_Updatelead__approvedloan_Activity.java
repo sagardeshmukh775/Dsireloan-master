@@ -1,18 +1,15 @@
 package com.smartloan.smtrick.dezire_loan_admin.view.fragements;
 
 import android.app.DatePickerDialog;
-import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,7 +23,6 @@ import com.smartloan.smtrick.dezire_loan_admin.preferences.AppSharedPreference;
 import com.smartloan.smtrick.dezire_loan_admin.repository.InvoiceRepository;
 import com.smartloan.smtrick.dezire_loan_admin.repository.impl.InvoiceRepositoryImpl;
 import com.smartloan.smtrick.dezire_loan_admin.utilities.Utility;
-import com.smartloan.smtrick.dezire_loan_admin.view.activites.Add_Updatelead__Inprocess_Activity;
 import com.smartloan.smtrick.dezire_loan_admin.view.activites.MainActivity;
 import com.smartloan.smtrick.dezire_loan_admin.view.dialog.ProgressDialogClass;
 

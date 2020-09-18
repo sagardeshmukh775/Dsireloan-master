@@ -1,29 +1,29 @@
 package com.smartloan.smtrick.dezire_loan_admin.view.activites;
 
 import android.Manifest;
+import android.support.v4.app.Fragment;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.os.Build;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.support.v7.widget.Toolbar;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -39,7 +39,6 @@ import com.smartloan.smtrick.dezire_loan_admin.interfaces.OnFragmentInteractionL
 import com.smartloan.smtrick.dezire_loan_admin.models.Users;
 import com.smartloan.smtrick.dezire_loan_admin.preferences.AppSharedPreference;
 import com.smartloan.smtrick.dezire_loan_admin.utilities.Utility;
-import com.smartloan.smtrick.dezire_loan_admin.view.fragements.Admin1_Invoices_TabFragment;
 import com.smartloan.smtrick.dezire_loan_admin.view.fragements.Admin_Leed_TabFragment;
 import com.smartloan.smtrick.dezire_loan_admin.view.fragements.Admin_Userslist_Fragment;
 import com.smartloan.smtrick.dezire_loan_admin.view.fragements.Fragment5;
@@ -65,10 +64,12 @@ public class MainActivity extends AppCompatActivity
     String agentId;
     Users username1;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         appSharedPreference = new AppSharedPreference(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -79,7 +80,7 @@ public class MainActivity extends AppCompatActivity
         String id = appSharedPreference.getAgeniId();
         String id1 = appSharedPreference.getMobileNo();
         // NOTE : Just remove the fab button
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout_main);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
@@ -154,7 +155,7 @@ public class MainActivity extends AppCompatActivity
             FirebaseAuth.getInstance().signOut();
             finish();
             appSharedPreference.clear();
-            Intent logout = new Intent(MainActivity.this, Phone_Verification_Activity.class);
+            Intent logout = new Intent(MainActivity.this, Activity_Phone_Verification.class);
             startActivity(logout);
             //  fragment = new Admin_Userslist_Fragment();
         } else if (id == R.id.users) {
@@ -187,6 +188,8 @@ public class MainActivity extends AppCompatActivity
         // NOTE:  Code to replace the toolbar title based current visible fragment
         //  getSupportActionBar().setTitle(title);
     }
+
+
 
     private void clearDataWithSignOut() {
         FirebaseAuth.getInstance().signOut();
